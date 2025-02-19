@@ -5,10 +5,10 @@ const Header = () => {
   return (
     <header>
       <nav>
-        <NavLink to="/" end>
+        <NavLink className="link" to="/" end>
           Inicio
         </NavLink>
-        <NavLink to="/quiz" end>
+        <NavLink className="link" to="/quiz" end>
           Quiz
         </NavLink>
       </nav>

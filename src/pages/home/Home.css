@@ -14,16 +14,29 @@
   background: #443d73;
   color: #fff !important;
   border-radius: 30px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
 }
 
 h1 {
   font-weight: 500;
   text-align: justify;
 }
-.contenedor {
+.card {
   display: flex;
   flex-direction: column; /* Apila los elementos en columna */
   align-items: center; /* Opcional: Centra los elementos horizontalmente */
   gap: 10px; /* Espacio entre los elementos */
   padding: 10px; /* Espaciado interno opcional */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
+  backdrop-filter: blur(10px);
+  transition: all 1s ease;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: scale(1.05);
 }

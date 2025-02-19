@@ -1,6 +1,9 @@
 header {
-  background-color: #443d73;
   padding: 1rem;
+  font-optical-sizing: auto;
+  font-style: normal;
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
+  backdrop-filter: blur(10px);
 }
 
 nav {
@@ -8,4 +11,16 @@ nav {
   justify-content: start;
   align-items: center;
   gap: 1rem;
+  padding-left: 5%;
+  font-weight: 500;
+}
+.link {
+  transition: all 1s ease;
+  border-radius: 10px;
+  color: #443d73;
+}
+
+.link:hover {
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
 }

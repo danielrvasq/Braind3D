@@ -13,10 +13,12 @@ const Home = () => {
 
   return (
     <div className="contenedor">
-      <h1 id="h1">Bienvenido A Braind3D</h1>
-      <button onClick={handleClick} type="button" class="btn-primary">
-        Ver más enfermedades
-      </button>
+      <div className="card">
+        <h1 id="h1">Bienvenido A Braind3D</h1>
+        <button onClick={handleClick} type="button" className="btn-primary">
+          Ver más enfermedades
+        </button>
+      </div>
     </div>
   );
 };
