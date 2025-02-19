@@ -29,14 +29,34 @@ h1 {
   gap: 10px; /* Espacio entre los elementos */
   padding: 10px; /* Espaciado interno opcional */
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px transparent;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
   backdrop-filter: blur(10px);
   transition: all 1s ease;
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .card:hover {
   transform: scale(1.05);
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Mueve el elemento hacia abajo */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contenedor {
+  opacity: 0; /* Oculta el elemento inicialmente */
+  animation: fadeIn 2s ease-out forwards;
+}
+
+img {
+  height: 400px;
 }

@@ -3,7 +3,8 @@ header {
   font-optical-sizing: auto;
   font-style: normal;
   background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); /*fondo desenfocado*/
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
 }
 
 nav {

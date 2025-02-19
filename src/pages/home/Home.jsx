@@ -14,6 +14,7 @@ const Home = () => {
   return (
     <div className="contenedor">
       <div className="card">
+        <img src="src/assets/isotipoHtml.png" />
         <h1 id="h1">Bienvenido A Braind3D</h1>
         <button onClick={handleClick} type="button" className="btn-primary">
           Ver más enfermedades
