@@ -1,0 +1,11 @@
+header {
+  background-color: #443d73;
+  padding: 1rem;
+}
+
+nav {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+}

@@ -1,0 +1,25 @@
+.contenedor {
+  display: flex;
+  flex-direction: column; /* Apila los elementos en columna */
+  align-items: center; /* Opcional: Centra los elementos horizontalmente */
+  gap: 10px; /* Espacio entre los elementos */
+  padding: 10px; /* Espaciado interno opcional */
+}
+
+.btn-primary {
+  color: #443d73 !important;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0.5em 1.2em;
+  background: rgba(0, 0, 0, 0);
+  border: 2px solid;
+  border-color: #443d73;
+  transition: all 1s ease;
+  position: center;
+  border-radius: 10px;
+}
+.btn-primary:hover {
+  background: #443d73;
+  color: #fff !important;
+  border-radius: 30px;
+}
