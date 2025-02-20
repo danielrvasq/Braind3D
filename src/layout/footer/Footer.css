@@ -1,12 +1,14 @@
 footer {
-  background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
+  background-color: rgba(242, 189, 224, 0.6); /* Fondo semitransparente */
   backdrop-filter: blur(10px);
   font-weight: 700;
   padding: 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly; /* Centra horizontalmente */
+  align-items: center;
   gap: 20px;
   padding: 10px;
+  height: 80px;
 }
 
 .footer {
@@ -14,11 +16,12 @@ footer {
   gap: 20px;
 }
 
-.link {
-  transition: all 1s ease;
+.link-f {
+  color: #443d73;
+  transition: 1s ease;
 }
 
-.link:hover {
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
-  transform: scale(1.1);
+.link-f:hover {
+  font-weight: 800;
+  color: #443d73; /* Hace el texto transparente */
 }

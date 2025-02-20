@@ -4,19 +4,22 @@ header {
   font-style: normal;
   background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
   backdrop-filter: blur(10px); /*fondo desenfocado*/
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  height: 80px;
+  align-items: center;
+  display: flex;
 }
 
 nav {
   display: flex;
-  justify-content: start;
   align-items: center;
   gap: 1rem;
   padding-left: 5%;
   font-weight: 500;
 }
 .link {
-  transition: all 1s ease;
+  justify-content: flex-end;
+  transition: 1s ease;
   border-radius: 10px;
   color: #443d73;
 }
@@ -24,4 +27,8 @@ nav {
 .link:hover {
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
   transform: scale(1.1);
+}
+
+#logo-nav {
+  height: 40px;
 }

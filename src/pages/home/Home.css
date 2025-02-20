@@ -1,4 +1,4 @@
-.btn-primary {
+.boton-primary {
   color: #443d73 !important;
   font-size: 20px;
   font-weight: 500;
@@ -6,39 +6,35 @@
   background: rgba(0, 0, 0, 0);
   border: 2px solid;
   border-color: #443d73;
-  transition: all 1s ease;
+  transition: all 0.3s;
   position: center;
   border-radius: 10px;
+  box-shadow: 5px 5px 0px #443d73a4;
+  align-items: center;
 }
-.btn-primary:hover {
+.boton-primary:hover {
   background: #443d73;
   color: #fff !important;
-  border-radius: 30px;
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
-  transform: scale(1.1);
+  border-radius: 20px;
 }
 
-h1 {
+#titulo {
+  font-size: 50px;
   font-weight: 500;
-  text-align: justify;
+  text-align: left;
+  text-shadow: 3px 3px 0px #443d7363;
+  font-weight: 700;
 }
-.card {
+#texto {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 400;
+  color: #444444e7;
+  max-width: 1000px;
+}
+#section {
   display: flex;
-  flex-direction: column; /* Apila los elementos en columna */
-  align-items: center; /* Opcional: Centra los elementos horizontalmente */
-  gap: 10px; /* Espacio entre los elementos */
-  padding: 10px; /* Espaciado interno opcional */
-  padding: 20px;
-  border: 1px transparent;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
-  backdrop-filter: blur(10px);
-  transition: all 1s ease;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+  align-items: center;
 }
 
 @keyframes fadeIn {
@@ -56,7 +52,28 @@ h1 {
   opacity: 0; /* Oculta el elemento inicialmente */
   animation: fadeIn 2s ease-out forwards;
 }
+.col {
+  display: flex;
+  align-items: center;
+}
+@keyframes flotando {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  } /* Sube */
+  100% {
+    transform: translateY(0px);
+  } /* Baja */
+}
 
-img {
-  height: 400px;
+#imagen {
+  display: inline-block;
+  padding: 20px;
+  color: white;
+  border-radius: 10px;
+  animation: flotando 5s ease-in-out infinite; /* Animación infinita */
+  margin: 200px;
+  height: 300px;
 }

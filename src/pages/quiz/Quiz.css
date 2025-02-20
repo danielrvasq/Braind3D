@@ -14,7 +14,7 @@
   background: rgba(0, 0, 0, 0);
   border: 2px solid;
   border-color: #443d73;
-  transition: all 1s ease;
+  transition: all 0.3s ease;
   position: center;
   border-radius: 10px;
 }
