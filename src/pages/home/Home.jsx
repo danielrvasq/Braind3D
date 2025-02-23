@@ -19,7 +19,7 @@ const Home = () => {
         <p id="texto">
           En esta web, exploraremos diversas enfermedades mentales y <br />
           trastornos del cerebro, comprendiendo sus causas, síntomas y <br />
-          tratamientos. Nuestro objetivo es informar y concienciar sobre <br />
+          tratamientos. Nuestro objetivo es informar y concientizar sobre <br />
           la importancia de la salud mental, eliminando estigmas y <br />
           promoviendo el bienestar. <br />
           Acompáñanos en este viaje de aprendizaje y descubre más <br /> sobre
@@ -30,7 +30,7 @@ const Home = () => {
         </button>
       </div>
       <div>
-        <img id="imagen" src="src/assets/doctora.jpg" />
+        <img id="imagen" src="public/imagenes/doctora.jpg" />
       </div>
     </section>
     // <div class="container text-center">
