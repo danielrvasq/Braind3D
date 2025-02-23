@@ -14,7 +14,7 @@
     "react-dom": "^18.2.0",
     "react-router": "^7.1.5",
     "zustand": "^5.0.3",
-    "deploy": "vercel --prod"
+    "deploy": "npx vercel --prod"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
