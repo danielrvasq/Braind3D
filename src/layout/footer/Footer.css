@@ -1,27 +1,12 @@
-footer {
-  background-color: rgba(242, 189, 224, 0.6); /* Fondo semitransparente */
-  backdrop-filter: blur(10px);
-  font-weight: 700;
-  padding: 1rem;
+#footer {
   display: flex;
-  justify-content: space-evenly; /* Centra horizontalmente */
-  align-items: center;
-  gap: 20px;
-  padding: 10px;
+  align-items: first baseline;
+  justify-content: center;
   height: 80px;
+  gap: 12%;
+  font-family: "roboto condensed", serif;
 }
 
-.footer {
-  display: flex;
-  gap: 20px;
-}
-
-.link-f {
-  color: #443d73;
-  transition: 1s ease;
-}
-
-.link-f:hover {
-  font-weight: 800;
-  color: #443d73; /* Hace el texto transparente */
+#link {
+  font-size: 18px;
 }

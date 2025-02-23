@@ -3,17 +3,17 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <Link className="link-f" to="/cerebro/huntington">
+    <footer id="footer">
+      <Link id="link" to="/cerebro/huntington">
         Enfermedad De Huntington
       </Link>
-      <Link className="link-f" to="/cerebro/alzheimer">
+      <Link id="link" to="/cerebro/alzheimer">
         Alzheimer
       </Link>
-      <Link className="link-f" to="/cerebro/bipolaridad">
+      <Link id="link" to="/cerebro/bipolaridad">
         Bipolaridad
       </Link>
-      <Link className="link-f" to="/cerebro/esquizofrenia">
+      <Link id="link" to="/cerebro/esquizofrenia">
         Esquizofrenia
       </Link>
     </footer>
