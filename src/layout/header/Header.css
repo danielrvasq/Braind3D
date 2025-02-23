@@ -1,34 +1,29 @@
-header {
-  padding: 1rem;
-  font-optical-sizing: auto;
-  font-style: normal;
-  background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
-  backdrop-filter: blur(10px); /*fondo desenfocado*/
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
-  height: 80px;
-  align-items: center;
-  display: flex;
+#header {
+  padding: 1.5rem;
 }
 
-nav {
+#navegacion {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 1rem;
-  padding-left: 5%;
-  font-weight: 500;
-}
-.link {
-  justify-content: flex-end;
-  transition: 1s ease;
-  border-radius: 10px;
-  color: #443d73;
 }
 
-.link:hover {
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
-  transform: scale(1.1);
+#logo-div {
+  margin-left: 3%;
 }
 
 #logo-nav {
-  height: 40px;
+  height: 60px;
+  border-radius: 50px;
+}
+
+#links {
+  font-family: "roboto condensed", serif;
+  display: flex;
+  margin-left: 71%;
+  gap: 65px;
+}
+
+.link {
+  font-size: 18px;
 }

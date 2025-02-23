@@ -1,9 +1,9 @@
 html,
 body,
 #root {
-  background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
-  background-position: center; /* Centra la imagen en el contenedor */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  font-family: "roboto condensed", serif;
+  color: #f2efeb;
+  background-color: #253439;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -15,31 +15,36 @@ body,
 }
 
 h1 {
+  font-family: "roboto condensed", serif;
   font-size: xx-large;
-  color: #443d73;
+  color: #f2efeb;
 }
 
 span {
   font-size: large;
-  color: #2b3133;
+  color: #f2efeb;
 }
 
 p {
+  font-family: "roboto condensed", serif;
   font-size: medium;
-  color: #2b3133;
+  color: #f2efeb;
 }
 
 a {
-  color: whitesmoke;
+  font-family: "roboto condensed", serif;
+  color: #f2efeb;
   font-size: medium;
   text-decoration: none;
 }
 
 li {
+  font-family: "roboto condensed", serif;
   list-style-type: none;
 }
 
 button {
+  font-family: "roboto condensed", serif;
   display: flex;
   cursor: pointer;
   outline: none;
@@ -51,10 +56,6 @@ button {
   height: 54px;
   padding: 1rem;
   text-align: center;
-  color: whitesmoke;
+  color: #253439;
   font-size: large;
-}
-
-button:hover {
-  background-color: #00586f;
 }

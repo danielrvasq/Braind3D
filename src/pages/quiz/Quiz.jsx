@@ -10,10 +10,10 @@ const Quiz = () => {
   }, [incrementQuizProgress]);
 
   return (
-    <div className="contenedor">
-      <h1>Quiz</h1>
+    <div id="contenedor">
+      <h1 id="titulo">QUIZ</h1>
       <span>Progreso del quiz: {quiz.percentageQuizCompleted} % </span>
-      <button onClick={handleQuizNext} class="btn-primary">
+      <button onClick={handleQuizNext} class="btn-primary" id="boton">
         Siguiente
       </button>
     </div>

@@ -13,22 +13,24 @@ const Home = () => {
 
   return (
     <section id="section">
-      <div>
-        <img id="imagen" src="src/assets/isotipoHtml.png" />
+      <div id="contenido">
+        <p id="texto-super">Software 3D</p>
+        <h1 id="titulo">BRAIND3D</h1>
+        <p id="texto">
+          En esta web, exploraremos diversas enfermedades mentales y <br />
+          trastornos del cerebro, comprendiendo sus causas, síntomas y <br />
+          tratamientos. Nuestro objetivo es informar y concienciar sobre <br />
+          la importancia de la salud mental, eliminando estigmas y <br />
+          promoviendo el bienestar. <br />
+          Acompáñanos en este viaje de aprendizaje y descubre más <br /> sobre
+          el funcionamiento de la mente.
+        </p>
+        <button onClick={handleClick} type="button" id="boton-h">
+          Conocer Las Enfermedades
+        </button>
       </div>
       <div>
-        <h1 id="titulo">Bienvenido A Braind3D</h1>
-        <p id="texto">
-          En esta web, exploraremos diversas enfermedades mentales y trastornos
-          del cerebro, comprendiendo sus causas, síntomas y tratamientos.
-          Nuestro objetivo es informar y concienciar sobre la importancia de la
-          salud mental, eliminando estigmas y promoviendo el bienestar.
-          Acompáñanos en este viaje de aprendizaje y descubre más sobre el
-          funcionamiento de la mente.
-        </p>
-        <button onClick={handleClick} type="button" className="boton-primary">
-          Ver más enfermedades
-        </button>
+        <img id="imagen" src="src/assets/doctora.jpg" />
       </div>
     </section>
     // <div class="container text-center">
