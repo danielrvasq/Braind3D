@@ -7,7 +7,7 @@ const Header = () => {
       <nav id="navegacion">
         <div id="logo-div">
           <a href="/">
-            <img id="logo-nav" src="public/isotipoHtml.svg" />
+            <img id="logo-nav" src="isotipoHtml.svg" />
           </a>
         </div>
         <div id="links">

@@ -30,7 +30,7 @@ const Home = () => {
         </button>
       </div>
       <div>
-        <img id="imagen" src="public/imagenes/doctora.jpg" />
+        <img id="imagen" src="images/doctora.jpg" />
       </div>
     </section>
     // <div class="container text-center">
