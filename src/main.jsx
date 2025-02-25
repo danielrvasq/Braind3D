@@ -10,7 +10,6 @@ import Huntington from "./pages/cerebro/huntington/Huntington";
 import Esquizofrenia from "./pages/cerebro/esquizofrenia/Esquizofrenia";
 import "./index.css";
 import Layout from "./layout/Layout";
-// import App from "./App";
 
 createRoot(document.getElementById("root")).render(
   // <App />

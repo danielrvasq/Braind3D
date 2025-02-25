@@ -1,5 +1,6 @@
 #header {
   padding: 1.5rem;
+  position: fixed;
 }
 
 #navegacion {
@@ -9,21 +10,28 @@
 }
 
 #logo-div {
-  margin-left: 3%;
+  margin-left: 5%;
 }
 
 #logo-nav {
-  height: 60px;
+  height: 35px;
   border-radius: 50px;
 }
 
 #links {
   font-family: "roboto condensed", serif;
   display: flex;
-  margin-left: 71%;
-  gap: 65px;
+  margin-left: 150%;
+  gap: 40px;
 }
 
 .link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   font-size: 18px;
+}
+
+#icono {
+  height: 25px;
 }

@@ -1,6 +1,8 @@
-#section {
+#section1 {
   display: flex;
   gap: 200px;
+  margin-top: 7%;
+  margin-bottom: 5%;
 }
 
 #titulo {
@@ -34,12 +36,135 @@
   height: 45px;
   border-radius: 30px;
   font-size: 18px;
+  transition: all 0.5s ease;
+  border: 2px solid;
+}
+#boton-h:hover {
+  background-color: #253439;
+  color: #f2efeb;
+  border-color: #f2efeb;
+  border: 2px solid;
 }
 
 #imagen {
   object-fit: cover;
   object-position: top;
   border: 40px solid #3a4b51;
+  border-radius: 5px;
   width: 430px;
   height: 520px;
+}
+
+#imagen-carousel {
+  width: 100%;
+}
+
+#destino {
+  margin-top: 5000px;
+}
+
+#section2 {
+  background-color: #f2efeb;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 400px;
+  width: 100%;
+}
+
+#imagen2 {
+  object-fit: cover;
+  object-position: top;
+  margin-left: 10%;
+  height: 400px;
+  width: 30%;
+}
+
+#contenido2 {
+  text-align: left;
+  gap: 20px;
+  margin-left: 9%;
+  margin-right: 5%;
+  width: 50%;
+}
+
+#titulo2 {
+  font-family: "Hammersmith One", serif;
+  font-size: 55px;
+}
+
+#titulo2,
+#texto2 {
+  color: #253439;
+}
+
+#boton-h2 {
+  font-family: "roboto condensed", serif;
+  background-color: #253439;
+  color: #f2efeb;
+  margin-top: 15px;
+  height: 45px;
+  border-radius: 30px;
+  font-size: 18px;
+  transition: all 0.5s ease;
+  border: 2px solid;
+}
+
+#boton-h2:hover {
+  color: #253439;
+  background-color: #f2efeb;
+  border-color: #253439;
+  border-radius: 30px;
+}
+
+#section3 {
+  background-color: #253439;
+  height: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #253439;
+  height: 400px;
+  width: 100%;
+}
+
+#contenido3 {
+  text-align: left;
+  gap: 20px;
+  margin-left: 10%;
+  margin-right: 5%;
+  width: 50%;
+}
+
+#titulo3 {
+  font-family: "Hammersmith One", serif;
+  font-size: 55px;
+}
+
+#boton-h3 {
+  font-family: "roboto condensed", serif;
+  background-color: #f2efeb;
+  color: #253439;
+  margin-top: 15px;
+  height: 45px;
+  border-radius: 30px;
+  font-size: 18px;
+  transition: all 0.5s ease;
+  border: 2px solid;
+}
+
+#boton-h3:hover {
+  background-color: #253439;
+  color: #f2efeb;
+  border-color: #f2efeb;
+  border: 2px solid;
+}
+
+#imagen3 {
+  object-fit: cover;
+  object-position: top;
+  margin-right: 10%;
+  height: 400px;
+  width: 30%;
 }
