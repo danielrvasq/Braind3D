@@ -1,12 +1,15 @@
 #header {
   padding: 1.5rem;
   position: fixed;
+  width: 100%;
 }
 
 #navegacion {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  margin-right: 5%;
 }
 
 #logo-div {
@@ -21,7 +24,6 @@
 #links {
   font-family: "roboto condensed", serif;
   display: flex;
-  margin-left: 150%;
   gap: 40px;
 }
 

@@ -5,21 +5,25 @@ import { useCallback } from "react";
 const Home = () => {
   const navigate = useNavigate();
 
+  /*-------------------------------------------------------------------------------------- */
   const huntington = useCallback(() => {
     navigate("/cerebro/huntington", {
       state: { userData: { displayName: "" } },
     });
   }, [navigate]);
+  /*-------------------------------------------------------------------------------------- */
   const alzheimer = useCallback(() => {
     navigate("/cerebro/alzheimer", {
       state: { userData: { displayName: "" } },
     });
   }, [navigate]);
+  /*-------------------------------------------------------------------------------------- */
   const bipolaridad = useCallback(() => {
     navigate("/cerebro/bipolaridad", {
       state: { userData: { displayName: "" } },
     });
   }, [navigate]);
+  /*-------------------------------------------------------------------------------------- */
   const esquizofrenia = useCallback(() => {
     navigate("/cerebro/esquizofrenia", {
       state: { userData: { displayName: "" } },
@@ -56,7 +60,17 @@ const Home = () => {
         <img id="imagen2" src="images/doctora.jpg" />
         <div id="contenido2">
           <h1 id="titulo2">HUNTINGTON</h1>
-          <p id="texto2">Descripción corta y llamado a la acción</p>
+          <p id="texto2">
+            Lorem ipsum dolor sit amet consectetur adipiscing elit tincidunt mus
+            posuere tempus eget conubia imperdiet bibendum, cum primis inceptos
+            rutrum curae maecenas fusce mollis sapien lobortis pharetra leo
+            velit. Sapien tempus vehicula pretium quisque facilisis dapibus
+            sodales magnis, inceptos mauris curae natoque aliquet potenti
+            interdum, proin sem accumsan leo ultrices tellus enim. Commodo velit
+            aliquam ornare potenti senectus nunc fusce, diam faucibus venenatis
+            laoreet conubia ultrices, nascetur ridiculus placerat pretium sem
+            justo.
+          </p>
           <button onClick={huntington} type="button" id="boton-h2">
             Saber Más
           </button>
@@ -65,7 +79,17 @@ const Home = () => {
       <div id="section3">
         <div id="contenido3">
           <h1 id="titulo3">ALZHEIMER</h1>
-          <p id="texto3">Descripción corta y llamado a la acción</p>
+          <p id="texto3">
+            Lorem ipsum dolor sit amet consectetur adipiscing elit tincidunt mus
+            posuere tempus eget conubia imperdiet bibendum, cum primis inceptos
+            rutrum curae maecenas fusce mollis sapien lobortis pharetra leo
+            velit. Sapien tempus vehicula pretium quisque facilisis dapibus
+            sodales magnis, inceptos mauris curae natoque aliquet potenti
+            interdum, proin sem accumsan leo ultrices tellus enim. Commodo velit
+            aliquam ornare potenti senectus nunc fusce, diam faucibus venenatis
+            laoreet conubia ultrices, nascetur ridiculus placerat pretium sem
+            justo.
+          </p>
           <button onClick={alzheimer} type="button" id="boton-h3">
             Saber Más
           </button>
@@ -76,7 +100,17 @@ const Home = () => {
         <img id="imagen2" src="images/doctora.jpg" />
         <div id="contenido2">
           <h1 id="titulo2">BIPOLARIDAD</h1>
-          <p id="texto2">Descripción corta y llamado a la acción</p>
+          <p id="texto2">
+            Lorem ipsum dolor sit amet consectetur adipiscing elit tincidunt mus
+            posuere tempus eget conubia imperdiet bibendum, cum primis inceptos
+            rutrum curae maecenas fusce mollis sapien lobortis pharetra leo
+            velit. Sapien tempus vehicula pretium quisque facilisis dapibus
+            sodales magnis, inceptos mauris curae natoque aliquet potenti
+            interdum, proin sem accumsan leo ultrices tellus enim. Commodo velit
+            aliquam ornare potenti senectus nunc fusce, diam faucibus venenatis
+            laoreet conubia ultrices, nascetur ridiculus placerat pretium sem
+            justo.
+          </p>
           <button onClick={bipolaridad} type="button" id="boton-h2">
             Saber Más
           </button>
@@ -85,7 +119,17 @@ const Home = () => {
       <div id="section3">
         <div id="contenido3">
           <h1 id="titulo3">ESQUIZOFRENIA</h1>
-          <p id="texto3">Descripción corta y llamado a la acción</p>
+          <p id="texto3">
+            Lorem ipsum dolor sit amet consectetur adipiscing elit tincidunt mus
+            posuere tempus eget conubia imperdiet bibendum, cum primis inceptos
+            rutrum curae maecenas fusce mollis sapien lobortis pharetra leo
+            velit. Sapien tempus vehicula pretium quisque facilisis dapibus
+            sodales magnis, inceptos mauris curae natoque aliquet potenti
+            interdum, proin sem accumsan leo ultrices tellus enim. Commodo velit
+            aliquam ornare potenti senectus nunc fusce, diam faucibus venenatis
+            laoreet conubia ultrices, nascetur ridiculus placerat pretium sem
+            justo.
+          </p>
           <button onClick={esquizofrenia} type="button" id="boton-h3">
             Saber Más
           </button>
