@@ -8,9 +8,10 @@ body {
 /* Sección 1 */
 #section1 {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 180px;
+  gap: 100px;
   width: 100%;
   height: 100%;
   background: radial-gradient(circle, transparent, black);
@@ -19,7 +20,8 @@ body {
 }
 
 #contenido {
-  margin: 10% 0 6% 0;
+  margin: 10% 3% 6% 3%;
+  max-width: 40%;
 }
 
 #titulo {
@@ -157,6 +159,16 @@ body {
 @media (max-width: 768px) {
   #imagen {
     display: none;
+  }
+
+  #contenido {
+    max-width: 85%;
+  }
+
+  #texto-super,
+  #texto,
+  #boton-h {
+    font-size: 16px;
   }
 
   #section2,

@@ -37,14 +37,13 @@ const Home = () => {
           <p id="texto-super">Software 3D</p>
           <h1 id="titulo">BRAIND3D</h1>
           <p id="texto">
-            En esta web, exploraremos diversas enfermedades mentales y <br />
-            trastornos del cerebro, comprendiendo sus causas, síntomas y <br />
-            tratamientos. Nuestro objetivo es informar y concientizar sobre{" "}
-            <br />
-            la importancia de la salud mental, eliminando estigmas y <br />
-            promoviendo el bienestar. <br />
-            Acompáñanos en este viaje de aprendizaje y descubre más <br /> sobre
-            el funcionamiento de la mente.
+            En esta web, exploraremos diversas enfermedades mentales y
+            trastornos del cerebro, comprendiendo sus causas, síntomas y
+            tratamientos. Nuestro objetivo es informar y concientizar sobre la
+            importancia de la salud mental, eliminando estigmas y promoviendo el
+            bienestar. <br />
+            Acompáñanos en este viaje de aprendizaje y descubre más sobre el
+            funcionamiento de la mente.
           </p>
           <a href="#section2">
             <button /*onClick={handleClick} */ type="button" id="boton-h">

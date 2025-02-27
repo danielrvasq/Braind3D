@@ -37,3 +37,18 @@
 #icono {
   height: 25px;
 }
+
+@media (max-width: 768px) {
+  #logo-nav {
+    height: 20px;
+    border-radius: 50px;
+  }
+
+  .link {
+    font-size: 14px;
+  }
+
+  #icono {
+    height: 15px;
+  }
+}
