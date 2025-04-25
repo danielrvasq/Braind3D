@@ -1,10 +1,7 @@
-import { Outlet, useLocation } from "react-router";
+import { Outlet } from "react-router";
 import "./Cerebro.css";
 
 const Cerebro = () => {
-  const location = useLocation();
-  const userData = location.state?.userData;
-
   return (
     // <div id="contenido">
     //   <div id="card">

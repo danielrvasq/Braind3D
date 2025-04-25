@@ -3,6 +3,12 @@
   position: fixed;
   width: 100%;
   z-index: 1;
+  background: #253439;
+  background: linear-gradient(
+    180deg,
+    rgba(37, 52, 57, 1) 0%,
+    rgba(242, 239, 235, 0) 100%
+  );
 }
 
 #navegacion {

@@ -58,17 +58,7 @@ const Home = () => {
         <img id="imagen2" src="images/doctora.jpg" />
         <div id="contenido2">
           <h1 id="titulo2">HUNTINGTON</h1>
-          <p id="texto2">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit tincidunt mus
-            posuere tempus eget conubia imperdiet bibendum, cum primis inceptos
-            rutrum curae maecenas fusce mollis sapien lobortis pharetra leo
-            velit. Sapien tempus vehicula pretium quisque facilisis dapibus
-            sodales magnis, inceptos mauris curae natoque aliquet potenti
-            interdum, proin sem accumsan leo ultrices tellus enim. Commodo velit
-            aliquam ornare potenti senectus nunc fusce, diam faucibus venenatis
-            laoreet conubia ultrices, nascetur ridiculus placerat pretium sem
-            justo.
-          </p>
+
           <button onClick={huntington} type="button" id="boton-h2">
             Saber Más
           </button>
