@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@react-three/drei": "^9.56.4",
-    "@react-three/fiber": "^9.1.2",
+    "@react-three/fiber": "^8.18.0",
     "@types/three": "^0.176.0",
     "bootstrap": "^5.3.3",
     "firebase": "^11.3.1",
