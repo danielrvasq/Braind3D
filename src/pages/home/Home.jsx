@@ -41,9 +41,8 @@ const Home = () => {
             trastornos del cerebro, comprendiendo sus causas, síntomas y
             tratamientos. Nuestro objetivo es informar y concientizar sobre la
             importancia de la salud mental, eliminando estigmas y promoviendo el
-            bienestar. <br />
-            Acompáñanos en este viaje de aprendizaje y descubre más sobre el
-            funcionamiento de la mente.
+            bienestar. Acompáñanos en este viaje de aprendizaje y descubre más
+            sobre el funcionamiento de la mente.
           </p>
           <a href="#section2">
             <button /*onClick={handleClick} */ type="button" id="boton-h">

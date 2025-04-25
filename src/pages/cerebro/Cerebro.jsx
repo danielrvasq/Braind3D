@@ -53,9 +53,9 @@ const Cerebro = () => {
     // </div>
 
     <div>
-      <h1>Enfermedades del Cerebro</h1>
-      <p>{userData?.displayName}</p>
-      <Outlet />
+      <div className="div1">
+        <Outlet />
+      </div>
     </div>
   );
 };

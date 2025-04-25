@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
@@ -6,30 +6,23 @@ const Header = () => {
     <header id="header">
       <nav id="navegacion">
         <div id="logo-div">
-          <a href="/">
+          <NavLink to="/" end>
             <img id="logo-nav" src="isotipoHtml.png" />
-          </a>
+          </NavLink>
         </div>
         <div id="links">
-          {/* -------------------------------------------------------------- */}
           <NavLink className="link" to="/" end>
-            <a href="/">
-              <img src="images/iconoGoogle.png" id="icono" />
-            </a>
+            <img src="images/iconoGoogle.png" id="icono" />
             Iniciar/Registrarse
           </NavLink>
-          {/* -------------------------------------------------------------- */}
+
           <NavLink className="link" to="/" end>
-            <a href="/">
-              <img src="images/iconoHome.png" id="icono" />
-            </a>
+            <img src="images/iconoHome.png" id="icono" />
             Inicio
           </NavLink>
-          {/* -------------------------------------------------------------- */}
+
           <NavLink className="link" to="/quiz" end>
-            <a href="/quiz">
-              <img src="images/iconoQuiz.png" id="icono" />
-            </a>
+            <img src="images/iconoQuiz.png" id="icono" />
             Quiz
           </NavLink>
         </div>

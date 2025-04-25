@@ -13,7 +13,7 @@ body {
   align-items: center;
   gap: 100px;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: radial-gradient(circle, transparent, black);
   text-align: left;
   flex-wrap: wrap;
@@ -35,6 +35,7 @@ body {
   font-family: "Roboto Condensed", serif;
   margin-top: 35px;
   font-size: 20px;
+  margin-bottom: 0px;
 }
 
 #texto2 {
