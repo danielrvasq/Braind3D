@@ -6,15 +6,14 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCjUO3XsO_ma-5aAhi7BtfqSAGyERdkynM",
-  authDomain: "braind3d-431a7.firebaseapp.com",
-  projectId: "braind3d-431a7",
-  storageBucket: "braind3d-431a7.firebasestorage.app",
-  messagingSenderId: "353185792288",
-  appId: "1:353185792288:web:69fd84292cd8e4c4bdd745",
+  apiKey: "AIzaSyAmaXCBV5Trx4N0h0aDS3hzILKTtMEtkRI",
+  authDomain: "braind3d-47a91.firebaseapp.com",
+  projectId: "braind3d-47a91",
+  storageBucket: "braind3d-47a91.firebasestorage.app",
+  messagingSenderId: "756884372815",
+  appId: "1:756884372815:web:d0c67164b781815006993a"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 export const auth = getAuth(app);

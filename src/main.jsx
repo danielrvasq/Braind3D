@@ -10,7 +10,7 @@ import Huntington from "./pages/cerebro/huntington/Huntington";
 import Esquizofrenia from "./pages/cerebro/esquizofrenia/Esquizofrenia";
 import "./index.css";
 import Layout from "./layout/Layout";
-
+import Perfil from "./pages/perfil/Pefil";
 createRoot(document.getElementById("root")).render(
   // <App />
   <BrowserRouter>
@@ -25,6 +25,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="huntington" element={<Huntington />} />
           <Route path="esquizofrenia" element={<Esquizofrenia />} />
         </Route>
+        <Route path="perfil" element={<Perfil />} />
       </Routes>
     </Layout>
   </BrowserRouter>

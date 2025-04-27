@@ -1,33 +1,34 @@
 import { create } from "zustand";
-import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import { onAuthStateChanged, signInWithPopup, signOut   } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../firebase.config";
-
-const provider = new GoogleAuthProvider();
+import { log } from "three/tsl";
 
 const useAuthStore = create((set) => {
-  const observeAuthState = () => {
+  const observerAuthState = () => {
     onAuthStateChanged(auth, (user) => {
       user ? set({ userLooged: user }) : set({ userLooged: null });
     });
   };
-  observeAuthState();
+  observerAuthState();
 
   return {
     userLooged: null,
-
-    loginGoogleWithPopup: async () => {
+    loginGoogleWhithPopup: async () => {
+      const provider = new GoogleAuthProvider();
       try {
-        return await signInWithPopup(auth, provider);
+        return await signInWithPopup(auth, new GoogleAuthProvider());
       } catch (error) {
-        console.error("Error loggin in: ", error);
+        console.error("Error during login:", error);
       }
     },
 
     logout: async () => {
-      return await signOut(auth)
-        .then(() => set({ userLooged: null }))
-        .catch((error) => console.error("Error loggin out: ", error));
+      signOut(auth) 
+      .then(() => set({userLooged: null}))
+      .catch((error) => console.error("Error during logout:", error));
     },
   };
 });
+
+export default useAuthStore;
