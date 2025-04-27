@@ -1,0 +1,88 @@
+#header {
+  padding: 1.5rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background: #253439;
+  background: linear-gradient(
+    180deg,
+    rgba(37, 52, 57, 1) 0%,
+    rgba(242, 239, 235, 0) 100%
+  );
+}
+
+#navegacion {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 5%;
+}
+
+#logo-div {
+  margin-left: 5%;
+}
+
+#logo-nav {
+  height: 35px;
+  border-radius: 50px;
+}
+
+#links {
+  font-family: "roboto condensed", serif;
+  display: flex;
+  gap: 40px;
+}
+
+.link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 18px;
+}
+.link-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: transparent; /* Fondo transparente */
+  color: white; /* Color del texto */
+  border-radius: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+.link-button:hover {
+  background-color: #0A7C86; /* Se rellena al pasar el mouse */
+  color: #fff; /* Cambia el texto a blanco */
+  transform: translateY(-2px);
+}
+
+.link-button:active {
+  transform: translateY(0); /* vuelve a su posición cuando se presiona */
+}
+
+.link-button i {
+  font-size: 18px;
+}
+#icono {
+  height: 25px;
+}
+
+@media (max-width: 768px) {
+  #logo-nav {
+    height: 20px;
+    border-radius: 50px;
+  }
+
+  .link {
+    font-size: 14px;
+  }
+
+  #icono {
+    height: 15px;
+  }
+}

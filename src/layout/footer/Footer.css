@@ -1,0 +1,41 @@
+#footer {
+  width: 100%;
+  background-color: inherit; /* mantiene tu color actual */
+  font-family: "Roboto Condensed", serif;
+  padding: 20px 0;
+}
+
+#link {
+  font-size: 18px;
+}
+.footer-links{
+  display: flex;
+  justify-content: space-around; /* reparte los links horizontalmente */
+  flex-wrap: wrap; /* permite que se acomoden en varias líneas si la pantalla es pequeña */
+  width: 100%;
+  margin-bottom: 15px; /* espacio entre los links y el copyright */
+}
+.link-footer {
+  font-size: 18px;
+  color: inherit; /* hereda el color del padre */
+  text-decoration: none; /* quita el subrayado */
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+.link-footer:hover {
+  color: #007bff; /* cambia color al pasar el mouse */
+}
+.footer-copy{
+  text-align: center;
+  font-size: 14px;
+}
+.contenedor-footer{
+  display: flex;
+  flex-direction: column; /* apila los links arriba y copyright abajo */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px; /* opcional, para que no se estire demasiado en pantallas grandes */
+  margin: 0 auto;
+  padding: 10px 20px;
+}

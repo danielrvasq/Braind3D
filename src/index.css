@@ -1,0 +1,64 @@
+html,
+body,
+#root {
+  font-family: "roboto condensed", serif;
+  color: #f2efeb;
+  background-color: #253439;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  user-select: none;
+  overflow-x: hidden;
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+canvas{
+  touch-action: none;
+}
+  
+h1 {
+  font-family: "roboto condensed", serif;
+  font-size: xx-large;
+  color: #f2efeb;
+}
+
+span {
+  font-size: large;
+  color: #f2efeb;
+}
+
+p {
+  font-family: "roboto condensed", serif;
+  font-size: medium;
+  color: #f2efeb;
+}
+
+a {
+  font-family: "roboto condensed", serif;
+  color: #f2efeb;
+  font-size: medium;
+  text-decoration: none;
+}
+
+li {
+  font-family: "roboto condensed", serif;
+  list-style-type: none;
+}
+
+button {
+  font-family: "roboto condensed", serif;
+  display: flex;
+  cursor: pointer;
+  outline: none;
+  align-items: center;
+  justify-content: center;
+  background-color: #007491;
+  border: none;
+  width: 256px;
+  height: 54px;
+  padding: 1rem;
+  text-align: center;
+  color: #253439;
+  font-size: large;
+}
