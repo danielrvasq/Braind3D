@@ -1,29 +1,61 @@
 #header {
   padding: 1.5rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background: #253439;
+  background: linear-gradient(
+    180deg,
+    rgba(37, 52, 57, 1) 0%,
+    rgba(242, 239, 235, 0) 100%
+  );
 }
 
 #navegacion {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  margin-right: 5%;
 }
 
 #logo-div {
-  margin-left: 3%;
+  margin-left: 5%;
 }
 
 #logo-nav {
-  height: 60px;
+  height: 35px;
   border-radius: 50px;
 }
 
 #links {
   font-family: "roboto condensed", serif;
   display: flex;
-  margin-left: 71%;
-  gap: 65px;
+  gap: 40px;
 }
 
 .link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   font-size: 18px;
+}
+
+#icono {
+  height: 25px;
+}
+
+@media (max-width: 768px) {
+  #logo-nav {
+    height: 20px;
+    border-radius: 50px;
+  }
+
+  .link {
+    font-size: 14px;
+  }
+
+  #icono {
+    height: 15px;
+  }
 }

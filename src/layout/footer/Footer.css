@@ -2,9 +2,10 @@
   display: flex;
   align-items: first baseline;
   justify-content: center;
-  height: 80px;
-  gap: 12%;
   font-family: "roboto condensed", serif;
+  height: 100px;
+  gap: 12%;
+  padding-top: 30px;
 }
 
 #link {

@@ -1,7 +1,14 @@
 import "./Esquizofrenia.css";
 
 const Esquizofrenia = () => {
-  return <div>Esquizofrenia</div>;
+  return (
+    <div>
+      <h1>
+        ESQUIZOFRENIA <br />
+        EN CONSTRUCCION
+      </h1>
+    </div>
+  );
 };
 
 export default Esquizofrenia;
