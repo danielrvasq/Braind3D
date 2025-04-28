@@ -5,7 +5,7 @@ import { OrbitControls } from "@react-three/drei";
 import Boy from "./models-3d/Boy";
 import Title from "./texts/Title";
 import Piso from "./models-3d/piso";
-import Light from "./lights/Lights";
+//import Light from "./lights/Lights";
 const Esquizofrenia = () => {
   return(
     <Canvas camera={{ 
