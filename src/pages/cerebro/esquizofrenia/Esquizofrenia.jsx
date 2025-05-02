@@ -4,7 +4,7 @@ import { OrbitControls } from "@react-three/drei";
 //import People from "./models-3d/people";
 import Boy from "./models-3d/Boy";
 import Title from "./texts/Title";
-import Piso from "./models-3d/piso";
+import Piso from "./models-3d/Piso";
 //import Light from "./lights/Lights";
 const Esquizofrenia = () => {
   return(
