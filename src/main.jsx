@@ -11,11 +11,13 @@ import Esquizofrenia from "./pages/cerebro/esquizofrenia/Esquizofrenia";
 import "./index.css";
 import Layout from "./layout/Layout";
 import Perfil from "./pages/perfil/Pefil";
+import AboutUs from "./pages/aboutUs/AboutUs";
 createRoot(document.getElementById("root")).render(
   // <App />
   <BrowserRouter>
     <Layout>
       <Routes>
+        <Route path="aboutUs" element={<AboutUs />} />
         <Route index path="/" element={<Home />} />
         <Route path="quiz" element={<Quiz />} />
         <Route path="*" element={<NotFound />} />

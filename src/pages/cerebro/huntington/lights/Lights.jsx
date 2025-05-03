@@ -13,7 +13,7 @@ const Lights = () => {
         color={"white"}
         position={[10, 10, 10]}
         distance={100}
-        intensity={10}
+        intensity={500}
         angle={Math.PI / 10}
         penumbra={1}
         castShadow={true}

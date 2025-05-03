@@ -1,0 +1,21 @@
+#texto-a {
+  line-height: 1.1;
+  font-family: "roboto condensed", serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: #f2efeb;
+  text-align: justify;
+}
+
+#seccion1 {
+}
+
+#titulo-a {
+  font-size: 70px;
+}
+#contenido-a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1500px;
+}

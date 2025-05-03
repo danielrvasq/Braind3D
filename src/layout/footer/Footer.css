@@ -8,7 +8,7 @@
 #link {
   font-size: 18px;
 }
-.footer-links{
+.footer-links {
   display: flex;
   justify-content: space-around; /* reparte los links horizontalmente */
   flex-wrap: wrap; /* permite que se acomoden en varias líneas si la pantalla es pequeña */
@@ -25,11 +25,11 @@
 .link-footer:hover {
   color: #007bff; /* cambia color al pasar el mouse */
 }
-.footer-copy{
+.footer-copy {
   text-align: center;
   font-size: 14px;
 }
-.contenedor-footer{
+.contenedor-footer {
   display: flex;
   flex-direction: column; /* apila los links arriba y copyright abajo */
   align-items: center;

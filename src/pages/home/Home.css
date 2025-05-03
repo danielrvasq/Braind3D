@@ -34,8 +34,9 @@ body {
 #texto-super {
   font-family: "Roboto Condensed", serif;
   margin-top: 35px;
-  font-size: 20px;
+  font-size: 25px;
   margin-bottom: 0px;
+  font-weight: 350;
 }
 
 #texto2 {
