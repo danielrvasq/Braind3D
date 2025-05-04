@@ -33,6 +33,7 @@
 
 #logo-div {
   margin-left: 5%;
+  border: 2px solid pink;
 }
 
 #logo-nav {
@@ -44,6 +45,7 @@
   font-family: "roboto condensed", serif;
   display: flex;
   gap: 40px;
+  padding: 10px;
 }
 
 .link {
@@ -96,4 +98,7 @@
   #icono {
     height: 15px;
   }
+}
+#header {
+  border: 2px solid orange;
 }

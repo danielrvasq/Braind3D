@@ -1,10 +1,25 @@
-const Light = () => {
+import { useHelper } from "@react-three/drei";
+import { SpotLightHelper } from "three";
+import { useRef } from "react";
+
+const Lights = () => {
+  // const spotLightRef = useRef();
+  // useHelper(spotLightRef, SpotLightHelper);
+
   return (
     <>
-      <ambientLight colro={"#F5F5DC"} intensity={2} />
-      <directionalLight color={"yellow"} position={[0, 5, 5]} intensity={2} />
+      <spotLight
+        // ref={spotLightRef}
+        color={"white"}
+        position={[10, 10, 10]}
+        distance={100}
+        intensity={500}
+        angle={Math.PI / 10}
+        penumbra={1}
+        castShadow={true}
+      />
     </>
   );
 };
 
-export default Light;
+export default Lights;
