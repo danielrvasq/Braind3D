@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import "./Alzheimer.css";
-
-const Alzheimer = () => {
-  return (
-    <div>
-      <h1>
-        ALZHEIMER <br />
-        EN CONSTRUCCION
-      </h1>
-    </div>
-  );
-=======
 /* eslint-disable react/no-unknown-property */
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
@@ -46,7 +33,6 @@ const Alzheimer = () => {
        </div>
      </div>
    );
->>>>>>> 4caa86b91166088832cc876ebaed1c68587c2fa0
 };
 
 export default Alzheimer;

@@ -1,8 +1,4 @@
 /* Huntington.css */
-<<<<<<< HEAD
-
-.brain-canvas {
-=======
 /* Huntington.css */
 
 #boton-s {
@@ -78,7 +74,6 @@
 }
 
 /* .brain-canvas {
->>>>>>> 4caa86b91166088832cc876ebaed1c68587c2fa0
   height: 80vh;
 }
 
@@ -112,24 +107,13 @@
 .huntington-text {
   font-size: 1.2rem;
   margin-bottom: 1rem;
-<<<<<<< HEAD
-  color: #333; /* Gris oscuro */
-  line-height: 1.6;
-}
-
-=======
   color: #333; Gris oscuro
   line-height: 1.6;
 } */
 /* 
->>>>>>> 4caa86b91166088832cc876ebaed1c68587c2fa0
 background: rgba(255, 255, 255, 0.19);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(11px);
 -webkit-backdrop-filter: blur(11px);
-<<<<<<< HEAD
-border: 1px solid rgba(255, 255, 255, 0.44);
-=======
 border: 1px solid rgba(255, 255, 255, 0.44); */
->>>>>>> 4caa86b91166088832cc876ebaed1c68587c2fa0
