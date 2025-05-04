@@ -1,0 +1,37 @@
+/* Estilos para el componente de texto */
+.Title {
+  font-family: "Arial", sans-serif; /* Fuente moderna para el texto */
+  text-align: center;
+  color: #f5f5f5; /* Color blanco para el texto */
+  font-size: 20px;
+  background: rgba(0, 0, 0, 0.6); /* Fondo oscuro con algo de transparencia */
+  padding: 150px;
+  border-radius: 12px; /* Bordes más redondeados */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6); /* Sombra para darle más profundidad */
+  max-width: 80%;
+  margin: auto;
+  font-size: 18px;
+}
+
+.description-container {
+  padding: 20px;
+}
+
+h1 {
+  font-family: "Arial", sans-serif; /* Fuente moderna para el texto */
+  font-size: 32px;
+  color: white; /* Color anaranjado para el título */
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra sutil en el título */
+}
+
+p {
+  font-size: 18px;
+  color: #d1d1d1; /* Color gris claro para el texto */
+  line-height: 1; /* Espaciado entre las líneas */
+  text-align: justify; /* Alineación del texto */
+  font-weight: 300; /* Menor grosor para el texto */
+  max-width: 100%;
+  margin-bottom: 20px;
+}

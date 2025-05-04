@@ -10,6 +10,18 @@
     rgba(242, 239, 235, 0) 100%
   );
 }
+#dropdown-button {
+  font-family: "roboto condensed", serif;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  width: fit-content;
+}
+
+#button-list {
+  font-family: "roboto condensed", serif;
+  background-color: transparent;
+}
 
 #navegacion {
   display: flex;
@@ -40,23 +52,22 @@
   align-items: center;
   font-size: 18px;
 }
-.link-button{
+.link-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  width: fit-content;
   padding: 12px 24px;
   background-color: transparent; /* Fondo transparente */
   color: white; /* Color del texto */
   border-radius: 8px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 .link-button:hover {
-  background-color: #0A7C86; /* Se rellena al pasar el mouse */
+  background-color: #0a7c86; /* Se rellena al pasar el mouse */
   color: #fff; /* Cambia el texto a blanco */
   transform: translateY(-2px);
 }
