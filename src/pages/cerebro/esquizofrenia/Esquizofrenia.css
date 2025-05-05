@@ -1,5 +1,4 @@
 .div-container {
-  border: 2px solid red;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -7,13 +6,11 @@
   gap: 20px;
 }
 .div-text {
-  border: 2px solid green;
   flex: 1;
   max-width: 50%;
   height: 400px;
 }
 .div-canvas-1 {
-  border: 2px solid blue;
   flex: 1;
   max-width: 50%;
   height: 400px;
@@ -23,7 +20,6 @@
   margin-right: 20px;
   margin-bottom: 40px;
   margin-left: 20px;
-  border: 2px solid yellow;
 }
 .div-text {
   display: flex;
@@ -51,4 +47,12 @@
   color: #555;            /* Color del texto */
   line-height: 1.6;       /* Interlineado */
   margin-bottom: 1rem;    /* Espacio entre párrafos */
+}
+.div-canvas-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 20vh;
+  background: radial-gradient(circle at center, white, white);
 }

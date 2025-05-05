@@ -6,10 +6,6 @@ const Mesa = (props) => {
   const { nodes, materials } = useGLTF("/models-3d/mesa.glb");
   const mesaRef = useRef();
 
-  useFrame((state, delta) => {
-    mesaRef.current.rotation.y += 0.5 * delta;
-  });
-
   return (
     <group {...props} dispose={null} ref={mesaRef}>
       <mesh

@@ -6,9 +6,6 @@ const Tv = (props) => {
   const { nodes, materials } = useGLTF("/models-3d/tv.glb");
   const tvRef = useRef();
 
-  useFrame((state, delta) => {
-    tvRef.current.rotation.y += 0.5 * delta;
-  });
 
   return (
     <group {...props} dispose={null} ref={tvRef}>
