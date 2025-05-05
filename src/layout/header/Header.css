@@ -9,6 +9,7 @@
     rgba(37, 52, 57, 1) 0%,
     rgba(242, 239, 235, 0) 100%
   );
+  border: purple solid 2px;
 }
 #dropdown-button {
   font-family: "roboto condensed", serif;

@@ -3,6 +3,7 @@
   background-color: inherit; /* mantiene tu color actual */
   font-family: "Roboto Condensed", serif;
   padding: 20px 0;
+  border : 2px solid greenyellow; /* borde superior */
 }
 
 #link {
