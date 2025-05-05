@@ -22,18 +22,19 @@ const Bipolaridad = () => {
       </div>
 
       <div className="modelo-bipolaridad">
-<Canvas
+      <Canvas
   shadows
-  camera={{ position: [0, 2, 5], fov: 40 }}
-  style={{ background: '#ffffff' }} // ⬅️ Aquí le ponemos fondo blanco
+  camera={{ position: [0, 3, 7], fov: 60 }}
+  style={{ background: '#ffffff' }}
 >
   <Suspense fallback={null}>
     <Lights />
-    <Brain scale={1.8} />
+    <Brain scale={4.0} position={[0, 1.8, 0]} />
     <Floor />
     <OrbitControls enableZoom={false} />
   </Suspense>
 </Canvas>
+
       </div>
     </div>
   );

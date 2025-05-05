@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unknown-property */
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import Lights from "./ligths/Ligths";
+import Lights from "./lights/Ligths";
+import Lights2 from "./lights/Lights2";
 import Floor from "./models-3d/Floor";
 import BrainAl from "./models-3d/BrainAl";
 import "./Alzheimer.css";
@@ -23,12 +24,14 @@ const Alzheimer = () => {
         <Canvas
            shadows
            camera={{ position: [0, 3, 5], fov: 40 }}
-          style={{ background: '#ffffff' }} // ⬅️ Aquí le ponemos fondo blanco
+          style={{ background: '#ffffff' } } // ⬅️ Aquí le ponemos fondo blanco
         >
          <Lights />
+         <Lights2 />
          <BrainAl scale={1.8} />
          <Floor />
          <OrbitControls enableZoom={false} />
+         
          </Canvas>
        </div>
      </div>

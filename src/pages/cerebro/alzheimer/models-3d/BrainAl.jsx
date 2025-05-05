@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
 export default function ModeloAlzheimer(props) {
-  const { scene } = useGLTF('/models-3d/Brain3.glb');
+  const { nodes, materials } = useGLTF('/models-3d/Brain3.glb');
   const modelRef = useRef(); // referencia para manipular el modelo
 
   useFrame((state, delta) => {
@@ -13,5 +13,15 @@ export default function ModeloAlzheimer(props) {
     }
   });
 
-  return <primitive ref={modelRef} object={scene} {...props} />;
+  return (<group {...props} ref={modelRef}>
+    <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Brain.geometry}
+        material={materials.BrainMaterial}
+        scale={0.5}
+        position={[0, 0, 0]}
+        rotation={[0, Math.PI * 0.25, 0]}
+      /> 
+  </group>);
 }
