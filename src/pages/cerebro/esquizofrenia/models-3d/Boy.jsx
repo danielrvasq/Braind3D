@@ -8,20 +8,29 @@ export default function Boy({ playAnimation }) {
 
   // Control de animación
   useEffect(() => {
-    const animationName = 'Armature|mixamo.com|Layer0'; // Nombre exacto de tu animación
-    if (playAnimation && actions[animationName]) {
-      actions[animationName].reset().fadeIn(0.5).play();
-      return () => actions[animationName].fadeOut(0.5);
+    if (!actions || !playAnimation) return;
+
+    // Detener todas las animaciones primero
+    Object.values(actions).forEach((action) => {
+      action.stop();
+    });
+
+    // Reproducir la animación solicitada si existe
+    const actionToPlay = actions[playAnimation];
+    if (actionToPlay) {
+      actionToPlay.reset().fadeIn(0.5).play();
     }
+
+    // Limpieza opcional al desmontar
+    return () => {
+      if (actionToPlay) actionToPlay.fadeOut(0.5);
+    };
   }, [playAnimation, actions]);
 
   return (
-    <primitive
-      object={scene}
-      ref={group}
-      scale={[1.5, 1.5, 1.5]}  // Escala ajustada
-      position={[0, -1, 0]}        // Posición en Y
-    />
+    <group ref={group}>
+      <primitive object={scene} scale={[1.5, 1.5, 1.5]} position={[0, -1, 0]} />
+    </group>
   );
 }
 useGLTF.preload("models-3d/boy.glb");
