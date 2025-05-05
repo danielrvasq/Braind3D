@@ -1,6 +1,28 @@
 /* Huntington.css */
 /* Huntington.css */
 
+.div-text,
+.quees-info,
+.div-container,
+#seccion0 {
+  background-color: transparent;
+}
+.informacion-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1%;
+}
+
+.div-container {
+  height: 65vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.div-canvas-1 {
+  border-radius: 50px;
+}
 #boton-s {
   margin-top: -100px;
   margin-left: 5%;

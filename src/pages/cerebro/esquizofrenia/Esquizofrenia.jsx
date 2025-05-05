@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-unknown-property */
 import "./Esquizofrenia.css";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Sky, Sparkles, Text, Text3D } from "@react-three/drei";
@@ -20,7 +22,7 @@ const Esquizofrenia = () => {
   const [anim2, setAnim2] = useState(false);
   const [anim3, setAnim3] = useState(false);
   const [anim4, setAnim4] = useState(false);
-  const [sceneKey, setSceneKey] = useState(0)
+  const [sceneKey, setSceneKey] = useState(0);
   return (
     <>
       <section id="seccion1">
@@ -39,7 +41,7 @@ const Esquizofrenia = () => {
                 enablePan={true}
               />
               <directionalLight position={[5, 5, 10]} intensity={2} />
-              <Title position={[0, 0, 0]} />
+              <Title text="Esquizofrenia" position={[0, 0, 0]} />
               <Light4 />
             </Canvas>
           </div>
@@ -70,22 +72,30 @@ const Esquizofrenia = () => {
               >
                 {anim1 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
               </button>
-              <button onClick={() => setSceneKey(prev => prev + 1)} style={{
+              <button
+                onClick={() => setSceneKey((prev) => prev + 1)}
+                style={{
                   display: "block",
                   margin: "0 auto",
                   padding: "10px 20px",
-                  background:"#4CAF50",
+                  background: "#4CAF50",
                   color: "white",
                   border: "none",
                   borderRadius: "4px",
                   cursor: "pointer",
                   marginTop: "10px",
-                }}>Reiniciar escena</button>
+                }}
+              >
+                Reiniciar escena
+              </button>
             </section>
           </div>
           <div className="div-canvas-1">
-          
-            <Canvas camera={{ position: [1, 1, 3] }} shadows={true} key={sceneKey}>
+            <Canvas
+              camera={{ position: [1, 1, 3] }}
+              shadows={true}
+              key={sceneKey}
+            >
               <OrbitControls />
               <directionalLight position={[5, 5, 10]} intensity={2} />
               <Boy playAnimation={anim1 ? "asustado" : null} />
