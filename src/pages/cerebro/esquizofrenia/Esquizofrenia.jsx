@@ -26,6 +26,7 @@ import Light4 from "./lights/Lights4";
 import { FirstPersonControls } from "@react-three/drei";
 import Saludo1 from "./sounds/Saludo1";
 import Control from "./texts/Control";
+import  {Furina}  from "./videos/Furina";
 
 const Esquizofrenia = () => {
   const [anim1, setAnim1] = useState(false);
@@ -361,7 +362,7 @@ const Esquizofrenia = () => {
             </section>
           </div>
           <div className="div-canvas-1">
-            <Canvas camera={{ position: [1, 1, 3] }} shadows={true}>
+            <Canvas camera={{ position: [2, 1.5, -2] }} shadows={true}>
               <OrbitControls />
               <directionalLight position={[5, 5, 10]} intensity={2} />
               <Light3 />
@@ -371,6 +372,7 @@ const Esquizofrenia = () => {
                 scale={[0.5, 0.5, 0.5]}
                 rotation={[0, Math.PI, 0]}
               />
+              <Furina />
               <Piso />
               <Sky />
               <Sparkles
