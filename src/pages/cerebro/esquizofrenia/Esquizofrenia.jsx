@@ -2,12 +2,20 @@
 /* eslint-disable react/no-unknown-property */
 import "./Esquizofrenia.css";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Sky, Sparkles, Text, Text3D } from "@react-three/drei";
+import {
+  OrbitControls,
+  Sky,
+  Sparkles,
+  Text,
+  Text3D,
+  Environment,
+  Html,
+} from "@react-three/drei";
 import Boy from "./models-3d/Boy";
 import Title from "./texts/Title";
 import Piso from "./models-3d/Piso";
 import Light from "./lights/Lights";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import People from "./models-3d/People";
 import Mesa from "./models-3d/Mesa";
 import Puerta from "./models-3d/Puerta";
@@ -16,6 +24,8 @@ import Light2 from "./lights/Lights2";
 import Light3 from "./lights/Lights3";
 import Light4 from "./lights/Lights4";
 import { FirstPersonControls } from "@react-three/drei";
+import Saludo1 from "./sounds/Saludo1";
+import Control from "./texts/Control";
 
 const Esquizofrenia = () => {
   const [anim1, setAnim1] = useState(false);
@@ -23,6 +33,14 @@ const Esquizofrenia = () => {
   const [anim3, setAnim3] = useState(false);
   const [anim4, setAnim4] = useState(false);
   const [sceneKey, setSceneKey] = useState(0);
+  const [puertaHover, setPuertaHover] = useState(false);
+  const puertaAudio = useRef(null);
+  const handleInteractuarPuerta = () => {
+    const audio = new Audio("/sounds/saludo1.mp3"); // Asegúrate de que el archivo exista
+    audio
+      .play()
+      .catch((err) => console.error("Error al reproducir el sonido:", err));
+  };
   return (
     <>
       <section id="seccion1">
@@ -47,48 +65,83 @@ const Esquizofrenia = () => {
           </div>
         </section>
         <div className="div-container">
-          <div className="div-text">
-            <section className="quees-info">
-              <h1 className="informacion-h1">¿Qué es la Esquizofrenia?</h1>
-              <p className="informacion-p">
-                La esquizofrenia es un trastorno mental crónico y grave que
-                afecta la forma en que una persona piensa, siente y percibe la
-                realidad. Se caracteriza por alteraciones en la percepción (como
-                alucinaciones y delirios), pensamiento desorganizado y
-                dificultades emocionales y sociales.
-              </p>
-              <button
-                onClick={() => setAnim1(!anim1)}
-                style={{
-                  display: "block",
-                  margin: "0 auto",
-                  padding: "10px 20px",
-                  background: anim1 ? "#ff4444" : "#4CAF50",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
+          <div className="div-canvas-1">
+            <Canvas
+              camera={{ position: [0, 1.2, 6.5] }}
+              shadows
+              key={sceneKey}
+              style={{ width: "100%", height: "100%" }} // altura pantalla completa
+            >
+              <OrbitControls />
+              <directionalLight position={[6, 5, 10]} intensity={2} />
+
+              {/* Texto 3D */}
+              <Text3D
+                position={[-4, 3, 0]}
+                font="/fonts/roboto.json"
+                size={0.5}
+                height={0.2}
+                curveSegments={12}
+                bevelEnabled
+                bevelThickness={0.02}
+                bevelSize={0.02}
+                bevelOffset={0}
+                bevelSegments={5}
               >
-                {anim1 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
-              </button>
-              <button
-                onClick={() => setSceneKey((prev) => prev + 1)}
-                style={{
-                  display: "block",
-                  margin: "0 auto",
-                  padding: "10px 20px",
-                  background: "#4CAF50",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                  marginTop: "10px",
-                }}
+                ¿Qué es la Esquizofrenia?
+                <meshStandardMaterial color={"#FFFFF1"} />
+              </Text3D>
+
+              {/* Texto 2D dentro del Canvas */}
+              <Html
+                position={[0, -0.5, 0]}
+                wrapperClass="texto-html"
+                center
+                transform
+                occlude
               >
-                Reiniciar escena
-              </button>
-            </section>
+                <section className="quees-info">
+                  <p className="informacion-p">
+                    La esquizofrenia es un trastorno mental crónico y grave que
+                    afecta la forma en que una persona piensa, siente y percibe
+                    la realidad. Se caracteriza por alteraciones en la
+                    percepción (como alucinaciones y delirios), pensamiento
+                    desorganizado y dificultades emocionales y sociales.
+                  </p>
+                  <button
+                    onClick={() => setAnim1(!anim1)}
+                    style={{
+                      display: "block",
+                      margin: "0 auto",
+                      padding: "10px 20px",
+                      background: anim1 ? "#ff4444" : "#4CAF50",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      margin : "10px auto",
+                    }}
+                  >
+                    {anim1 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
+                  </button>
+                  <button
+                    onClick={() => setSceneKey((prev) => prev + 1)}
+                    style={{
+                      display: "block",
+                      margin: "0 auto",
+                      padding: "10px 20px",
+                      background: anim1 ? "#ff4444" : "#4CAF50",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Reiniciar escena
+                  </button>
+                </section>
+              </Html>
+            </Canvas>
           </div>
           <div className="div-canvas-1">
             <Canvas
@@ -101,8 +154,13 @@ const Esquizofrenia = () => {
               <Boy playAnimation={anim1 ? "asustado" : null} />
               <Light />
               <Piso />
-
-              <Sky />
+              {/* Cielo realista */}
+              <Sky
+                distance={450000} // Distancia grande para simular el infinito
+                sunPosition={[100, 20, 100]} // Puedes cambiar la posición del sol
+                inclination={0.49} // Altura del sol (0 a 1)
+                azimuth={0.25} // Dirección del sol (0 a 1)
+              />
               <Sparkles
                 count={256}
                 speed={1.5}
@@ -112,7 +170,8 @@ const Esquizofrenia = () => {
                 scale={[10, 10, 10]}
                 noise={1}
               />
-              <FirstPersonControls movementSpeed={2} lookSpeed={0.1} />
+              <FirstPersonControls movementSpeed={2} lookSpeed={0} />
+              <Control />
             </Canvas>
           </div>
         </div>
@@ -143,7 +202,7 @@ const Esquizofrenia = () => {
                   display: "block",
                   margin: "0 auto",
                   padding: "10px 20px",
-                  background: anim1 ? "#ff4444" : "#4CAF50",
+                  background: anim2 ? "#ff4444" : "#4CAF50",
                   color: "white",
                   border: "none",
                   borderRadius: "4px",
@@ -155,17 +214,41 @@ const Esquizofrenia = () => {
             </section>
           </div>
           <div className="div-canvas-1">
+            <Saludo1 />
+
+            {/* Este botón es solo de prueba */}
             <Canvas camera={{ position: [5, 1, 1] }} shadows={true}>
               <OrbitControls />
               <directionalLight position={[5, 5, 10]} intensity={2} />
               <Light2 />
               <Boy playAnimation={anim2 ? "sentado_triste" : null} />
-              <Puerta
-                position={[0, -0.8, 1]}
-                scale={[1.5, 1.5, 1.5]}
-                rotation={[0, 1, 0]}
-              />
+              <group
+                onPointerOver={() => setPuertaHover(true)}
+                onPointerOut={() => setPuertaHover(false)}
+              >
+                <Puerta
+                  position={[0, -0.8, 1]}
+                  scale={[1.5, 1.5, 1.5]}
+                  rotation={[0, 1, 0]}
+                  onClick={handleInteractuarPuerta}
+                />
+                {puertaHover && (
+                  <Text
+                    position={[1, 2, 1]}
+                    rotation={[0, 1, 0]}
+                    fontSize={0.2}
+                    color="RED"
+                    outlineWidth={0.01}
+                    outlineColor="black"
+                    anchorX="center"
+                    anchorY="middle"
+                  >
+                    click para reproducir sonido
+                  </Text>
+                )}
+              </group>
               <Piso />
+              {/* Cielo realista */}
               <Sky />
               <Sparkles
                 count={256}
@@ -208,7 +291,7 @@ const Esquizofrenia = () => {
                   display: "block",
                   margin: "0 auto",
                   padding: "10px 20px",
-                  background: anim1 ? "#ff4444" : "#4CAF50",
+                  background: anim3 ? "#ff4444" : "#4CAF50",
                   color: "white",
                   border: "none",
                   borderRadius: "4px",
@@ -266,7 +349,7 @@ const Esquizofrenia = () => {
                   display: "block",
                   margin: "0 auto",
                   padding: "10px 20px",
-                  background: anim1 ? "#ff4444" : "#4CAF50",
+                  background: anim4 ? "#ff4444" : "#4CAF50",
                   color: "white",
                   border: "none",
                   borderRadius: "4px",
