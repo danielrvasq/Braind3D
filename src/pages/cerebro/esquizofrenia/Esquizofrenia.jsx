@@ -26,7 +26,7 @@ import Light4 from "./lights/Lights4";
 import { FirstPersonControls } from "@react-three/drei";
 import Saludo1 from "./sounds/Saludo1";
 import Control from "./texts/Control";
-import  {Furina}  from "./videos/Furina";
+import { Furina } from "./videos/Furina";
 const Esquizofrenia = () => {
   const [anim1, setAnim1] = useState(false);
   const [anim2, setAnim2] = useState(false);
@@ -119,7 +119,7 @@ const Esquizofrenia = () => {
                       border: "none",
                       borderRadius: "4px",
                       cursor: "pointer",
-                      margin : "10px auto",
+                      margin: "10px auto",
                     }}
                   >
                     {anim1 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
@@ -178,40 +178,76 @@ const Esquizofrenia = () => {
       </section>
       <section id="seccion2">
         <div className="div-container">
-          <div className="div-text">
-            <section className="quees-info">
-              <h1 className="informacion-h1">Sintomas</h1>
-              <p className="informacion-p">
-                Síntomas Positivos (exceso o distorsión de funciones normales):
-                Alucinaciones (escuchar o ver cosas que no existen). Delirios
-                (creencias falsas y persistentes). Pensamiento y lenguaje
-                desorganizado. Comportamiento motor anormal.
-              </p>
-              <p className="informacion-p">
-                Negativos(disminución de funciones normales): Apatía, falta de
-                motivación. Dificultad para expresar emociones (afecto plano).
-                Aislamiento social.{" "}
-              </p>
-              <p className="informacion-p">
-                Cognitivos: Problemas de memoria, atención y toma de decisiones.
-              </p>
+          <div className="div-canvas-1">
+            <Canvas
+              camera={{ position: [0, 1.2, 6.5] }}
+              shadows
+              key={sceneKey}
+              style={{ width: "100%", height: "100%" }} // altura pantalla completa
+            >
+              <OrbitControls />
+              <directionalLight position={[6, 5, 10]} intensity={2} />
 
-              <button
-                onClick={() => setAnim2(!anim2)}
-                style={{
-                  display: "block",
-                  margin: "0 auto",
-                  padding: "10px 20px",
-                  background: anim2 ? "#ff4444" : "#4CAF50",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
+              {/* Texto 3D */}
+              <Text3D
+                position={[-1.5, 3.5, 0]}
+                font="/fonts/roboto.json"
+                size={0.5}
+                height={0.2}
+                curveSegments={12}
+                bevelEnabled
+                bevelThickness={0.02}
+                bevelSize={0.02}
+                bevelOffset={0}
+                bevelSegments={5}
               >
-                {anim2 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
-              </button>
-            </section>
+                Sintomas
+                <meshStandardMaterial color={"#FFFFF1"} />
+              </Text3D>
+
+              {/* Texto 2D dentro del Canvas */}
+              <Html
+                position={[0, -0.5, 0]}
+                wrapperClass="texto-html"
+                center
+                transform
+                occlude
+              >
+                <section className="quees-info">
+                  <p className="informacion-p">
+                    Sitomas Positivos (exceo de funciones normales):
+                    Alucionanciones (escuchar o ver cosas que no existen).
+                    Delirios (creencias falsas y persistentes). Pensamiento y
+                    lenguaje desorganizado. Comportamiento motor anormal.
+                  </p>
+                  <p className="informacion-p">
+                    Negativos (disminución de funciones normales): Apatía, falta
+                    de motivación. Dificultad para expresar emociones (afecto
+                    plano). Ailamiento social.
+                  </p>
+                  <p className="informacion-p">
+                    Cognitivos: Problemas de memoria, atención y toma de
+                    decisiones.
+                  </p>
+                  <button
+                    onClick={() => setAnim2(!anim2)}
+                    style={{
+                      display: "block",
+                      margin: "0 auto",
+                      padding: "10px 20px",
+                      background: anim2 ? "#ff4444" : "#4CAF50",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      margin: "10px auto",
+                    }}
+                  >
+                    {anim2 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
+                  </button>
+                </section>
+              </Html>
+            </Canvas>
           </div>
           <div className="div-canvas-1">
             <Saludo1 />
@@ -265,42 +301,78 @@ const Esquizofrenia = () => {
       </section>
       <section id="seccion3">
         <div className="div-container">
-          <div className="div-text">
-            <section className="quees-info">
-              <h1 className="informacion-h1">Prevención y cuidados</h1>
-              <p className="informacion-p">
-                Detección temprana (ante primeros síntomas, buscar ayuda
-                profesional).
-              </p>
-              <p className="informacion-p">
-                Adherencia al tratamiento(evitar recaídas).
-              </p>
-              <p className="informacion-p">
-                Evitar drogas y alcohol (pueden empeorar los síntomas).
-              </p>
-              <p className="informacion-p">
-                Red de apoyo (familia, grupos terapéuticos).
-              </p>
-              <p className="informacion-p">
-                Estilo de vida saludable (rutina, ejercicio, alimentación
-                balanceada).
-              </p>
-              <button
-                onClick={() => setAnim3(!anim3)}
-                style={{
-                  display: "block",
-                  margin: "0 auto",
-                  padding: "10px 20px",
-                  background: anim3 ? "#ff4444" : "#4CAF50",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
+          <div className="div-canvas-1">
+            <Canvas
+              camera={{ position: [0, 1.2, 6.5] }}
+              shadows
+              key={sceneKey}
+              style={{ width: "100%", height: "100%" }} // altura pantalla completa
+            >
+              <OrbitControls />
+              <directionalLight position={[6, 5, 10]} intensity={2} />
+
+              {/* Texto 3D */}
+              <Text3D
+                position={[-4, 3.5, 0]}
+                font="/fonts/roboto.json"
+                size={0.5}
+                height={0.2}
+                curveSegments={12}
+                bevelEnabled
+                bevelThickness={0.02}
+                bevelSize={0.02}
+                bevelOffset={0}
+                bevelSegments={5}
               >
-                {anim3 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
-              </button>
-            </section>
+                Prevención y cuidados
+                <meshStandardMaterial color={"#FFFFF1"} />
+              </Text3D>
+
+              {/* Texto 2D dentro del Canvas */}
+              <Html
+                position={[0, -0.5, 0]}
+                wrapperClass="texto-html"
+                center
+                transform
+                occlude
+              >
+                <section className="quees-info">
+                  <p className="informacion-p">
+                    Detección temprana (ante primeros síntomas, bucar ayuda
+                    profesional).
+                  </p>
+                  <p className="informacion-p">
+                    Adherencia al tratamiento (evitar recaídas).
+                  </p>
+                  <p className="informacion-p">
+                    Evitar drogas y alcohol (pueden empeorar los síntomas).
+                  </p>
+                  <p className="informacion-p">
+                    Red de apoyo (familia, grupos terapéuticos).
+                  </p>
+                  <p className="informacion-p">
+                    Estilo de vida saludable (rutina, ejercicio, alimentación
+                    equilibrada).
+                  </p>
+                  <button
+                    onClick={() => setAnim3(!anim3)}
+                    style={{
+                      display: "block",
+                      margin: "0 auto",
+                      padding: "10px 20px",
+                      background: anim3 ? "#ff4444" : "#4CAF50",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      margin: "10px auto",
+                    }}
+                  >
+                    {anim3 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
+                  </button>
+                </section>
+              </Html>
+            </Canvas>
           </div>
           <div className="div-canvas-1">
             <Canvas camera={{ position: [1, 1, 3] }} shadows={true}>
@@ -326,39 +398,76 @@ const Esquizofrenia = () => {
       </section>
       <section id="seccion4">
         <div className="div-container">
-          <div className="div-text">
-            <section className="quees-info">
-              <h1 className="informacion-h1">Tratamiento</h1>
-              <p className="informacion-p">
-                Medicamentos antipsicóticos (controlan síntomas positivos).
-              </p>
-              <p className="informacion-p">
-                Terapia psicológica: Terapia cognitivo-conductual (TCC).
-              </p>
-              <p className="informacion-p">
-                Rehabilitación psicosocial (entrenamiento en habilidades
-                sociales).
-              </p>
-              <p className="informacion-p">Apoyo familiar y comunitario.</p>
-              <p className="informacion-p">
-                Hospitalización (en casos graves o crisis).
-              </p>
-              <button
-                onClick={() => setAnim4(!anim4)}
-                style={{
-                  display: "block",
-                  margin: "0 auto",
-                  padding: "10px 20px",
-                  background: anim4 ? "#ff4444" : "#4CAF50",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
+        <div className="div-canvas-1">
+            <Canvas
+              camera={{ position: [0, 1.2, 6.5] }}
+              shadows
+              key={sceneKey}
+              style={{ width: "100%", height: "100%" }} // altura pantalla completa
+            >
+              <OrbitControls />
+              <directionalLight position={[6, 5, 10]} intensity={2} />
+
+              {/* Texto 3D */}
+              <Text3D
+                position={[-2, 3.5, 0]}
+                font="/fonts/roboto.json"
+                size={0.5}
+                height={0.2}
+                curveSegments={12}
+                bevelEnabled
+                bevelThickness={0.02}
+                bevelSize={0.02}
+                bevelOffset={0}
+                bevelSegments={5}
               >
-                {anim4 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
-              </button>
-            </section>
+                Tratamiento
+                <meshStandardMaterial color={"#FFFFF1"} />
+              </Text3D>
+
+              {/* Texto 2D dentro del Canvas */}
+              <Html
+                position={[0, -0.5, 0]}
+                wrapperClass="texto-html"
+                center
+                transform
+                occlude
+              >
+                <section className="quees-info">
+                  <p className="informacion-p">
+                    Medicamentos antipsicóticos (controlan síntomas positivos)
+                  </p>
+                  <p className="informacion-p">
+                    Terapia psicológica: Terapia cognitivo-coductual (TCC).
+                  </p>
+                  <p className="informacion-p">
+                    Regabilitación psicosocial (entrenamiento en habilidades sociales)
+                  </p>
+                  <p className="informacion-p">
+                    Apoyo familiar y comunitario.
+                  </p>
+                  <p className="informacion-p">
+                    Hospitalización (en casos graves o crisis).
+                  </p>
+                  <button
+                    onClick={() => setAnim4(!anim4)}
+                    style={{
+                      display: "block",
+                      margin: "0 auto",
+                      padding: "10px 20px",
+                      background: anim4 ? "#ff4444" : "#4CAF50",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      margin: "10px auto",
+                    }}
+                  >
+                    {anim4 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
+                  </button>
+                </section>
+              </Html>
+            </Canvas>
           </div>
           <div className="div-canvas-1">
             <Canvas camera={{ position: [2, 1.5, -2] }} shadows={true}>
