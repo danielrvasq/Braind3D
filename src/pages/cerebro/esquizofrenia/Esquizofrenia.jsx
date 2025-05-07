@@ -27,7 +27,6 @@ import { FirstPersonControls } from "@react-three/drei";
 import Saludo1 from "./sounds/Saludo1";
 import Control from "./texts/Control";
 import  {Furina}  from "./videos/Furina";
-
 const Esquizofrenia = () => {
   const [anim1, setAnim1] = useState(false);
   const [anim2, setAnim2] = useState(false);
