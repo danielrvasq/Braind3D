@@ -56,7 +56,6 @@ body {
   border-radius: 30px;
   font-size: 18px;
   transition: all 0.5s ease;
-  border: 2px solid #253439;
 }
 
 #boton-h:hover {
@@ -132,13 +131,11 @@ body {
   border-radius: 30px;
   font-size: 18px;
   transition: all 0.5s ease;
-  border: 2px solid;
 }
 
 #boton-h2 {
   background-color: #253439;
   color: #f2efeb;
-  border-color: #253439;
 }
 
 #boton-h2:hover {
@@ -149,7 +146,6 @@ body {
 #boton-h3 {
   background-color: #f2efeb;
   color: #253439;
-  border-color: #f2efeb;
 }
 
 #boton-h3:hover {

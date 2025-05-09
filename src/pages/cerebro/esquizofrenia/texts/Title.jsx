@@ -1,38 +1,32 @@
-import { Html, Text } from "@react-three/drei";
-import "./Title.css";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unknown-property */
+import React, { useMemo } from "react";
+import { Text3D } from "@react-three/drei";
+import * as THREE from "three";
 
-const Title = () => {
+const Title = ({ text }) => {
+  const color = useMemo(() => new THREE.Color("#FFFFF1"), []);
+
   return (
-    <>
-      {/* Título sobre la esquizofrenia */}
-      <Html
+    <group position={[-8, -0.5, 0]}>
+      <Text3D
+        font="/fonts/roboto.json"
+        size={2}
+        height={0.3}
+        curveSegments={12}
+        bevelEnabled
+        bevelThickness={0.1}
+        bevelSize={0.05}
+        bevelSegments={1}
+        position={[0, 0, 0]}
         center
-        position={[0, 3, 0]}  // Colocamos el texto en una posición adecuada
-        distanceFactor={5}
-        wrapperClass="Title"
       >
-        <div className="description-container">
-          <h1>¿Qué es la Esquizofrenia?</h1>
-          <p>
-            La esquizofrenia es un trastorno mental grave que afecta la forma en
-            que una persona piensa, siente y actúa. Las personas con esquizofrenia
-            pueden experimentar alucinaciones, delirios y trastornos del pensamiento,
-            lo que puede afectar su capacidad para interactuar con el mundo.
-          </p>
-        </div>
-      </Html>
-
-      {/* Descripción adicional en el espacio 3D */}
-      <Text
-        position={[0, 1, 1]}
-        fontSize={0.2}
-        color={"#FF5733"}  // Usamos el mismo color anaranjado
-        anchorX={"center"}
-        anchorY={"middle"}
-      >
-        La esquizofrenia afecta la percepción de la realidad.
-      </Text>
-    </>
+        {text}
+        <meshStandardMaterial color={color} metalness={0.8} roughness={0.2} />
+      </Text3D>
+    </group>
   );
 };
+
 export default Title;
