@@ -9,6 +9,9 @@ app.use(express.json());
 const userRoutes = require("./routes/userRoutes");
 app.use("/api", userRoutes);
 
+const quizRoutes = require("./routes/quiz");
+app.use("/api/quiz", quizRoutes);
+
 mongoose.connect("mongodb+srv://anca:anca0@cluster0.suqgh7a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
