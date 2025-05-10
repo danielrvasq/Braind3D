@@ -12,6 +12,7 @@ import "./index.css";
 import Layout from "./layout/Layout";
 import Perfil from "./pages/perfil/Pefil";
 import AboutUs from "./pages/aboutUs/AboutUs";
+import Podio from "./pages/quiz/Podio";
 createRoot(document.getElementById("root")).render(
   // <App />
   <BrowserRouter>
@@ -28,6 +29,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="esquizofrenia" element={<Esquizofrenia />} />
         </Route>
         <Route path="perfil" element={<Perfil />} />
+        <Route path="podio" element={<Podio />} />
       </Routes>
     </Layout>
   </BrowserRouter>
