@@ -112,7 +112,7 @@ const Esquizofrenia = () => {
                 scale={[10, 10, 10]}
                 noise={1}
               />
-              <FirstPersonControls movementSpeed={2} lookSpeed={0.1} />
+              <FirstPersonControls movementSpeed={2} lookSpeed={0} />
             </Canvas>
           </div>
         </div>
