@@ -28,6 +28,7 @@ import Saludo1 from "./sounds/Saludo1";
 import Control from "./texts/Control";
 import { Furina } from "./videos/Furina";
 import { Audio3D } from "./sounds/Audio3D";
+import Cat from "./models-3d/Cat";
 const Esquizofrenia = () => {
   const [anim1, setAnim1] = useState(false);
   const [anim2, setAnim2] = useState(false);
@@ -37,6 +38,7 @@ const Esquizofrenia = () => {
   const [puertaHover, setPuertaHover] = useState(false);
   const puertaAudio = useRef(null);
   const [sonidoActivo, setSonidoActivo] = useState(false);
+  const [activo, setActivo] = useState(false);
 
   const handleInteractuarPuerta = () => {
     const audio = new Audio("/sounds/saludo1.mp3"); // Asegúrate de que el archivo exista
@@ -113,6 +115,11 @@ const Esquizofrenia = () => {
                   </p>
                   <button
                     onClick={() => setAnim1(!anim1)}
+                    title={
+                      anim1
+                        ? "Pulsa para detener la animación"
+                        : "Pulsa para activar la animación"
+                    } // Tooltip
                     style={{
                       display: "block",
                       margin: "0 auto",
@@ -129,11 +136,12 @@ const Esquizofrenia = () => {
                   </button>
                   <button
                     onClick={() => setSceneKey((prev) => prev + 1)}
+                    title={"Pulsa para reiniciar la escena"} // Tooltip
                     style={{
                       display: "block",
                       margin: "0 auto",
                       padding: "10px 20px",
-                      background: anim1 ? "#ff4444" : "#4CAF50",
+                      background:"#4CAF50",
                       color: "white",
                       border: "none",
                       borderRadius: "4px",
@@ -222,8 +230,6 @@ const Esquizofrenia = () => {
                     Alucionanciones (escuchar o ver cosas que no existen).
                     Delirios (creencias falsas y persistentes). Pensamiento y
                     lenguaje desorganizado. Comportamiento motor anormal.
-                  </p>
-                  <p className="informacion-p">
                     Negativos (disminución de funciones normales): Apatía, falta
                     de motivación. Dificultad para expresar emociones (afecto
                     plano). Ailamiento social.
@@ -234,6 +240,11 @@ const Esquizofrenia = () => {
                   </p>
                   <button
                     onClick={() => setAnim2(!anim2)}
+                    title={
+                      anim2
+                        ? "Pulsa para detener la animación"
+                        : "Pulsa para activar la animación"
+                    }
                     style={{
                       display: "block",
                       margin: "0 auto",
@@ -247,6 +258,27 @@ const Esquizofrenia = () => {
                     }}
                   >
                     {anim2 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
+                  </button>
+                  <button
+                    onClick={() => setActivo((prev) => !prev)}
+                    title={
+                      activo
+                        ? "Pulsa para detener movimiento del gato"
+                        : "Pulsa para activar movimiento del gato"
+                    }
+                    style={{
+                      display: "block",
+                      margin: "0 auto",
+                      padding: "3px 15px",
+                      background: activo ? "#ff4444" : "#4CAF50",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      margin: "10px auto",
+                    }}
+                  >
+                    {activo ? "DETENER MOVIMIENTO DEL GATO " : "ACTIVAR MOVIMIENTO DEL GATO"}
                   </button>
                 </section>
               </Html>
@@ -289,6 +321,7 @@ const Esquizofrenia = () => {
               <Piso />
               {/* Cielo realista */}
               <Sky />
+              <Cat activo={activo} />
               <Sparkles
                 count={256}
                 speed={1.5}
@@ -343,12 +376,7 @@ const Esquizofrenia = () => {
                 <section className="quees-info">
                   <p className="informacion-p">
                     Detección temprana (ante primeros síntomas, bucar ayuda
-                    profesional).
-                  </p>
-                  <p className="informacion-p">
-                    Adherencia al tratamiento (evitar recaídas).
-                  </p>
-                  <p className="informacion-p">
+                    profesional). Adherencia al tratamiento (evitar recaídas).
                     Evitar drogas y alcohol (pueden empeorar los síntomas).
                   </p>
                   <p className="informacion-p">
@@ -360,6 +388,11 @@ const Esquizofrenia = () => {
                   </p>
                   <button
                     onClick={() => setAnim3(!anim3)}
+                    title={
+                      anim3
+                        ? "Pulsa para detener la animación"
+                        : "Pulsa para activar la animación"
+                    }
                     style={{
                       display: "block",
                       margin: "0 auto",
@@ -374,20 +407,26 @@ const Esquizofrenia = () => {
                   >
                     {anim3 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
                   </button>
-                  <button onClick={() => setSonidoActivo(!sonidoActivo)}
+                  <button
+                    onClick={() => setSonidoActivo(!sonidoActivo)}
+                    title={
+                      anim3
+                        ? "Pulsa para detener sonidos 3D"
+                        : "Pulsa para activar sonidos 3D"
+                    }
                     style={{
                       display: "block",
                       margin: "0 auto",
                       padding: "10px 20px",
-                      background: anim3 ? "#ff4444" : "#4CAF50",
+                      background: sonidoActivo ? "#ff4444" : "#4CAF50",
                       color: "white",
                       border: "none",
                       borderRadius: "4px",
                       cursor: "pointer",
                       margin: "10px auto",
                     }}
-                    >
-                    {sonidoActivo ? "Desactivar sonidos" : "Activar sonidos"}
+                  >
+                    {sonidoActivo ? "DESACTIVAR SONIDOS 3D" : "ACTIVAR SONIDOS 3D"}
                   </button>
                 </section>
               </Html>
@@ -402,6 +441,7 @@ const Esquizofrenia = () => {
               <Piso />
               <Mesa position={[0, 3, 0.5]} scale={[3, 4, 2]} />
               <Sky />
+
               <Sparkles
                 count={256}
                 speed={1.5}
@@ -469,6 +509,11 @@ const Esquizofrenia = () => {
                   </p>
                   <button
                     onClick={() => setAnim4(!anim4)}
+                    title={
+                      anim4
+                        ? "Pulsa para detener la animación"
+                        : "Pulsa para activar la animación"
+                    }
                     style={{
                       display: "block",
                       margin: "0 auto",

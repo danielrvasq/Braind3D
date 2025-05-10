@@ -2,7 +2,10 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
 export function Audio3D({ activo }) {
+  const listenerRef = useRef();
+  const { camera, scene } = useThree()
   useEffect(() => {
+    
   if (!activo) return; // ⛔ Si no está activo, no agregar listeners
 
   const listener = new THREE.AudioListener();

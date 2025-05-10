@@ -29,7 +29,7 @@ const Control = () => {
         anchorY="bottom"
         position={[0, 0.6, 0]}
       >
-        Mueve con WASD
+        Muevete con WASD
       </Text>
 
       {/* Distribución estilo teclado */}
