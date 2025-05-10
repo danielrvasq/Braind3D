@@ -27,6 +27,7 @@ import { FirstPersonControls } from "@react-three/drei";
 import Saludo1 from "./sounds/Saludo1";
 import Control from "./texts/Control";
 import { Furina } from "./videos/Furina";
+import { Audio3D } from "./sounds/Audio3D";
 const Esquizofrenia = () => {
   const [anim1, setAnim1] = useState(false);
   const [anim2, setAnim2] = useState(false);
@@ -35,6 +36,8 @@ const Esquizofrenia = () => {
   const [sceneKey, setSceneKey] = useState(0);
   const [puertaHover, setPuertaHover] = useState(false);
   const puertaAudio = useRef(null);
+  const [sonidoActivo, setSonidoActivo] = useState(false);
+
   const handleInteractuarPuerta = () => {
     const audio = new Audio("/sounds/saludo1.mp3"); // Asegúrate de que el archivo exista
     audio
@@ -310,6 +313,7 @@ const Esquizofrenia = () => {
             >
               <OrbitControls />
               <directionalLight position={[6, 5, 10]} intensity={2} />
+              <Audio3D activo={sonidoActivo} />
 
               {/* Texto 3D */}
               <Text3D
@@ -370,6 +374,21 @@ const Esquizofrenia = () => {
                   >
                     {anim3 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
                   </button>
+                  <button onClick={() => setSonidoActivo(!sonidoActivo)}
+                    style={{
+                      display: "block",
+                      margin: "0 auto",
+                      padding: "10px 20px",
+                      background: anim3 ? "#ff4444" : "#4CAF50",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      margin: "10px auto",
+                    }}
+                    >
+                    {sonidoActivo ? "Desactivar sonidos" : "Activar sonidos"}
+                  </button>
                 </section>
               </Html>
             </Canvas>
@@ -398,7 +417,7 @@ const Esquizofrenia = () => {
       </section>
       <section id="seccion4">
         <div className="div-container">
-        <div className="div-canvas-1">
+          <div className="div-canvas-1">
             <Canvas
               camera={{ position: [0, 1.2, 6.5] }}
               shadows
@@ -441,11 +460,10 @@ const Esquizofrenia = () => {
                     Terapia psicológica: Terapia cognitivo-coductual (TCC).
                   </p>
                   <p className="informacion-p">
-                    Regabilitación psicosocial (entrenamiento en habilidades sociales)
+                    Regabilitación psicosocial (entrenamiento en habilidades
+                    sociales)
                   </p>
-                  <p className="informacion-p">
-                    Apoyo familiar y comunitario.
-                  </p>
+                  <p className="informacion-p">Apoyo familiar y comunitario.</p>
                   <p className="informacion-p">
                     Hospitalización (en casos graves o crisis).
                   </p>
