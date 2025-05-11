@@ -1,50 +1,62 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import React, { useEffect, useRef, useState, useMemo } from "react";
+import { useGLTF, useAnimations } from "@react-three/drei";
+
+import { clone } from "three/examples/jsm/utils/SkeletonUtils";
 
 const Human = ({ startAnimation }) => {
   const group = useRef();
   const { scene, animations } = useGLTF("/models-3d/human.glb");
+  const clonedScene = useMemo(() => clone(scene), [scene]);
   const { actions } = useAnimations(animations, group);
-  const [rotationY, setRotationY] = useState(0);
+
+  // Estado para posición y rotación
+  const [position, setPosition] = useState([0, 0, 0]);
 
   // Animación de Mixamo
   useEffect(() => {
-    if (actions && actions["Armature|mixamo.com|Layer0"]) {
+    const action = actions["Armature|mixamo.com|Layer0"];
+    if (action) {
       if (startAnimation) {
-        actions["Armature|mixamo.com|Layer0"].reset().fadeIn(0.5).play();
+        action.reset().fadeIn(0.5).play();
       } else {
-        actions["Armature|mixamo.com|Layer0"].fadeOut(0.5).stop();
+        action.fadeOut(0.5).stop();
       }
     }
   }, [startAnimation, actions]);
 
-  // Evento de teclado: rotar con tecla "r"
+  // Movimiento con teclado
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key.toLowerCase() === "r") {
-        setRotationY((prev) => prev + 0.1); // Aumenta rotación Y
-      }
+      const key = event.key.toLowerCase();
+      setPosition((prev) => {
+        const [x, y, z] = prev;
+        switch (key) {
+          case "arrowup":
+          case "w":
+            return [x, y, z - 0.1];
+          case "arrowdown":
+          case "s":
+            return [x, y, z + 0.1];
+          case "arrowleft":
+          case "a":
+            return [x - 0.1, y, z];
+          case "arrowright":
+          case "d":
+            return [x + 0.1, y, z];
+          default:
+            return prev;
+        }
+      });
     };
+
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Aplica rotación en cada frame
-  useFrame(() => {
-    if (group.current) {
-      group.current.rotation.y = rotationY;
-    }
-  });
-
-  // Evento de mouse: click en modelo
-  const handleClick = () => {
-    alert("¡Modelo humano clickeado!");
-  };
-
   return (
-    <group ref={group} onClick={handleClick}>
-      <primitive object={scene} scale={1} />
+    <group ref={group} position={position}>
+      <primitive object={clonedScene} scale={1} />
     </group>
   );
 };

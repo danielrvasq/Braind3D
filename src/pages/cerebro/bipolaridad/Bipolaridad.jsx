@@ -12,29 +12,25 @@ import Human from "./models-3d/Human";
 import "./Bipolaridad.css";
 
 const Bipolaridad = () => {
-  const [startAnimation, setStartAnimation] = useState(false);
+  const [startAnimationModel1, setStartAnimationModel1] = useState(false);
+  const [startAnimationModel2, setStartAnimationModel2] = useState(false);
+  const [startAnimationModel3, setStartAnimationModel3] = useState(false);
+
   return (
     <section id="seccion1">
+      {/* Introducción con texto 3D */}
       <section id="seccion0">
         <div className="div-canvas-2">
-          <Canvas
-            camera={{
-              position: [0, 0, 5],
-              fov: 55,
-            }}
-            shadows={true}
-          >
-            <OrbitControls
-              target={[0, 0, 0]}
-              enableZoom={true}
-              enablePan={true}
-            />
+          <Canvas camera={{ position: [0, 0, 5], fov: 55 }} shadows={true}>
+            <OrbitControls target={[0, 0, 0]} enableZoom enablePan />
             <directionalLight position={[5, 5, 10]} intensity={2} />
             <Texts3D text="Bipolaridad" position={[0, 0, 0]} />
             <Lights2 />
           </Canvas>
         </div>
       </section>
+
+      {/* Descripción general */}
       <div className="div-container">
         <div className="div-text">
           <section className="quees-info">
@@ -74,11 +70,13 @@ const Bipolaridad = () => {
           </Canvas>
         </div>
       </div>
+
+      {/* Modelo 1 */}
       <div className="div-container">
         <div className="div-text">
           <section className="quees-info">
             <h1 className="informacion-h1">
-              Sintomas Comunes Del Transtorno bipolar
+              Síntomas Comunes del Trastorno Bipolar
             </h1>
             <div className="informacion-div">
               <p className="informacion-p">
@@ -90,19 +88,21 @@ const Bipolaridad = () => {
               </p>
             </div>
             <button
-              onClick={() => setStartAnimation((prev) => !prev)}
+              onClick={() => setStartAnimationModel1((prev) => !prev)}
               style={{
                 display: "block",
                 margin: "0 auto",
                 padding: "10px 20px",
-                background: startAnimation ? "#ff4444" : "#4CAF50",
+                background: startAnimationModel1 ? "#ff4444" : "#4CAF50",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
                 cursor: "pointer",
               }}
             >
-              {startAnimation ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
+              {startAnimationModel1
+                ? "DETENER ANIMACIÓN"
+                : "REPRODUCIR ANIMACIÓN"}
             </button>
           </section>
         </div>
@@ -111,7 +111,7 @@ const Bipolaridad = () => {
             <OrbitControls target={[0, 1, 0]} />
             <directionalLight position={[5, 5, 10]} intensity={2} />
             <Suspense fallback={null}>
-              <Human startAnimation={startAnimation} />
+              <Human startAnimation={startAnimationModel1} />
             </Suspense>
             <Text />
             <Lights2 />
@@ -129,45 +129,53 @@ const Bipolaridad = () => {
           </Canvas>
         </div>
       </div>
+
+      {/* Modelo 2 */}
       <div className="div-container">
         <div className="div-text">
           <section className="quees-info">
-            <h1 className="informacion-h1">Episodios del Trastorno Bipolar</h1>
-            <p className="informacion-p">
-              La enfermedad de Huntington es un trastorno genético
-              neurodegenerativo que afecta el cerebro, causando deterioro
-              progresivo de las capacidades motoras, cognitivas y psiquiátricas.
-            </p>
-            <p className="informacion-p">
-              Es una enfermedad hereditaria de patrón autosómico dominante, lo
-              que significa que una sola copia del gen defectuoso puede causar
-              la enfermedad.
-            </p>
+            <h1 className="informacion-h1">
+              Episodios Comunes del Trastorno Bipolar
+            </h1>
+            <div className="informacion-div">
+              <p className="informacion-p">
+                El trastorno bipolar se manifiesta a través de episodios de
+                manía, hipomanía y depresión. Durante un episodio maníaco, la
+                persona puede sentirse eufórica, con mucha energía, hablar
+                rápido o actuar impulsivamente. En la hipomanía, los síntomas
+                son similares pero menos intensos. En los episodios depresivos,
+                predominan la tristeza profunda, la fatiga, la falta de
+                motivación y pensamientos negativos. Estos episodios pueden
+                durar desde días hasta semanas y afectan significativamente la
+                vida diaria.
+              </p>
+            </div>
             <button
-              onClick={() => setStartAnimation((prev) => !prev)}
+              onClick={() => setStartAnimationModel2((prev) => !prev)}
               style={{
                 display: "block",
                 margin: "0 auto",
                 padding: "10px 20px",
-              //  background: startAnimation ? "#ff4444" : "#4CAF50",
+                background: startAnimationModel2 ? "#ff4444" : "#4CAF50",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
                 cursor: "pointer",
               }}
             >
-              {/* {startAnimation ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"} */}
+              {startAnimationModel2
+                ? "DETENER ANIMACIÓN"
+                : "REPRODUCIR ANIMACIÓN"}
             </button>
           </section>
         </div>
         <div className="div-canvas-1">
-          <Canvas camera={{ position: [1, 1, 2] }} shadows>
-            <OrbitControls />
+          <Canvas camera={{ position: [0, 2, 8] }} shadows>
+            <OrbitControls target={[0, 1, 0]} />
             <directionalLight position={[5, 5, 10]} intensity={2} />
-            {/* <Human
-                      startAnimation={startAnimation}
-                      stopAnimation={!startAnimation}
-            /> */}
+            <Suspense fallback={null}>
+              <Human startAnimation={startAnimationModel2} />
+            </Suspense>
             <Text />
             <Lights2 />
             <Floor />
@@ -184,47 +192,50 @@ const Bipolaridad = () => {
           </Canvas>
         </div>
       </div>
+
+      {/* Modelo 3 */}
       <div className="div-container">
         <div className="div-text">
           <section className="quees-info">
             <h1 className="informacion-h1">
               Tratamiento del Trastorno Bipolar
             </h1>
-            <p className="informacion-p">
-              La enfermedad de Huntington es un trastorno genético
-              neurodegenerativo que afecta el cerebro, causando deterioro
-              progresivo de las capacidades motoras, cognitivas y psiquiátricas.
-            </p>
-            <p className="informacion-p">
-              Es una enfermedad hereditaria de patrón autosómico dominante, lo
-              que significa que una sola copia del gen defectuoso puede causar
-              la enfermedad.
-            </p>
+            <div className="informacion-div">
+              <p className="informacion-p">
+                El tratamiento del trastorno bipolar incluye medicamentos
+                estabilizadores del ánimo, a ntidepresivos y terapia
+                psicológica. También es fundamental el apoyo familiar y un
+                estilo de vida equilibrado. Aunque no tiene cura, un tratamiento
+                adecuado permite a muchas personas llevar una vida funcional y
+                estable.
+              </p>
+            </div>
             <button
-              onClick={() => setStartAnimation((prev) => !prev)}
+              onClick={() => setStartAnimationModel3((prev) => !prev)}
               style={{
                 display: "block",
                 margin: "0 auto",
                 padding: "10px 20px",
-                // background: startAnimation ? "#ff4444" : "#4CAF50",
+                background: startAnimationModel3 ? "#ff4444" : "#4CAF50",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
                 cursor: "pointer",
               }}
             >
-              {/* {startAnimation ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"} */}
+              {startAnimationModel3
+                ? "DETENER ANIMACIÓN"
+                : "REPRODUCIR ANIMACIÓN"}
             </button>
           </section>
         </div>
         <div className="div-canvas-1">
-          <Canvas camera={{ position: [1, 1, 2] }} shadows>
-            <OrbitControls />
+          <Canvas camera={{ position: [0, 2, 8] }} shadows>
+            <OrbitControls target={[0, 1, 0]} />
             <directionalLight position={[5, 5, 10]} intensity={2} />
-            {/* <Human
-              startAnimation={startAnimation}
-              stopAnimation={!startAnimation}
-            /> */}
+            <Suspense fallback={null}>
+              <Human startAnimation={startAnimationModel3} />
+            </Suspense>
             <Text />
             <Lights2 />
             <Floor />
