@@ -12,26 +12,7 @@ import Human from "./models-3d/Human";
 import "./Bipolaridad.css";
 
 const Bipolaridad = () => {
-  // Estado para controlar la animación
   const [startAnimation, setStartAnimation] = useState(false);
-  const [stopAnimation, setStopAnimation] = useState(false);
-  useEffect(() => {
-    const handleSpacebarPress = (event) => {
-      if (event.code === "Enter") {
-        setStartAnimation((prevState) => !prevState); // Alterna el estado de la animación
-      }
-    };
-
-    // Agregar el listener cuando el componente se monte
-    document.addEventListener("keydown", handleSpacebarPress);
-
-    // Eliminar el listener cuando el componente se desmonte
-    return () => {
-      document.removeEventListener("keydown", handleSpacebarPress);
-    };
-  }, []);
-
-
   return (
     <section id="seccion1">
       <section id="seccion0">
@@ -96,26 +77,86 @@ const Bipolaridad = () => {
       <div className="div-container">
         <div className="div-text">
           <section className="quees-info">
-            <h1 className="informacion-h1">Sintomas</h1>
+            <h1 className="informacion-h1">
+              Sintomas Comunes Del Transtorno bipolar
+            </h1>
             <div className="informacion-div">
               <p className="informacion-p">
-                holaaaaa
+                Cambios extremos en el estado de ánimo (de euforia a depresión).
+                Aumento repentino de energía o actividad. Dificultad para dormir
+                o insomnio. Pensamientos acelerados y habla muy rápida.
+                Episodios de tristeza profunda o desesperanza. Comportamientos
+                impulsivos o de riesgo.
               </p>
             </div>
             <button
-              //onClick={() => setStartAnimation((prev) => !prev)}
+              onClick={() => setStartAnimation((prev) => !prev)}
               style={{
                 display: "block",
                 margin: "0 auto",
                 padding: "10px 20px",
-               // background: startAnimation ? "#ff4444" : "#4CAF50",
+                background: startAnimation ? "#ff4444" : "#4CAF50",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
                 cursor: "pointer",
               }}
             >
-         {/* {startAnimation ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"} */}
+              {startAnimation ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
+            </button>
+          </section>
+        </div>
+        <div className="div-canvas-1">
+          <Canvas camera={{ position: [0, 2, 8] }} shadows>
+            <OrbitControls target={[0, 1, 0]} />
+            <directionalLight position={[5, 5, 10]} intensity={2} />
+            <Suspense fallback={null}>
+              <Human startAnimation={startAnimation} />
+            </Suspense>
+            <Text />
+            <Lights2 />
+            <Floor />
+            <Sky />
+            <Sparkles
+              count={256}
+              speed={1.5}
+              opacity={1}
+              color={"yellow"}
+              size={3}
+              scale={[10, 10, 10]}
+              noise={1}
+            />
+          </Canvas>
+        </div>
+      </div>
+      <div className="div-container">
+        <div className="div-text">
+          <section className="quees-info">
+            <h1 className="informacion-h1">Episodios del Trastorno Bipolar</h1>
+            <p className="informacion-p">
+              La enfermedad de Huntington es un trastorno genético
+              neurodegenerativo que afecta el cerebro, causando deterioro
+              progresivo de las capacidades motoras, cognitivas y psiquiátricas.
+            </p>
+            <p className="informacion-p">
+              Es una enfermedad hereditaria de patrón autosómico dominante, lo
+              que significa que una sola copia del gen defectuoso puede causar
+              la enfermedad.
+            </p>
+            <button
+              onClick={() => setStartAnimation((prev) => !prev)}
+              style={{
+                display: "block",
+                margin: "0 auto",
+                padding: "10px 20px",
+              //  background: startAnimation ? "#ff4444" : "#4CAF50",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+            >
+              {/* {startAnimation ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"} */}
             </button>
           </section>
         </div>
@@ -123,7 +164,64 @@ const Bipolaridad = () => {
           <Canvas camera={{ position: [1, 1, 2] }} shadows>
             <OrbitControls />
             <directionalLight position={[5, 5, 10]} intensity={2} />
-            {/* <OldMan
+            {/* <Human
+                      startAnimation={startAnimation}
+                      stopAnimation={!startAnimation}
+            /> */}
+            <Text />
+            <Lights2 />
+            <Floor />
+            <Sky />
+            <Sparkles
+              count={256}
+              speed={1.5}
+              opacity={1}
+              color={"yellow"}
+              size={3}
+              scale={[10, 10, 10]}
+              noise={1}
+            />
+          </Canvas>
+        </div>
+      </div>
+      <div className="div-container">
+        <div className="div-text">
+          <section className="quees-info">
+            <h1 className="informacion-h1">
+              Tratamiento del Trastorno Bipolar
+            </h1>
+            <p className="informacion-p">
+              La enfermedad de Huntington es un trastorno genético
+              neurodegenerativo que afecta el cerebro, causando deterioro
+              progresivo de las capacidades motoras, cognitivas y psiquiátricas.
+            </p>
+            <p className="informacion-p">
+              Es una enfermedad hereditaria de patrón autosómico dominante, lo
+              que significa que una sola copia del gen defectuoso puede causar
+              la enfermedad.
+            </p>
+            <button
+              onClick={() => setStartAnimation((prev) => !prev)}
+              style={{
+                display: "block",
+                margin: "0 auto",
+                padding: "10px 20px",
+                // background: startAnimation ? "#ff4444" : "#4CAF50",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+            >
+              {/* {startAnimation ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"} */}
+            </button>
+          </section>
+        </div>
+        <div className="div-canvas-1">
+          <Canvas camera={{ position: [1, 1, 2] }} shadows>
+            <OrbitControls />
+            <directionalLight position={[5, 5, 10]} intensity={2} />
+            {/* <Human
               startAnimation={startAnimation}
               stopAnimation={!startAnimation}
             /> */}
