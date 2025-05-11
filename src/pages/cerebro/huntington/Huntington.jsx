@@ -75,7 +75,7 @@ const Huntington = () => {
               <OrbitControls />
               <directionalLight position={[5, 5, 10]} intensity={2} />
               <Brain />
-              <Text />
+              <Text3D />
               <Lights2 />
               <Floor />
               <Sky />
