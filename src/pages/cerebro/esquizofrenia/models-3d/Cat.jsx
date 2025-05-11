@@ -1,6 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
+import { Html } from "@react-three/drei";
 
 const keys = {}; // Objeto global para almacenar teclas presionadas
 
@@ -52,6 +53,23 @@ const Cat = ({ activo = false, ...props }) => {
         position={[0, -1, 0]}
         onClick={handleClick} // <--- sonido al hacer clic
       />
+      {activo && (
+        <Html position={[2.3, 2, 3]} distanceFactor={10}>
+          <div
+            style={{
+              background: "rgba(0,0,0,0.7)",
+              color: "white",
+              padding: "8px 12px",
+              borderRadius: "8px",
+              fontSize: "8px",
+              Width: "150px",
+            }}
+          >
+            Usa las flechas para mover el gato
+            <br />y haz clic sobre él para que maúlle.
+          </div>
+        </Html>
+      )}
     </group>
   );
 };

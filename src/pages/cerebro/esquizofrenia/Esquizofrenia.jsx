@@ -141,7 +141,7 @@ const Esquizofrenia = () => {
                       display: "block",
                       margin: "0 auto",
                       padding: "10px 20px",
-                      background:"#4CAF50",
+                      background: "#4CAF50",
                       color: "white",
                       border: "none",
                       borderRadius: "4px",
@@ -278,7 +278,9 @@ const Esquizofrenia = () => {
                       margin: "10px auto",
                     }}
                   >
-                    {activo ? "DETENER MOVIMIENTO DEL GATO " : "ACTIVAR MOVIMIENTO DEL GATO"}
+                    {activo
+                      ? "DETENER MOVIMIENTO DEL GATO "
+                      : "ACTIVAR MOVIMIENTO DEL GATO"}
                   </button>
                 </section>
               </Html>
@@ -346,7 +348,6 @@ const Esquizofrenia = () => {
             >
               <OrbitControls />
               <directionalLight position={[6, 5, 10]} intensity={2} />
-              <Audio3D activo={sonidoActivo} />
 
               {/* Texto 3D */}
               <Text3D
@@ -426,7 +427,9 @@ const Esquizofrenia = () => {
                       margin: "10px auto",
                     }}
                   >
-                    {sonidoActivo ? "DESACTIVAR SONIDOS 3D" : "ACTIVAR SONIDOS 3D"}
+                    {sonidoActivo
+                      ? "DESACTIVAR SONIDOS 3D"
+                      : "ACTIVAR SONIDOS 3D"}
                   </button>
                 </section>
               </Html>
@@ -441,6 +444,7 @@ const Esquizofrenia = () => {
               <Piso />
               <Mesa position={[0, 3, 0.5]} scale={[3, 4, 2]} />
               <Sky />
+              <Audio3D activo={sonidoActivo} />
 
               <Sparkles
                 count={256}
@@ -546,6 +550,21 @@ const Esquizofrenia = () => {
               <Furina />
               <Piso />
               <Sky />
+              <Html position={[2.1, 1.9, 1.8]} distanceFactor={9}>
+                <div
+                  style={{
+                    background: "rgba(0,0,0,0.7)",
+                    color: "white",
+                    padding: "8px 12px",
+                    borderRadius: "8px",
+                    fontSize: "10px",
+                    width: "auto",
+                    textAlign: "center",
+                  }}
+                >
+                  Pulsa sobre el televisor para interactuar
+                </div>
+              </Html>
               <Sparkles
                 count={256}
                 speed={1.5}
