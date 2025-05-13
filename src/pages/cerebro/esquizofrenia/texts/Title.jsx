@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-unknown-property */
+
 import React, { useMemo } from "react";
 import { Text3D } from "@react-three/drei";
 import * as THREE from "three";

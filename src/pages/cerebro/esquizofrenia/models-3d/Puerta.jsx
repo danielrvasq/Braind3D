@@ -12,7 +12,12 @@ const Puerta = (props) => {
       {...props}
       dispose={null}
       ref={puertaRef}
-      onClick={() => setCalled(!called)}
+      onClick={() => {
+        const sonido = new Audio("/sounds/saludo1.mp3");
+        sonido.play();
+        setCalled(!called);
+      }}
+      
     >
       <group position={[0, 0.991, -0.383]} rotation={[0, 0.659, 0]}>
         <mesh

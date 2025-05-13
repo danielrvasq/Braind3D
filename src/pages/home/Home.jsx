@@ -1,8 +1,25 @@
 import { useNavigate } from "react-router";
 import "./Home.css";
 import { useCallback } from "react";
+import Medico from "./models-3D/Medico";
+import { Canvas } from "@react-three/fiber";
+import {
+  OrbitControls,
+  Sky,
+  Sparkles,
+  Text,
+  Text3D,
+  Environment,
+  Html,
+} from "@react-three/drei";
+import React, { useState, useEffect, useRef } from "react";
 
 const Home = () => {
+  const [anim1, setAnim1] = useState(false);
+  const [anim2, setAnim2] = useState(false);
+  const [anim3, setAnim3] = useState(false);
+  const [anim4, setAnim4] = useState(false);
+  const [sceneKey, setSceneKey] = useState(0);
   const navigate = useNavigate();
 
   /*-------------------------------------------------------------------------------------- */
@@ -50,12 +67,34 @@ const Home = () => {
             </button>
           </a>
         </div>
-        <div>
-          <img id="imagen" src="images/doctora.jpg" />
+        <div className="div-canvas-1">
+          <Canvas
+            camera={{ position: [0, 0,2] }}
+            shadows
+            key={sceneKey}
+            style={{ width: "100%", height: "100%" }} // altura pantalla completa
+          >
+            <Medico playAnimation= "Dance_1"/>
+            <ambientLight intensity={0.5} />
+            <OrbitControls />
+            <directionalLight position={[6, 5, 10]} intensity={2} />
+          </Canvas>
         </div>
       </section>
       <div id="section2">
-        <img id="imagen2" src="images/doctora.jpg" />
+      <div className="div-canvas-1">
+          <Canvas
+            camera={{ position: [0, 0,2] }}
+            shadows
+            key={sceneKey}
+            style={{ width: "100%", height: "100%" }} // altura pantalla completa
+          >
+            <Medico playAnimation= "Hustington"/>
+            <ambientLight intensity={0.5} />
+            <OrbitControls />
+            <directionalLight position={[6, 5, 10]} intensity={2} />
+          </Canvas>
+        </div>
         <div id="contenido2">
           <h1 id="titulo2">HUNTINGTON</h1>
 
@@ -72,10 +111,34 @@ const Home = () => {
             Saber Más
           </button>
         </div>
-        <img id="imagen3" src="images/doctora.jpg" />
+        <div className="div-canvas-1">
+          <Canvas
+            camera={{ position: [0, 0,2] }}
+            shadows
+            key={sceneKey}
+            style={{ width: "100%", height: "100%" }} // altura pantalla completa
+          >
+            <Medico playAnimation= "Esquizofrenia"/>
+            <ambientLight intensity={0.5} />
+            <OrbitControls />
+            <directionalLight position={[6, 5, 10]} intensity={2} />
+          </Canvas>
+        </div>
       </div>
       <div id="section2">
-        <img id="imagen2" src="images/doctora.jpg" />
+      <div className="div-canvas-1">
+          <Canvas
+            camera={{ position: [0, 0,2] }}
+            shadows
+            key={sceneKey}
+            style={{ width: "100%", height: "100%" }} // altura pantalla completa
+          >
+            <Medico playAnimation= "Hablando"/>
+            <ambientLight intensity={0.5} />
+            <OrbitControls />
+            <directionalLight position={[6, 5, 10]} intensity={2} />
+          </Canvas>
+        </div>
         <div id="contenido2">
           <h1 id="titulo2">BIPOLARIDAD</h1>
 
@@ -92,7 +155,19 @@ const Home = () => {
             Saber Más
           </button>
         </div>
-        <img id="imagen3" src="images/doctora.jpg" />
+        <div className="div-canvas-1">
+          <Canvas
+            camera={{ position: [0, 0, 0] }}
+            shadows
+            key={sceneKey}
+            style={{ width: "100%", height: "100%" }} // altura pantalla completa
+          >
+            <Medico playAnimation= "Bipolaridad"/>
+            <ambientLight intensity={0.5} />
+            <OrbitControls />
+            <directionalLight position={[6, 5, 10]} intensity={2} />
+          </Canvas>
+        </div>
       </div>
     </>
   );
