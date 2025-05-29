@@ -1,10 +1,10 @@
-import { useGLTF, useAnimations } from '@react-three/drei';
-import { useEffect, useRef, useMemo } from 'react';
-import { clone } from 'three/examples/jsm/utils/SkeletonUtils';
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { useEffect, useRef, useMemo } from "react";
+import { clone } from "three/examples/jsm/utils/SkeletonUtils";
 
 export default function Boy({ playAnimation }) {
   const group = useRef();
-  const { scene, animations } = useGLTF('/models-3d/boy.glb');
+  const { scene, animations } = useGLTF("/models-3d/boy.glb");
   const clonedScene = useMemo(() => clone(scene), [scene]);
   const { actions } = useAnimations(animations, group);
 

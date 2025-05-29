@@ -10,8 +10,14 @@ import Floor from "./models-3d/Floor";
 import OldMan from "./models-3d/OldMan";
 import Lights2 from "./lights/Lights2";
 import Title from "../esquizofrenia/texts/Title";
+import Room from "./models-3d/Room";
+import Boy from "./models-3d/Boy2";
+import Boton3D from "./models-3d/Boton3D";
+import TeclaS from "./models-3d/TeclaS";
+import TeclaEnter from "./models-3d/TeclaEnter";
 
 const Huntington = () => {
+  const [saludarTrigger, setSaludarTrigger] = useState(false);
   // Estado para controlar la animación
   const [startAnimation, setStartAnimation] = useState(false);
   const [stopAnimation, setStopAnimation] = useState(false);
@@ -73,10 +79,9 @@ const Huntington = () => {
           <div className="div-canvas-1">
             <Canvas camera={{ position: [1, 1, 2] }} shadows>
               <OrbitControls />
-              <directionalLight position={[5, 5, 10]} intensity={2} />
               <Brain />
+              <Lights />
               <Text />
-              <Lights2 />
               <Floor />
               <Sky />
               <Sparkles
@@ -135,7 +140,7 @@ const Huntington = () => {
             </section>
           </div>
           <div className="div-canvas-1">
-            <Canvas camera={{ position: [1, 1, 2] }} shadows>
+            <Canvas camera={{ position: [1.5, 1, 2] }} shadows>
               <OrbitControls />
               <directionalLight position={[5, 5, 10]} intensity={2} />
               <OldMan
@@ -143,8 +148,9 @@ const Huntington = () => {
                 stopAnimation={!startAnimation}
               />
               <Text />
-              <Lights2 />
+              <Lights />
               <Floor />
+              <TeclaEnter />
               <Sky />
               <Sparkles
                 count={256}
@@ -196,13 +202,19 @@ const Huntington = () => {
             <Canvas camera={{ position: [1, 1, 2] }} shadows>
               <OrbitControls />
               <directionalLight position={[5, 5, 10]} intensity={2} />
-              <OldMan
-                startAnimation={startAnimation}
-                stopAnimation={!startAnimation}
+              <Boy
+                position={[0, -1, 0]}
+                externSaludarTrigger={saludarTrigger}
+                resetSaludarTrigger={() => setSaludarTrigger(false)}
               />
               <Text />
-              <Lights2 />
+              <Boton3D
+                position={[0, 0, -2]}
+                onClick={() => setSaludarTrigger(true)}
+              />
+              <Lights />
               <Floor />
+              <TeclaS />
               <Sky />
               <Sparkles
                 count={256}
