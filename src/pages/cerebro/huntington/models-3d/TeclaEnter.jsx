@@ -12,7 +12,7 @@ export function TeclaEnter(props) {
     <group
       {...props}
       dispose={null}
-      position={[1, 0, -1]}
+      position={[1, 0, -1.5]}
       rotation={[Math.PI / 2, 1.5, 0]}
       scale={0.8}
     >
