@@ -7,7 +7,7 @@ export function OldMan({ startAnimation, stopAnimation, ...props }) {
 
   const { nodes, materials, animations } = useGLTF("/models-3d/oldMan.glb");
   const { actions } = useAnimations(animations, group);
-
+  
   useEffect(() => {
     const firstAction = actions?.[animations[0]?.name];
 
@@ -127,6 +127,7 @@ export function OldMan({ startAnimation, stopAnimation, ...props }) {
               geometry={nodes.mixamorigTeeth_Up_Geo.geometry}
               material={materials.Skin_MAT}
               skeleton={nodes.mixamorigTeeth_Up_Geo.skeleton}
+              
             />
             {/* Objeto raíz del esqueleto */}
             <primitive object={nodes.mixamorigHips} />

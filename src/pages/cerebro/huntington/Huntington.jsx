@@ -39,6 +39,7 @@ const Huntington = () => {
             <Canvas
               camera={{
                 position: [0, 0, 5],
+                
                 fov: 55,
               }}
               shadows={true}
@@ -51,6 +52,7 @@ const Huntington = () => {
               <directionalLight position={[5, 5, 10]} intensity={2} />
               <Title text="Huntington" position={[0, 0, 0]} />
               <Lights />
+              
             </Canvas>
           </div>
         </section>
@@ -249,6 +251,7 @@ const Huntington = () => {
                 {startAnimation ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
               </button>
             </section>
+            
           </div>
           <div className="div-canvas-1">
             <Canvas camera={{ position: [1, 1, 2] }} shadows>
@@ -269,6 +272,7 @@ const Huntington = () => {
                 color={"yellow"}
                 size={3}
                 scale={[10, 10, 10]}
+                
                 noise={1}
               />
             </Canvas>
