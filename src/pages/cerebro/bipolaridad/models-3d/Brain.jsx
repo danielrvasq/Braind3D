@@ -1,7 +1,10 @@
 /* eslint-disable react/no-unknown-property */
+/* eslint-disable react/no-unknown-property */
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+
+import * as THREE from 'three';
 
 const Brain = (props) => {
   const { nodes, materials } = useGLTF("/models-3d/Brain2.glb");

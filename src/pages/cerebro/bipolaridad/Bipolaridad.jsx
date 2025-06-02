@@ -9,6 +9,8 @@ import Floor from "./models-3d/Floor";
 import Lights2 from "./lights/Lights2";
 import Texts3D from "./texts/Texts3D";
 import Human from "./models-3d/Human";
+import Human2 from "./models-3d/Human2";
+import Human3 from "./models-3d/Human3";
 import "./Bipolaridad.css";
 
 const Bipolaridad = () => {
@@ -29,7 +31,7 @@ const Bipolaridad = () => {
           </Canvas>
         </div>
       </section>
-
+    
       {/* Descripción general */}
       <div className="div-container">
         <div className="div-text">
@@ -51,8 +53,10 @@ const Bipolaridad = () => {
         </div>
         <div className="div-canvas-1">
           <Canvas camera={{ position: [1, 1, 2] }} shadows>
+            
             <OrbitControls />
             <directionalLight position={[5, 5, 10]} intensity={2} />
+            
             <Brain />
             <Text />
             <Lights />
@@ -174,7 +178,7 @@ const Bipolaridad = () => {
             <OrbitControls target={[0, 1, 0]} />
             <directionalLight position={[5, 5, 10]} intensity={2} />
             <Suspense fallback={null}>
-              <Human startAnimation={startAnimationModel2} />
+              <Human2 startAnimation={startAnimationModel2} />
             </Suspense>
             <Text />
             <Lights2 />
@@ -234,7 +238,7 @@ const Bipolaridad = () => {
             <OrbitControls target={[0, 1, 0]} />
             <directionalLight position={[5, 5, 10]} intensity={2} />
             <Suspense fallback={null}>
-              <Human startAnimation={startAnimationModel3} />
+              <Human3 startAnimation={startAnimationModel3} />
             </Suspense>
             <Text />
             <Lights2 />

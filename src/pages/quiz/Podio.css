@@ -1,0 +1,27 @@
+.podio-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.podio-lista {
+  list-style: none;
+  padding: 0;
+}
+
+.puesto {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.puesto-1 {
+  color: gold;
+  font-weight: bold;
+}
+
+.puesto-2 {
+  color: silver;
+}
+
+.puesto-3 {
+  color: #cd7f32; /* bronce */
+}
