@@ -49,7 +49,7 @@ const Cat = ({ activo = false, ...props }) => {
         material={materials.Material_0}
         castShadow
         receiveShadow
-        scale={0.1}
+        scale={0.2}
         position={[0, -1, 0]}
         onClick={handleClick} // <--- sonido al hacer clic
       />
@@ -59,14 +59,14 @@ const Cat = ({ activo = false, ...props }) => {
             style={{
               background: "rgba(0,0,0,0.7)",
               color: "white",
-              padding: "8px 12px",
-              borderRadius: "8px",
+              padding: "4px 8px",
+              borderRadius: "10px",
               fontSize: "8px",
-              Width: "150px",
+              Width: "250px",
             }}
           >
             Usa las flechas para mover el gato
-            <br />y haz clic sobre él para que maúlle.
+            y haz clic sobre él para que maúlle.
           </div>
         </Html>
       )}

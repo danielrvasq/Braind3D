@@ -166,7 +166,7 @@ const Esquizofrenia = () => {
             >
               <OrbitControls />
               <directionalLight position={[5, 5, 10]} intensity={2} />
-              <Boy playAnimation={anim1 ? "asustado" : null} />
+              <Boy playAnimation={anim1 ? "asustado" : "sentado"} />
               <Light />
               <Piso />
               {/* Cielo realista */}
@@ -298,7 +298,7 @@ const Esquizofrenia = () => {
               <OrbitControls />
               <directionalLight position={[5, 5, 10]} intensity={2} />
               <Light2 />
-              <Boy playAnimation={anim2 ? "sentado_triste" : null} />
+              <Boy  playAnimation={anim2 ? "sentado_triste" : "sentado"} />
               <group
                 onPointerOver={() => setPuertaHover(true)}
                 onPointerOut={() => setPuertaHover(false)}
@@ -444,12 +444,12 @@ const Esquizofrenia = () => {
               <OrbitControls />
               <directionalLight position={[5, 5, 10]} intensity={2} />
               <Light4 />
-              <Boy playAnimation={anim3 ? "tocando" : null} />
+              <Boy playAnimation={anim3 ? "tocando" : "sentado"} />
               <Piso />
               <Mesa position={[0, 3, 0.5]} scale={[3, 4, 2]} />
               <Sky />
               <Audio3D activo={sonidoActivo} />
-
+    
               <Sparkles
                 count={256}
                 speed={1.5}
@@ -546,7 +546,7 @@ const Esquizofrenia = () => {
               <OrbitControls />
               <directionalLight position={[5, 5, 10]} intensity={2} />
               <Light3 />
-              <Boy playAnimation={anim4 ? "sentado" : null} />
+              <Boy playAnimation={anim4 ? "sentado" : "tocando"} />
               <Tv
                 position={[0, 0.5, 2]}
                 scale={[0.5, 0.5, 0.5]}

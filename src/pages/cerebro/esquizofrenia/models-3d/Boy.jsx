@@ -7,8 +7,9 @@ export default function Boy({ playAnimation }) {
   const { scene, animations } = useGLTF('/models-3d/boy.glb');
   const clonedScene = useMemo(() => clone(scene), [scene]);
   const { actions } = useAnimations(animations, group);
-
   useEffect(() => {
+      console.log('Animaciones disponibles:', animations);
+
     if (!actions || !playAnimation) return;
     Object.values(actions).forEach((action) => action.stop());
 

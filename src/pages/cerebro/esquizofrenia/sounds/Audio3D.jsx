@@ -58,19 +58,19 @@ export function Audio3D({ activo }) {
   return (
     <>
       {activo && (
-        <Html position={[-3, 2, 1  ]} distanceFactor={10}>
+        <Html position={[-3, 2, 1]} distanceFactor={10}>
           <div
             style={{
               background: "rgba(0,0,0,0.7)",
               color: "white",
               padding: "8px 12px",
               borderRadius: "8px",
-              fontSize: "8px",
-              width: "150px",
+              fontSize: "10px",
+              width: "auto",
+              textAlign: "center",
             }}
           >
-            Usa las flechas para escuchar el sonido 3D desde distintas
-            direcciones.
+            utiliza las flechas del teclado para escuchar sonidos
           </div>
         </Html>
       )}
