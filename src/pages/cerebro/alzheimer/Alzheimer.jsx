@@ -1,41 +1,187 @@
-/* eslint-disable react/no-unknown-property */
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import Lights from "./lights/Ligths";
-import Lights2 from "./lights/Lights2";
-import Floor from "./models-3d/Floor";
-import BrainAl from "./models-3d/BrainAl";
-import "./Alzheimer.css";
-
+import { Sky, Sparkles, OrbitControls } from "@react-three/drei";
+import Lights from "../huntington/lights/Lights";
+import Floor from "../huntington/models-3d/Floor";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import Title from "../esquizofrenia/texts/Title";
+import { useRef } from "react";
 
 const Alzheimer = () => {
- return (
-     <div className="contenedor-alzheimer">
-       <div className="texto-alzheimer">
-         <h1>¿Qué es la enfermedad del Alzheimer?</h1>
-         <p>
-         El Alzheimer es una enfermedad neurodegenerativa que afecta principalmente el cerebro, 
-         causando un deterioro progresivo de la memoria y otras funciones cognitivas. 
-         Es la forma más común de demencia en personas mayores. 
-         </p>
-       </div>
- 
-       <div className="modelo-alzheimer">
-        <Canvas
-           shadows
-           camera={{ position: [0, 3, 5], fov: 40 }}
-          style={{ background: '#ffffff' } } // ⬅️ Aquí le ponemos fondo blanco
-        >
-         <Lights />
-         <Lights2 />
-         <BrainAl scale={1.8} />
-         <Floor />
-         <OrbitControls enableZoom={false} />
-         
-         </Canvas>
-       </div>
-     </div>
-   );
+  function CameraReset() {
+    const { camera } = useThree();
+    const originalCameraPos = useRef(camera.position.clone());
+
+    useFrame(() => {
+      const distance = camera.position.distanceTo(originalCameraPos.current);
+      if (distance > 0.01) {
+        camera.position.lerp(originalCameraPos.current, 0.02);
+        camera.lookAt(0, 0, 0);
+      }
+    });
+
+    return null;
+  }
+  return (
+    <>
+      <section id="seccion1">
+        <section id="seccion0">
+          <div className="div-canvas-2">
+            <Canvas
+              camera={{
+                position: [0, 0, 5],
+                fov: 55,
+              }}
+              shadows={true}
+            >
+              <CameraReset />
+              <OrbitControls
+                target={[0, 0, 0]} // Esto centra los controles en el origen
+                enableZoom={true}
+                enablePan={true}
+              />
+              <Title text="Alzheimer" position={[0, 0, 0]} />
+              <Lights />
+            </Canvas>
+          </div>
+        </section>
+        <div className="div-container">
+          <div className="div-text">
+            <section className="quees-info">
+              <h1 className="informacion-h1">
+                ¿Qué es la Enfermedad de Huntington?
+              </h1>
+              <p className="informacion-p">
+                La enfermedad de Huntington es un trastorno genético
+                neurodegenerativo que afecta el cerebro, causando deterioro
+                progresivo de las capacidades motoras, cognitivas y
+                psiquiátricas. Es una enfermedad hereditaria de patrón
+                autosómico dominante, lo que significa que una sola copia del
+                gen defectuoso puede causar la enfermedad.
+              </p>
+            </section>
+          </div>
+          <div className="div-canvas-1">
+            <Canvas camera={{ position: [1, 1, 2] }} shadows>
+              <OrbitControls />
+              <Floor />
+              <Lights />
+              <Sky />
+              <Sparkles
+                count={256}
+                speed={1.5}
+                opacity={1}
+                color={"yellow"}
+                size={3}
+                scale={[10, 10, 10]}
+                noise={1}
+              />
+            </Canvas>
+          </div>
+        </div>
+        <div className="div-container">
+          <div className="div-text">
+            <section className="quees-info">
+              <h1 className="informacion-h1">
+                ¿Qué es la Enfermedad de Huntington?
+              </h1>
+              <p className="informacion-p">
+                La enfermedad de Huntington es un trastorno genético
+                neurodegenerativo que afecta el cerebro, causando deterioro
+                progresivo de las capacidades motoras, cognitivas y
+                psiquiátricas. Es una enfermedad hereditaria de patrón
+                autosómico dominante, lo que significa que una sola copia del
+                gen defectuoso puede causar la enfermedad.
+              </p>
+            </section>
+          </div>
+          <div className="div-canvas-1">
+            <Canvas camera={{ position: [1, 1, 2] }} shadows>
+              <OrbitControls />
+              <Floor />
+              <Lights />
+              <Sky />
+              <Sparkles
+                count={256}
+                speed={1.5}
+                opacity={1}
+                color={"yellow"}
+                size={3}
+                scale={[10, 10, 10]}
+                noise={1}
+              />
+            </Canvas>
+          </div>
+        </div>
+        <div className="div-container">
+          <div className="div-text">
+            <section className="quees-info">
+              <h1 className="informacion-h1">
+                ¿Qué es la Enfermedad de Huntington?
+              </h1>
+              <p className="informacion-p">
+                La enfermedad de Huntington es un trastorno genético
+                neurodegenerativo que afecta el cerebro, causando deterioro
+                progresivo de las capacidades motoras, cognitivas y
+                psiquiátricas. Es una enfermedad hereditaria de patrón
+                autosómico dominante, lo que significa que una sola copia del
+                gen defectuoso puede causar la enfermedad.
+              </p>
+            </section>
+          </div>
+          <div className="div-canvas-1">
+            <Canvas camera={{ position: [1, 1, 2] }} shadows>
+              <OrbitControls />
+              <Floor />
+              <Lights />
+              <Sky />
+              <Sparkles
+                count={256}
+                speed={1.5}
+                opacity={1}
+                color={"yellow"}
+                size={3}
+                scale={[10, 10, 10]}
+                noise={1}
+              />
+            </Canvas>
+          </div>
+        </div>
+        <div className="div-container">
+          <div className="div-text">
+            <section className="quees-info">
+              <h1 className="informacion-h1">
+                ¿Qué es la Enfermedad de Huntington?
+              </h1>
+              <p className="informacion-p">
+                La enfermedad de Huntington es un trastorno genético
+                neurodegenerativo que afecta el cerebro, causando deterioro
+                progresivo de las capacidades motoras, cognitivas y
+                psiquiátricas. Es una enfermedad hereditaria de patrón
+                autosómico dominante, lo que significa que una sola copia del
+                gen defectuoso puede causar la enfermedad.
+              </p>
+            </section>
+          </div>
+          <div className="div-canvas-1">
+            <Canvas camera={{ position: [1, 1, 2] }} shadows>
+              <OrbitControls />
+              <Floor />
+              <Lights />
+              <Sky />
+              <Sparkles
+                count={256}
+                speed={1.5}
+                opacity={1}
+                color={"yellow"}
+                size={3}
+                scale={[10, 10, 10]}
+                noise={1}
+              />
+            </Canvas>
+          </div>
+        </div>
+      </section>
+    </>
+  );
 };
 
 export default Alzheimer;

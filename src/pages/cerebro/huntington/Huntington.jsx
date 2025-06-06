@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
-import { Canvas } from "@react-three/fiber";
+import "./Huntington.css";
+import React, { useState, useEffect, useRef } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+// -----------------------------------------------
 import {
   Environment,
   OrbitControls,
@@ -9,43 +12,62 @@ import {
   Text,
   Text3D,
 } from "@react-three/drei";
-import React, { useState, useEffect, useRef } from "react";
-import "./Huntington.css";
+// MODELOS 3D-----------------------------------------------
 import Brain from "./models-3d/Brain";
 import Lights from "./lights/Lights";
 import Floor from "./models-3d/Floor";
 import OldMan from "./models-3d/OldMan";
 import Lights2 from "./lights/Lights2";
 import Title from "../esquizofrenia/texts/Title";
-import Room from "./models-3d/Room";
 import Boy from "./models-3d/Boy2";
 import Boton3D from "./models-3d/Boton3D";
 import TeclaS from "./models-3d/TeclaS";
 import TeclaEnter from "./models-3d/TeclaEnter";
 import Girl from "./models-3d/Girl";
+import TeclaB from "./models-3d/TeclaB";
+import Developer from "./models-3d/Developer";
+// -----------------------------------------------
 
 const Huntington = () => {
+  const devRef = useRef();
+  const [isHit, setIsHit] = useState(false);
+
   const [danceTrigger, setDanceTrigger] = useState(false);
+  const playSound = () => {
+    new Audio("/sounds/golpe.mp3").play();
+  };
 
   const [saludarTrigger, setSaludarTrigger] = useState(false);
-  // Estado para controlar la animación
-  const [startAnimation, setStartAnimation] = useState(false);
-  const [stopAnimation, setStopAnimation] = useState(false);
+  const handleClickOrKey = () => {
+    playSound(); // 🔊 Sonido
+    devRef.current?.playNext();
+  };
+  // Escuchar la tecla Enter
   useEffect(() => {
-    const handleSpacebarPress = (event) => {
-      if (event.code === "Enter") {
-        setStartAnimation((prevState) => !prevState); // Alterna el estado de la animación
+    const handleKeyDown = (event) => {
+      if (event.key === "Enter") {
+        handleClickOrKey();
       }
     };
 
-    // Agregar el listener cuando el componente se monte
-    document.addEventListener("keydown", handleSpacebarPress);
-
-    // Eliminar el listener cuando el componente se desmonte
-    return () => {
-      document.removeEventListener("keydown", handleSpacebarPress);
-    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
+
+  function CameraReset() {
+    const { camera } = useThree();
+    const originalCameraPos = useRef(camera.position.clone());
+
+    useFrame(() => {
+      const distance = camera.position.distanceTo(originalCameraPos.current);
+      if (distance > 0.01) {
+        camera.position.lerp(originalCameraPos.current, 0.02);
+        camera.lookAt(0, 0, 0);
+      }
+    });
+
+    return null;
+  }
 
   return (
     <>
@@ -59,6 +81,7 @@ const Huntington = () => {
               }}
               shadows={true}
             >
+              <CameraReset/>
               <OrbitControls
                 target={[0, 0, 0]} // Esto centra los controles en el origen
                 enableZoom={true}
@@ -112,7 +135,7 @@ const Huntington = () => {
               <h1 className="informacion-h1">Sintomas</h1>
               <div className="informacion-div">
                 <p className="informacion-p">
-                  Síntomas motores:
+                  <b>Síntomas motores:</b>
                   <br />
                   •Movimientos involuntarios
                   <br />
@@ -123,7 +146,7 @@ const Huntington = () => {
                   •Problemas con la deglución
                 </p>
                 <p className="informacion-p">
-                  Síntomas cognitivos:
+                  <b>Síntomas cognitivos:</b>
                   <br />
                   •Problemas de memoria
                   <br />
@@ -133,19 +156,19 @@ const Huntington = () => {
                 </p>
               </div>
               <button
-                onClick={() => setStartAnimation((prev) => !prev)}
+                onClick={handleClickOrKey}
                 style={{
                   display: "block",
                   margin: "0 auto",
                   padding: "10px 20px",
-                  background: startAnimation ? "#ff4444" : "#4CAF50",
+                  background: isHit ? "#ff4444" : "#4CAF50",
                   color: "white",
                   border: "none",
                   borderRadius: "4px",
                   cursor: "pointer",
                 }}
               >
-                {startAnimation ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
+                {isHit ? "Levantar" : "Golpear"}
               </button>
             </section>
           </div>
@@ -153,18 +176,13 @@ const Huntington = () => {
             <Canvas camera={{ position: [1.5, 1, 2] }} shadows>
               <OrbitControls />
               <directionalLight position={[5, 5, 10]} intensity={2} />
-              <OldMan
-                startAnimation={startAnimation}
-                stopAnimation={!startAnimation}
-              />
+              <Developer ref={devRef} onStateChange={setIsHit} />
               <Boton3D
-                onClick={() => setStartAnimation((prev) => !prev)}
-                mensaje={[
-                  startAnimation ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN",
-                ]}
-                color={startAnimation ? "#ff4444" : "#4CAF50"}
+                onClick={handleClickOrKey}
+                mensaje={[isHit ? "Levantar" : "Golpear"]}
+                color={isHit ? "#ff4444" : "#4CAF50"}
                 posicion={[-2, 0, -0.4]}
-                tamanio={[4, 0.5, 1]}
+                tamanio={[2, 0.5, 1]}
               />
               <Environment preset="sunset" background={true} />
               <Text />
@@ -296,6 +314,7 @@ const Huntington = () => {
               <Environment preset="sunset" background={true} />
               <Lights2 />
               <Floor />
+              <TeclaB />
               <Boton3D
                 position={[0, 0, -2]}
                 onClick={() => setDanceTrigger(true)}

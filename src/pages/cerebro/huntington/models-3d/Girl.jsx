@@ -35,6 +35,7 @@ export function Girl({
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.play();
+      audioRef.current.volume = 0.1;
     }
 
     timeoutRef.current = setTimeout(() => {
