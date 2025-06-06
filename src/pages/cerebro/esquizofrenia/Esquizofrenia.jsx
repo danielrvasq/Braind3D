@@ -28,6 +28,8 @@ import Saludo1 from "./sounds/Saludo1";
 import Control from "./texts/Control";
 import { Furina } from "./videos/Furina";
 import { Audio3D } from "./sounds/Audio3D";
+import ResetCameraOnHover from './camara/ResetCameraOnHover';
+import ResetCameraOnHoverTitle from './camara/ResetCameraOnHoverTitle';
 import Cat from "./models-3d/Cat";
 const Esquizofrenia = () => {
   const [anim1, setAnim1] = useState(false);
@@ -39,6 +41,7 @@ const Esquizofrenia = () => {
   const puertaAudio = useRef(null);
   const [sonidoActivo, setSonidoActivo] = useState(false);
   const [activo, setActivo] = useState(false);
+  const controlsRef = useRef();
 
   const handleInteractuarPuerta = () => {
     const audio = new Audio("/sounds/saludo1.mp3"); // Asegúrate de que el archivo exista
@@ -58,6 +61,7 @@ const Esquizofrenia = () => {
               }}
               shadows={true}
             >
+              <ResetCameraOnHoverTitle/>
               <OrbitControls
                 target={[0, 0, 0]} // Esto centra los controles en el origen
                 enableZoom={true}
@@ -79,7 +83,7 @@ const Esquizofrenia = () => {
             >
               <OrbitControls />
               <directionalLight position={[6, 5, 10]} intensity={2} />
-
+              <ResetCameraOnHover />
               {/* Texto 3D */}
               <Text3D
                 position={[-4, 3, 0]}
@@ -198,7 +202,7 @@ const Esquizofrenia = () => {
             >
               <OrbitControls />
               <directionalLight position={[6, 5, 10]} intensity={2} />
-
+              <ResetCameraOnHover />
               {/* Texto 3D */}
               <Text3D
                 position={[-1.5, 3.5, 0]}
@@ -348,7 +352,7 @@ const Esquizofrenia = () => {
             >
               <OrbitControls />
               <directionalLight position={[6, 5, 10]} intensity={2} />
-
+              <ResetCameraOnHover />
               {/* Texto 3D */}
               <Text3D
                 position={[-4, 3.5, 0]}
@@ -470,6 +474,7 @@ const Esquizofrenia = () => {
             >
               <OrbitControls />
               <directionalLight position={[6, 5, 10]} intensity={2} />
+              <ResetCameraOnHover />
 
               {/* Texto 3D */}
               <Text3D
@@ -547,6 +552,7 @@ const Esquizofrenia = () => {
                 scale={[0.5, 0.5, 0.5]}
                 rotation={[0, Math.PI, 0]}
               />
+              
               <Furina />
               <Piso />
               <Sky />
