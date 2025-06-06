@@ -15,6 +15,11 @@ export function Boy2({ externSaludarTrigger = false, resetSaludarTrigger }) {
     if (isAnimating.current) return;
     isAnimating.current = true;
 
+    // 🔊 Reproducir sonido
+    const audio = new Audio("/sounds/hello.mp3");
+    audio.volume = 0.6; // controla el volumen
+    audio.play().catch((e) => console.error("Error al reproducir sonido:", e));
+
     if (group.current) {
       group.current.position.fromArray(originalPosition.current);
     }
@@ -37,7 +42,6 @@ export function Boy2({ externSaludarTrigger = false, resetSaludarTrigger }) {
 
     mixer.addEventListener("finished", onFinished);
   };
-
   useEffect(() => {
     if (group.current) {
       originalPosition.current = group.current.position.toArray();
