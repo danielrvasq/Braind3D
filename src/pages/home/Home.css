@@ -1,79 +1,201 @@
-.boton-primary {
-  color: #443d73 !important;
-  font-size: 20px;
-  font-weight: 500;
-  padding: 0.5em 1.2em;
-  background: rgba(0, 0, 0, 0);
-  border: 2px solid;
-  border-color: #443d73;
-  transition: all 0.3s;
-  position: center;
-  border-radius: 10px;
-  box-shadow: 5px 5px 0px #443d73a4;
-  align-items: center;
+/* Estilos generales */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.boton-primary:hover {
-  background: #443d73;
-  color: #fff !important;
-  border-radius: 20px;
+
+/* Sección 1 */
+#section1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(circle, transparent, black);
+  text-align: left;
+  flex-wrap: wrap;
+}
+
+#contenido {
+  margin: 10% 3% 6% 3%;
+  max-width: 40%;
 }
 
 #titulo {
-  font-size: 50px;
-  font-weight: 500;
-  text-align: left;
-  text-shadow: 3px 3px 0px #443d7363;
-  font-weight: 700;
-}
-#texto {
-  text-align: left;
-  font-size: 20px;
-  font-weight: 400;
-  color: #444444e7;
-  max-width: 1000px;
-}
-#section {
-  display: flex;
-  align-items: center;
+  font-family: "Hammersmith One", serif;
+  letter-spacing: 6px;
+  font-size: 55px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px); /* Mueve el elemento hacia abajo */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+#texto,
+#texto-super {
+  font-family: "Roboto Condensed", serif;
+  margin-top: 35px;
+  font-size: 25px;
+  margin-bottom: 0px;
+  font-weight: 350;
 }
 
-.contenedor {
-  opacity: 0; /* Oculta el elemento inicialmente */
-  animation: fadeIn 2s ease-out forwards;
+#texto2 {
+  color: #253439;
 }
-.col {
-  display: flex;
-  align-items: center;
+
+#texto-super {
+  font-size: 18px;
 }
-@keyframes flotando {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  } /* Sube */
-  100% {
-    transform: translateY(0px);
-  } /* Baja */
+
+#boton-h {
+  font-family: "Roboto Condensed", serif;
+  background-color: #f2efeb;
+  color: #253439;
+  margin-top: 15px;
+  height: 45px;
+  border-radius: 30px;
+  font-size: 18px;
+  transition: all 0.5s ease;
+}
+
+#boton-h:hover {
+  background-color: transparent;
+  color: #f2efeb;
+  border-color: #f2efeb;
 }
 
 #imagen {
-  display: inline-block;
-  padding: 20px;
-  color: white;
-  border-radius: 10px;
-  animation: flotando 5s ease-in-out infinite; /* Animación infinita */
-  margin: 200px;
-  height: 300px;
+  object-fit: cover;
+  object-position: top;
+  border: 20px solid #3a4b51;
+  border-radius: 5px;
+  width: 400px;
+  height: 490px;
 }
+
+/* Sección 2 y 3 (Diseño responsivo incluido) */
+#section2,
+#section3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 400px;
+  padding: 20px;
+}
+
+#section2 {
+  background-color: #f2efeb;
+}
+
+#imagen2,
+#imagen3 {
+  object-fit: cover;
+  object-position: top;
+  height: 400px;
+  width: 30%;
+}
+
+#imagen2 {
+  margin-left: 10%;
+}
+
+#imagen3 {
+  margin-right: 10%;
+}
+
+#contenido2,
+#contenido3 {
+  text-align: left;
+  width: 50%;
+  margin: 0 5%;
+}
+
+#titulo2,
+#titulo3 {
+  font-family: "Hammersmith One", serif;
+  font-size: 55px;
+  color: #253439;
+}
+
+#titulo3 {
+  color: #f2efeb;
+}
+
+#boton-h2,
+#boton-h3 {
+  font-family: "Roboto Condensed", serif;
+  margin-top: 15px;
+  height: 45px;
+  border-radius: 30px;
+  font-size: 18px;
+  transition: all 0.5s ease;
+}
+
+#boton-h2 {
+  background-color: #253439;
+  color: #f2efeb;
+}
+
+#boton-h2:hover {
+  background-color: #f2efeb;
+  color: #253439;
+}
+
+#boton-h3 {
+  background-color: #f2efeb;
+  color: #253439;
+}
+
+#boton-h3:hover {
+  background-color: #253439;
+  color: #f2efeb;
+}
+
+/* RESPONSIVE DESIGN: Cambiar a column cuando el ancho es menor a 768px */
+@media (max-width: 768px) {
+  #imagen {
+    display: none;
+  }
+
+  #contenido {
+    max-width: 85%;
+  }
+
+  #texto-super,
+  #texto,
+  #boton-h {
+    font-size: 16px;
+  }
+
+  #section2,
+  #section3 {
+    flex-direction: column;
+    height: auto;
+  }
+
+  #imagen2,
+  #imagen3 {
+    width: 80%;
+    height: auto;
+    margin: 20px 0;
+  }
+
+  #contenido2,
+  #contenido3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 90%;
+    margin: 20px auto;
+  }
+}
+.div-canvas-1 {
+  flex: 1;
+  width: 500px;
+  height: 1000px;
+  border-radius: 50px;
+} 

@@ -10,13 +10,15 @@ import Huntington from "./pages/cerebro/huntington/Huntington";
 import Esquizofrenia from "./pages/cerebro/esquizofrenia/Esquizofrenia";
 import "./index.css";
 import Layout from "./layout/Layout";
-// import App from "./App";
-
+import Perfil from "./pages/perfil/Pefil";
+import AboutUs from "./pages/aboutUs/AboutUs";
+import Podio from "./pages/quiz/Podio";
 createRoot(document.getElementById("root")).render(
   // <App />
   <BrowserRouter>
     <Layout>
       <Routes>
+        <Route path="aboutUs" element={<AboutUs />} />
         <Route index path="/" element={<Home />} />
         <Route path="quiz" element={<Quiz />} />
         <Route path="*" element={<NotFound />} />
@@ -26,6 +28,8 @@ createRoot(document.getElementById("root")).render(
           <Route path="huntington" element={<Huntington />} />
           <Route path="esquizofrenia" element={<Esquizofrenia />} />
         </Route>
+        <Route path="perfil" element={<Perfil />} />
+        <Route path="podio" element={<Podio />} />
       </Routes>
     </Layout>
   </BrowserRouter>

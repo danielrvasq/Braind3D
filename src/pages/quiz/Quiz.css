@@ -1,25 +1,29 @@
-.contenedor {
+#contenedor {
   display: flex;
-  flex-direction: column; /* Apila los elementos en columna */
-  align-items: center; /* Opcional: Centra los elementos horizontalmente */
-  gap: 10px; /* Espacio entre los elementos */
-  padding: 10px; /* Espaciado interno opcional */
+  flex-direction: column;
+  align-items: center;
+  color: #f2efeb;
+  font-family: "roboto condensed", serif;
 }
 
-.btn-primary {
-  color: #443d73 !important;
-  font-size: 20px;
-  font-weight: 500;
-  padding: 0.5em 1.2em;
-  background: rgba(0, 0, 0, 0);
-  border: 2px solid;
-  border-color: #443d73;
-  transition: all 0.3s ease;
-  position: center;
-  border-radius: 10px;
+#titulo {
+  font-family: "Hammersmith One", serif;
+  letter-spacing: 6px;
+  font-size: 55px;
 }
-.btn-primary:hover {
-  background: #443d73;
-  color: #fff !important;
+
+#boton {
+  color: #f2efeb;
+  background-color: #253439;
+  border-color: #f2efeb;
+  transition: all 0.5s ease;
+  border: 2px solid;
+  border-radius: 25px;
+}
+
+#boton:hover {
+  color: #253439;
+  background-color: #f2efeb;
+  border-color: #253439;
   border-radius: 30px;
 }

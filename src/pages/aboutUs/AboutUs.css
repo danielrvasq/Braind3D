@@ -1,0 +1,24 @@
+#texto-a {
+  line-height: 1.1;
+  font-family: "roboto condensed", serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: #f2efeb;
+  text-align: justify;
+}
+
+.seccion1 {
+  margin: 0;
+  padding-top: 0px;
+}
+
+#titulo-a {
+  font-size: 70px;
+}
+#contenido-a {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}

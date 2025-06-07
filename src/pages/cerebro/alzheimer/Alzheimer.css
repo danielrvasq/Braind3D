@@ -1,12 +1,5 @@
 /*/Alzheimer.css */
 
-.texto-alzheimer,
-.quees-info,
-.contenedor-alzheimer,
-#seccion0 {
-  background-color: transparent;
-}
-
 .contenedor-alzheimer {
   display: flex;
   align-items: center;
@@ -14,32 +7,6 @@
   padding: 50px;
   min-height: 90vh;
   background: linear-gradient(to bottom, #ffffff, #dfe6e9);
-}
-
-.alzheimer-canvas-1 {
-  border-radius: 50px;
-}
-
-#boton-s:hover {
-  background-color: #f2efeb;
-  color: #253439;
-}
-.start-button {
-  background-color: #253439;
-  color: #f2efeb;
-  border-color: #253439;
-  font-family: "Roboto Condensed", serif;
-  margin-top: 15px;
-  height: 45px;
-  border-radius: 30px;
-  font-size: 18px;
-  transition: all 0.5s ease;
-  border: 2px solid;
-}
-
-.start-button:hover {
-  background-color: #f2efeb;
-  color: #253439;
 }
 
 .texto-alzheimer {
