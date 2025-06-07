@@ -6,6 +6,9 @@ import { useRef } from "react";
 import useOldmanStore from "../../../stores/use-oldman-store";
 import { useEffect } from "react";
 import { useState } from "react";
+import Light3 from "./lights/Lights3";
+import Title1 from "./texts/Title1";
+
 
 //Modelos 3D
 import BrainAl from "./models-3d/BrainAl";
@@ -187,7 +190,8 @@ const Alzheimer = () => {
             <Canvas camera={{ position: [1, 1, 2] }} shadows>
               <OrbitControls />
               <Floor />
-              <Lights />
+              <Title1  title={"Utiliza el cursor para iluminar la escena"} />
+              <Light3 />
               <WomanOld thinking={womanIsThinking}
               scale={1.4}/>
               <Lavadora scale={0.06}/>
