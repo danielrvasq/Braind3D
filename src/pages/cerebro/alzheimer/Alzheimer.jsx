@@ -1,14 +1,47 @@
 import { Sky, Sparkles, OrbitControls } from "@react-three/drei";
 import Lights from "../huntington/lights/Lights";
-import Floor from "../huntington/models-3d/Floor";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import Title from "../esquizofrenia/texts/Title";
 import { useRef } from "react";
+import useOldmanStore from "../../../stores/use-oldman-store";
+import { useEffect } from "react";
+import { useState } from "react";
+
+//Modelos 3D
+import BrainAl from "./models-3d/BrainAl";
+import WomanOld from "./models-3d/WomanOld";
+import OldManAlz from "./models-3d/OldManAlz";
+import Floor from "../huntington/models-3d/Floor";
+import Lavadora from "./models-3d/Lavadora";
+import Boton3D from "./models-3d/Boton3D";
+import Pancito from "./models-3d/Pancito";
 
 const Alzheimer = () => {
+
+  const [oldManIsWalking, setOldManIsWalking] = useState(false);
+  const [womanIsThinking, setWomanIsThinking] = useState(false);
+
+  const { setCurrentAnimation } = useOldmanStore();
+    useEffect(() => {
+        const handleKeyPress = (event) => {
+            if (event.code === "KeyQ") {
+                setCurrentAnimation("Lost");
+            }
+            if (event.code === "Escape") {
+                setCurrentAnimation("Lost");
+            }
+        };
+
+
+
+        document.addEventListener("keydown", handleKeyPress);
+        return () => document.removeEventListener("keydown", handleKeyPress);
+    }, []);
+
   function CameraReset() {
     const { camera } = useThree();
     const originalCameraPos = useRef(camera.position.clone());
+    
 
     useFrame(() => {
       const distance = camera.position.distanceTo(originalCameraPos.current);
@@ -18,7 +51,7 @@ const Alzheimer = () => {
       }
     });
 
-    return null;
+    return () => document.removeEventListener("keydown", handleKeyPress);
   }
   return (
     <>
@@ -47,15 +80,12 @@ const Alzheimer = () => {
           <div className="div-text">
             <section className="quees-info">
               <h1 className="informacion-h1">
-                ¿Qué es la Enfermedad de Huntington?
+                ¿Qué es la enfermedad del Alzheimer?
               </h1>
               <p className="informacion-p">
-                La enfermedad de Huntington es un trastorno genético
-                neurodegenerativo que afecta el cerebro, causando deterioro
-                progresivo de las capacidades motoras, cognitivas y
-                psiquiátricas. Es una enfermedad hereditaria de patrón
-                autosómico dominante, lo que significa que una sola copia del
-                gen defectuoso puede causar la enfermedad.
+              El Alzheimer es una enfermedad neurodegenerativa que afecta principalmente el cerebro, 
+               causando un deterioro progresivo de la memoria y otras funciones cognitivas. 
+               Es la forma más común de demencia en personas mayores.
               </p>
             </section>
           </div>
@@ -64,6 +94,7 @@ const Alzheimer = () => {
               <OrbitControls />
               <Floor />
               <Lights />
+              <BrainAl scale={2.4} />
               <Sky />
               <Sparkles
                 count={256}
@@ -81,24 +112,42 @@ const Alzheimer = () => {
           <div className="div-text">
             <section className="quees-info">
               <h1 className="informacion-h1">
-                ¿Qué es la Enfermedad de Huntington?
+                Causas
               </h1>
-              <p className="informacion-p">
-                La enfermedad de Huntington es un trastorno genético
-                neurodegenerativo que afecta el cerebro, causando deterioro
-                progresivo de las capacidades motoras, cognitivas y
-                psiquiátricas. Es una enfermedad hereditaria de patrón
-                autosómico dominante, lo que significa que una sola copia del
-                gen defectuoso puede causar la enfermedad.
+              <p>
+                Sobre el Alzheimer, las causas exactas todavía no se conocen completamente, 
+                pero hay varios factores que contribuyen a su desarrollo. Algunas de las principales 
+                causas y factores de riesgo son:
+                  <br />
+                  •Acumulación de proteínas anormales&nbsp;&nbsp;&nbsp;&nbsp;•Envejecimiento
+                  <br />
+                  •Factores genéticos&nbsp;&nbsp;&nbsp;&nbsp;•Enfermedades cardiovasculares
+                  <br />
+                  •Dificultad para realizar tareas cotidianas&nbsp;&nbsp;&nbsp;&nbsp;•Factores ambientales
+                    <br />
               </p>
+              <button onClick={() => setOldManIsWalking(prev => !prev)}>
+              {oldManIsWalking ? "Detener caminata" : "Caminar"}
+            </button>
             </section>
           </div>
           <div className="div-canvas-1">
-            <Canvas camera={{ position: [1, 1, 2] }} shadows>
+            <Canvas camera={{ position: [1, 1.8, 2] }} shadows>
               <OrbitControls />
               <Floor />
               <Lights />
+              <OldManAlz walk={oldManIsWalking}
+              scale={1.4}
+              />
               <Sky />
+              <Boton3D
+               position={[0, 0, -2]}
+                onClick={() => setOldManIsWalking(true)}
+                mensaje={"Caminar"}
+               color={"#4CAF50"}
+                posicion={[-1, -0.52, -0.5]}
+                tamanio={[2, 0.5, 1]}
+             />
               <Sparkles
                 count={256}
                 speed={1.5}
@@ -115,16 +164,23 @@ const Alzheimer = () => {
           <div className="div-text">
             <section className="quees-info">
               <h1 className="informacion-h1">
-                ¿Qué es la Enfermedad de Huntington?
+                Síntomas
               </h1>
-              <p className="informacion-p">
-                La enfermedad de Huntington es un trastorno genético
-                neurodegenerativo que afecta el cerebro, causando deterioro
-                progresivo de las capacidades motoras, cognitivas y
-                psiquiátricas. Es una enfermedad hereditaria de patrón
-                autosómico dominante, lo que significa que una sola copia del
-                gen defectuoso puede causar la enfermedad.
+              <p>
+                El Alzheimer es una enfermedad neurodegenerativa que afecta
+                  principalmente la memoria y las funciones cognitivas. Los síntomas 
+                  pueden variar, pero generalmente se desarrollan de la siguiente manera:
+                  <br />
+                  •Pérdida de memoria&nbsp;&nbsp;&nbsp;&nbsp;•Pérdida de iniciativa
+                  <br />
+                  •Problemas con el lenguaje&nbsp;&nbsp;&nbsp;&nbsp;•Alteraciones en el juicio 
+                  <br />
+                  •Dificultad para realizar tareas cotidianas
+                    <br />
               </p>
+              <button onClick={() => setWomanIsThinking(prev => !prev)}>
+              {womanIsThinking ? "Detener pensamiento" : "Pensar"}
+              </button>
             </section>
           </div>
           <div className="div-canvas-1">
@@ -132,7 +188,19 @@ const Alzheimer = () => {
               <OrbitControls />
               <Floor />
               <Lights />
+              <WomanOld thinking={womanIsThinking}
+              scale={1.4}/>
+              <Lavadora scale={0.06}/>
+              <Pancito scale={0.35}/>
               <Sky />
+              <Boton3D
+               position={[0, 0, -2]}
+                onClick={() => setWomanIsThinking(true)}
+                mensaje={"Pensar"}
+               color={"#4CAF50"}
+                posicion={[-1, -0.52, -0.5]}
+                tamanio={[2, 0.5, 1]}
+             />
               <Sparkles
                 count={256}
                 speed={1.5}

@@ -7,7 +7,7 @@ import * as THREE from "three";
 export function Boy2({ externSaludarTrigger = false, resetSaludarTrigger }) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF("/models-3d/Boy2.glb");
-  const { actions, mixer } = useAnimations(animations, group);
+  const { actions, mixer } = useAnimations(animations, group);    
   const originalPosition = useRef([0, -1, 0]);
   const isAnimating = useRef(false);
 
