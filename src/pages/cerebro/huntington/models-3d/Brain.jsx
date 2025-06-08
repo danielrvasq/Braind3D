@@ -18,7 +18,7 @@ const Brain = (props) => {
         receiveShadow
         geometry={nodes.Brain.geometry}
         material={materials.BrainMaterial}
-        scale={0.5}
+        scale={0.4}
         position={[0, -1, 0]}
         rotation={[0, Math.PI * 0.25, 0]}
       />

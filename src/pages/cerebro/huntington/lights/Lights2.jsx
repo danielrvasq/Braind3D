@@ -23,8 +23,8 @@ const Lights2 = () => {
       color="white"
       position={[5, 5, 6]}
       distance={100}
-      intensity={500}
-      angle={Math.PI / 10}
+      intensity={200}
+      angle={Math.PI / 3}
       penumbra={1}
       castShadow={true}
     />

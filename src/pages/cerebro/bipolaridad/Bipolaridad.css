@@ -1,36 +1,93 @@
-/* src/pages/cerebro/bipolaridad/Bipolaridad.css */
-
-.contenedor-bipolaridad {
+.div-text,
+.quees-info,
+.div-container,
+#seccion0 {
+  background-color: transparent;
+}
+.informacion-div {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  padding: 50px;
-  min-height: 90vh;
-  background: linear-gradient(to bottom, #ffffff, #dfe6e9);
+  gap: 1%;
 }
 
-.texto-bipolaridad {
-  width: 45%;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0px 8px 32px 0px rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(6px);
+.div-container {
+  height: 65vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.div-canvas-1 {
+  border-radius: 50px;
+}
+#boton-s {
+  margin-top: -100px;
+  margin-left: 5%;
+  background-color: #253439;
+  color: #f2efeb;
+  border-color: #253439;
+  font-family: "Roboto Condensed", serif;
+  height: 45px;
+  border-radius: 30px;
+  font-size: 18px;
+  transition: all 0.5s ease;
+  border: 2px solid;
 }
 
-.texto-bipolaridad h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #2d3436;
+#boton-s:hover {
+  background-color: #f2efeb;
+  color: #253439;
+}
+.start-button {
+  background-color: #253439;
+  color: #f2efeb;
+  border-color: #253439;
+  font-family: "Roboto Condensed", serif;
+  margin-top: 15px;
+  height: 45px;
+  border-radius: 30px;
+  font-size: 18px;
+  transition: all 0.5s ease;
+  border: 2px solid;
 }
 
-.texto-bipolaridad p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #636e72;
+.start-button:hover {
+  background-color: #f2efeb;
+  color: #253439;
 }
 
-.modelo-bipolaridad {
-  width: 50%;
-  height: 500px;
+.huntington-s1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5%;
+  margin-left: 5%;
+  height: 95vh;
+}
+.huntington-info {
+  background: rgba(255, 255, 255, 0.19);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  width: 600px;
+}
+.huntington-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #253439;
+  text-shadow: none;
+}
+.huntington-text {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #253439;
+  font-family: "roboto condensed", serif;
+  text-align: center;
+}
+
+.model-canvas {
+  width: 120%;
+  height: 60%;
 }
