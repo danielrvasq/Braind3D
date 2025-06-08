@@ -1,0 +1,7 @@
+.title h1{
+    text-shadow: 
+    0 0 4px black,
+    0 0 8px black,
+    0 0 16px black;
+    font-size: x-large;
+}
