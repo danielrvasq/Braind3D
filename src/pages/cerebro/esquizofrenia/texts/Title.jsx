@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unknown-property */
 
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { Text3D } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -7,6 +9,7 @@ const Title = ({ text }) => {
   const color = useMemo(() => new THREE.Color("#FFFFF1"), []);
 
   return (
+    // eslint-disable-next-line react/no-unknown-property
     <group position={[-8, -0.5, 0]}>
       <Text3D
         font="/fonts/roboto.json"

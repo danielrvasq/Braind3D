@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unknown-property */
+/* eslint-disable react/prop-types */
 import React, { useRef, useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
@@ -10,6 +12,7 @@ export function OldMan({ startAnimation, stopAnimation, ...props }) {
 
   useEffect(() => {
     const firstAction = actions?.[animations[0]?.name];
+    
 
     if (firstAction) {
       if (startAnimation) {
