@@ -12,6 +12,7 @@ export function OldMan({ startAnimation, stopAnimation, ...props }) {
   
   useEffect(() => {
     const firstAction = actions?.[animations[0]?.name];
+    
 
     if (firstAction) {
       if (startAnimation) {

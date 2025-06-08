@@ -56,7 +56,7 @@ const Human2 = ({ startAnimation }) => {
 
   return (
     <group ref={group} position={position}>
-      <primitive object={clonedScene} scale={1} />
+      <primitive object={clonedScene} scale={0.5} />
     </group>
   );
 };
