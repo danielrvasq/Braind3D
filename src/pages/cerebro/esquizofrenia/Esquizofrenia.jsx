@@ -97,7 +97,7 @@ const Esquizofrenia = () => {
             >
               <OrbitControls />
               <directionalLight position={[6, 5, 10]} intensity={2} />
-              <CameraReset />
+              <ResetCameraOnHover />
               {/* Texto 3D */}
               <Text3D
                 position={[-4, 3, 0]}
