@@ -129,7 +129,7 @@ const Alzheimer = () => {
             <p>
               El Alzheimer afecta la memoria y funciones cognitivas. Los síntomas suelen incluir:
               <br />• Pérdida de memoria&nbsp;&nbsp;&nbsp;&nbsp;• Pérdida de iniciativa
-              <br />• Problemas con el lenguaje&nbsp;&nbsp;&nbsp;&nbsp;• Alteraciones en el juicio
+              <br />• Problemas con el lenguaje&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Alteraciones en el juicio
               <br />• Dificultad para realizar tareas cotidianas
             </p>
             <button onClick={() => setWomanIsThinking((prev) => !prev)}>
