@@ -6,52 +6,30 @@ import { useRef, useEffect } from "react";
 
 import * as THREE from 'three';
 
-export default function ModeloBipolar(props) {
-  const { scene, animations } = useGLTF('/models-3d/Brain2.glb');
-  const modelRef = useRef();
-  const mixer = useRef(null);
-  
-  // Inicializamos el AnimationMixer para manejar las animaciones
-  useEffect(() => {
-    if (animations && animations.length) {
-      mixer.current = new THREE.AnimationMixer(scene);
-      animations.forEach((clip) => {
-        mixer.current.clipAction(clip).play();
-      });
-    }
-  }, [animations, scene]);
+const Brain = (props) => {
+  const { nodes, materials } = useGLTF("/models-3d/Brain2.glb");
+  const brainRef = useRef();
 
-  // Activamos la sombra para cada parte del modelo
-  useEffect(() => {
-    scene.traverse((child) => {
-      if (child.isMesh) {
-        child.castShadow = true;
-      }
-    });
-  }, [scene]);
-
-  // Reducimos el tamaño del modelo
-  useEffect(() => {
-    if (modelRef.current) {
-      modelRef.current.scale.set(0.8, 0.8, 0.8); // Reducimos el tamaño al 30%
-    }
-  }, []);
-
-  // Actualizamos la animación en cada frame
   useFrame((state, delta) => {
-    if (mixer.current) {
-      mixer.current.update(delta);
-    }
-
-    if (modelRef.current) {
-      modelRef.current.rotation.y += delta * 0.5;
-
-      // Limitar la posición del modelo para que no se salga de la vista
-      modelRef.current.position.x = THREE.MathUtils.clamp(modelRef.current.position.x, -5, 5);
-      modelRef.current.position.y = THREE.MathUtils.clamp(modelRef.current.position.y, 0, 5);
-      modelRef.current.position.z = THREE.MathUtils.clamp(modelRef.current.position.z, -5, 5);
-    }
+    brainRef.current.rotation.y += 0.5 * delta;
   });
 
-  return <primitive ref={modelRef} object={scene} {...props} />;
-}
+  return (
+    <group {...props} dispose={null} ref={brainRef}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Brain.geometry}
+        material={materials.BrainMaterial}
+        scale={0.9}
+        position={[0, 0.5, 0]}
+        rotation={[0, Math.PI * 0.25, 0]}
+      />
+    </group>
+  );
+};
+
+export default Brain;
+
+// Preload para mejorar rendimiento
+useGLTF.preload("/models-3d/Brain2.glb");

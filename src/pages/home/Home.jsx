@@ -106,7 +106,6 @@ const Home = () => {
       <div id="section3">
         <div id="contenido3">
           <h1 id="titulo3">ALZHEIMER</h1>
-
           <button onClick={alzheimer} type="button" id="boton-h3">
             Saber Más
           </button>
@@ -141,7 +140,6 @@ const Home = () => {
         </div>
         <div id="contenido2">
           <h1 id="titulo2">BIPOLARIDAD</h1>
-
           <button onClick={bipolaridad} type="button" id="boton-h2">
             Saber Más
           </button>
@@ -150,7 +148,6 @@ const Home = () => {
       <div id="section3">
         <div id="contenido3">
           <h1 id="titulo3">ESQUIZOFRENIA</h1>
-
           <button onClick={esquizofrenia} type="button" id="boton-h3">
             Saber Más
           </button>
