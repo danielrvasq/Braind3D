@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 import "./Esquizofrenia.css";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   OrbitControls,
   Sky,
@@ -28,8 +28,8 @@ import Saludo1 from "./sounds/Saludo1";
 import Control from "./texts/Control";
 import { Furina } from "./videos/Furina";
 import { Audio3D } from "./sounds/Audio3D";
-import ResetCameraOnHover from './camara/ResetCameraOnHover';
-import ResetCameraOnHoverTitle from './camara/ResetCameraOnHoverTitle';
+import ResetCameraOnHover from "./camara/ResetCameraOnHover";
+import ResetCameraOnHoverTitle from "./camara/ResetCameraOnHoverTitle";
 import Cat from "./models-3d/Cat";
 const Esquizofrenia = () => {
   const [anim1, setAnim1] = useState(false);
@@ -49,6 +49,20 @@ const Esquizofrenia = () => {
       .play()
       .catch((err) => console.error("Error al reproducir el sonido:", err));
   };
+  function CameraReset() {
+    const { camera } = useThree();
+    const originalCameraPos = useRef(camera.position.clone());
+
+    useFrame(() => {
+      const distance = camera.position.distanceTo(originalCameraPos.current);
+      if (distance > 0.01) {
+        camera.position.lerp(originalCameraPos.current, 0.02);
+        camera.lookAt(0, 0, 0);
+      }
+    });
+
+    return null;
+  }
   return (
     <>
       <section id="seccion1">
@@ -61,7 +75,7 @@ const Esquizofrenia = () => {
               }}
               shadows={true}
             >
-              <ResetCameraOnHoverTitle/>
+              <CameraReset />
               <OrbitControls
                 target={[0, 0, 0]} // Esto centra los controles en el origen
                 enableZoom={true}
@@ -83,7 +97,7 @@ const Esquizofrenia = () => {
             >
               <OrbitControls />
               <directionalLight position={[6, 5, 10]} intensity={2} />
-              <ResetCameraOnHover />
+              <CameraReset />
               {/* Texto 3D */}
               <Text3D
                 position={[-4, 3, 0]}
@@ -298,7 +312,7 @@ const Esquizofrenia = () => {
               <OrbitControls />
               <directionalLight position={[5, 5, 10]} intensity={2} />
               <Light2 />
-              <Boy  playAnimation={anim2 ? "sentado_triste" : "sentado"} />
+              <Boy playAnimation={anim2 ? "sentado_triste" : "sentado"} />
               <group
                 onPointerOver={() => setPuertaHover(true)}
                 onPointerOut={() => setPuertaHover(false)}
@@ -449,7 +463,7 @@ const Esquizofrenia = () => {
               <Mesa position={[0, 3, 0.5]} scale={[3, 4, 2]} />
               <Sky />
               <Audio3D activo={sonidoActivo} />
-    
+
               <Sparkles
                 count={256}
                 speed={1.5}
@@ -552,7 +566,7 @@ const Esquizofrenia = () => {
                 scale={[0.5, 0.5, 0.5]}
                 rotation={[0, Math.PI, 0]}
               />
-              
+
               <Furina />
               <Piso />
               <Sky />
