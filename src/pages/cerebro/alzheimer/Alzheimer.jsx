@@ -93,7 +93,7 @@ const Alzheimer = () => {
               Las causas exactas del Alzheimer no se conocen completamente, pero hay varios factores que contribuyen a su desarrollo:
               <br />• Acumulación de proteínas anormales&nbsp;&nbsp;&nbsp;&nbsp;• Envejecimiento
               <br />• Factores genéticos&nbsp;&nbsp;&nbsp;&nbsp;• Enfermedades cardiovasculares
-              <br />• Dificultad para realizar tareas cotidianas&nbsp;&nbsp;&nbsp;&nbsp;• Factores ambientales
+              <br />• Dificultad para realizar tareas cotidianas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Factores ambientales
             </p>
             <button onClick={() => setOldManIsWalking((prev) => !prev)}>
               {oldManIsWalking ? "Detener caminata" : "Caminar"}
