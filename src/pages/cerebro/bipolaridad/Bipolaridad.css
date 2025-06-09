@@ -91,3 +91,64 @@
   width: 120%;
   height: 60%;
 }
+.start-button {
+  background-color: #253439;
+  color: #f2efeb;
+  border-color: #253439;
+  font-family: "Roboto Condensed", serif;
+  margin-top: 15px;
+  height: 45px;
+  border-radius: 30px;
+  font-size: 18px;
+  transition: all 0.5s ease;
+  border: 2px solid;
+}
+
+.start-button:hover {
+  background-color: #f2efeb;
+  color: #253439;
+}
+/* .brain-canvas {
+  height: 80vh;
+}
+
+.huntington-info {
+  position: fixed;
+  z-index: 1;
+  background-color: transparent;
+  padding: 2rem;
+  max-width: 900px;
+  margin-top: 10%;
+  margin-left: 3%;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+
+  background: rgba(255, 255, 255, 0.19);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
+  border: 1px solid rgba(255, 255, 255, 0.44);
+}
+
+.huntington-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #253439;
+}
+
+.huntington-text {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #333; Gris oscuro
+  line-height: 1.6;
+} */
+/* 
+background: rgba(255, 255, 255, 0.19);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(11px);
+-webkit-backdrop-filter: blur(11px);
+border: 1px solid rgba(255, 255, 255, 0.44); */
