@@ -154,7 +154,7 @@ const Esquizofrenia = () => {
                   </button>
                   <button
                     onClick={() => setSceneKey((prev) => prev + 1)}
-                    title={"Pulsa para reiniciar la escena"} // Tooltip
+                    title={"Da click para reiniciar la escena"} // Tooltip
                     style={{
                       display: "block",
                       margin: "0 auto",
