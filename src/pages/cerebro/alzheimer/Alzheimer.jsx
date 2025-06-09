@@ -95,7 +95,16 @@ const Alzheimer = () => {
               <br />• Factores genéticos&nbsp;&nbsp;&nbsp;&nbsp;• Enfermedades cardiovasculares
               <br />• Dificultad para realizar tareas cotidianas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Factores ambientales
             </p>
-            <button onClick={() => setOldManIsWalking((prev) => !prev)}>
+            <button onClick={() => setOldManIsWalking((prev) => !prev)} style={{
+                      display: "block",
+                      margin: "0 auto",
+                      padding: "10px 20px",
+                      background: "#4CAF50",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                    }}>
               {oldManIsWalking ? "Detener caminata" : "Caminar"}
             </button>
           </section>
@@ -132,7 +141,16 @@ const Alzheimer = () => {
               <br />• Problemas con el lenguaje&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Alteraciones en el juicio
               <br />• Dificultad para realizar tareas cotidianas
             </p>
-            <button onClick={() => setWomanIsThinking((prev) => !prev)}>
+            <button onClick={() => setWomanIsThinking((prev) => !prev)} style={{
+                      display: "block",
+                      margin: "0 auto",
+                      padding: "10px 20px",
+                      background: "#4CAF50",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                    }}>
               {womanIsThinking ? "Detener pensamiento" : "Pensar"}
             </button>
           </section>
