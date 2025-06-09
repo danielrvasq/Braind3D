@@ -8,12 +8,12 @@ import { getFirestore } from "firebase/firestore"; // <-- Agrega esto
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAmaXCBV5Trx4N0h0aDS3hzILKTtMEtkRI",
-  authDomain: "braind3d-47a91.firebaseapp.com",
-  projectId: "braind3d-47a91",
-  storageBucket: "braind3d-47a91.firebasestorage.app",
-  messagingSenderId: "756884372815",
-  appId: "1:756884372815:web:d0c67164b781815006993a"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID
 };
 
 // Initialize Firebase
