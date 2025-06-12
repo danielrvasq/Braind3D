@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 import React, { useRef, useEffect } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
-import * as THREE from "three";
+import { useGLTF, useAnimations, PositionalAudio } from "@react-three/drei";
 
 export function Girl({
   externDanceTrigger = false,
@@ -10,11 +9,11 @@ export function Girl({
   ...props
 }) {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF("/models-3d/Girl.glb");
-  const { actions, mixer } = useAnimations(animations, group);
-  const isAnimating = useRef(false);
-  const audioRef = useRef(null);
+  const soundRef = useRef();
   const timeoutRef = useRef(null);
+  const isAnimating = useRef(false);
+  const { nodes, materials, animations } = useGLTF("/models-3d/Girl.glb");
+  const { actions } = useAnimations(animations, group);
 
   const reproducirBailar = () => {
     const idleAction = actions["Parado"];
@@ -31,11 +30,9 @@ export function Girl({
     idleAction.fadeOut(0.5);
     danceAction.reset().fadeIn(0.5).play();
 
-    // Reproducir audio
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
-      audioRef.current.volume = 0.1;
+    // Reproducir sonido posicional
+    if (soundRef.current && soundRef.current.isPlaying === false) {
+      soundRef.current.play();
     }
 
     timeoutRef.current = setTimeout(() => {
@@ -43,11 +40,10 @@ export function Girl({
       idleAction.reset().fadeIn(0.5).play();
       isAnimating.current = false;
 
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
+      if (soundRef.current) {
+        soundRef.current.stop();
       }
-    }, 20000); // 7 segundos
+    }, 20000); // 20 segundos
   };
 
   useEffect(() => {
@@ -55,10 +51,6 @@ export function Girl({
     if (idleAction) {
       idleAction.reset().fadeIn(0.5).play();
     }
-
-    // Inicializar audio
-    audioRef.current = new Audio("/sounds/Music.mp3");
-    audioRef.current.loop = true;
 
     const handleKeyDown = (event) => {
       if (event.key.toLowerCase() === "b") {
@@ -70,9 +62,8 @@ export function Girl({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       clearTimeout(timeoutRef.current);
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
+      if (soundRef.current) {
+        soundRef.current.stop();
       }
     };
   }, [actions]);
@@ -98,6 +89,15 @@ export function Girl({
           <primitive object={nodes.mixamorigHips} />
         </group>
       </group>
+
+      {/* Sonido posicional */}
+      <PositionalAudio
+        ref={soundRef}
+        url="/sounds/Music.mp3"
+        distance={8}
+        loop={false}
+        autoplay={false}
+      />
     </group>
   );
 }

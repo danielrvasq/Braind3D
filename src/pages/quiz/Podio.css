@@ -1,11 +1,17 @@
 .podio-container {
   padding: 20px;
   text-align: center;
+  position: absolute;
+  font-family: "roboto condensed", serif;
+  margin-top: -20%;
 }
 
 .podio-lista {
   list-style: none;
+  display: flex;
+  flex-direction: row;
   padding: 0;
+  gap: 5%;
 }
 
 .puesto {
@@ -24,4 +30,11 @@
 
 .puesto-3 {
   color: #cd7f32; /* bronce */
+}
+
+.podio {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 85vh;
 }

@@ -1,11 +1,11 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = () => {
   return (
     <footer id="footer">
       <div className="contenedor-footer">
-        <div className= "footer-links">
+        <div className="footer-links">
           <Link className="link-footer" to="/cerebro/huntington">
             Enfermedad De Huntington
           </Link>
@@ -19,13 +19,11 @@ const Footer = () => {
             Esquizofrenia
           </Link>
         </div>
-        <div className= "footer-copy">
+        <div className="footer-copy">
           <ul>
-            <li>
-              &copy; 2025 - Todos los derechos reservados.{" "}
-            </li>
+            <li>&copy; 2025 - Todos los derechos reservados. </li>
           </ul>
-        </div>  
+        </div>
       </div>
     </footer>
   );
