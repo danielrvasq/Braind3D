@@ -1,49 +1,48 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-unknown-property */
-import { Text, RoundedBox, Environment } from "@react-three/drei";
-import { RigidBody } from "@react-three/rapier";
+import { useRef, useState, useEffect } from "react";
+import { Text, RoundedBox } from "@react-three/drei";
 
-export default function Respuesta({
-  onClick,
-  mensaje,
-  color,
-  posicion,
-  tamanio,
-  type,
-  isCorrect
-}) {
+const Respuesta = ({ mensaje, color, posicion, onClick }) => {
+  const textRef = useRef();
+  const [textWidth, setTextWidth] = useState(2); // valor inicial predeterminado
+
+  useEffect(() => {
+    const updateSize = () => {
+      if (textRef.current?.geometry?.boundingBox) {
+        const bbox = textRef.current.geometry.boundingBox;
+        const width = bbox.max.x - bbox.min.x;
+        setTextWidth(width + 0.6); // margen adicional
+      }
+    };
+
+    // Espera un frame para asegurar que el texto haya cargado su geometría
+    const timeout = setTimeout(updateSize, 50);
+
+    return () => clearTimeout(timeout);
+  }, [mensaje]);
+
   return (
-    <>
-      <RigidBody type={type}>
-        <group position={posicion} rotation={[Math.PI / 2, 0, 0]}>
-          <RoundedBox
-            args={tamanio}
-            radius={0.1}
-            smoothness={4}
-            onClick={onClick}
-            castShadow
-          >
-            <meshPhysicalMaterial
-              color={color}
-              metalness={1}
-              roughness={0.1}
-              clearcoat={1}
-              clearcoatRoughness={0}
-            />
-          </RoundedBox>
-
-          <Text
-            position={[0, 0.3, 0]}
-            fontSize={0.3}
-            color="#ffffff"
-            anchorX="center"
-            anchorY="middle"
-            rotation={[-Math.PI / 2, 0, 0]}
-          >
-            {mensaje}
-          </Text>
-        </group>
-      </RigidBody>
-    </>
+    <RoundedBox
+      radius={0.07}
+      smoothness={4}
+      position={posicion}
+      castShadow
+      receiveShadow
+      args={[textWidth, 0.5, 1]} // ancho ajustado dinámicamente
+      onClick={onClick}
+    >
+      <meshStandardMaterial color={color} />
+      <Text
+        ref={textRef}
+        position={[0, 0, 0.6]}
+        fontSize={0.3}
+        color="white"
+        anchorX="center"
+        anchorY="middle"
+      >
+        {mensaje}
+      </Text>
+    </RoundedBox>
   );
-}
+};
+
+export default Respuesta;

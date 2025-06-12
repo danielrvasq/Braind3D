@@ -1,17 +1,24 @@
+.podio-lista {
+  display: flex;
+  flex-direction: row;
+  gap: 250px;
+}
+.podio-container {
+  font-family: "Roboto Condensed", serif;
+  margin-top: 35px;
+  font-size: 25px;
+  margin-bottom: 0px;
+  font-weight: 350;
+}
+
 .podio-container {
   padding: 20px;
   text-align: center;
-  position: absolute;
-  font-family: "roboto condensed", serif;
-  margin-top: -20%;
 }
 
 .podio-lista {
   list-style: none;
-  display: flex;
-  flex-direction: row;
   padding: 0;
-  gap: 5%;
 }
 
 .puesto {
@@ -36,5 +43,5 @@
   display: flex;
   flex-direction: row;
   width: 100vw;
-  height: 85vh;
+  height: 100vh;
 }

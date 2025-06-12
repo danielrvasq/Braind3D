@@ -3,15 +3,6 @@ import "./Home.css";
 import { useCallback } from "react";
 import Medico from "./models-3D/Medico";
 import { Canvas } from "@react-three/fiber";
-import {
-  OrbitControls,
-  Sky,
-  Sparkles,
-  Text,
-  Text3D,
-  Environment,
-  Html,
-} from "@react-three/drei";
 import React, { useState, useEffect, useRef } from "react";
 
 const Home = () => {
@@ -76,7 +67,7 @@ const Home = () => {
           >
             <Medico playAnimation="Dance_1" />
             <ambientLight intensity={0.5} />
-            <OrbitControls />
+
             <directionalLight position={[6, 5, 10]} intensity={2} />
           </Canvas>
         </div>
@@ -91,7 +82,7 @@ const Home = () => {
           >
             <Medico playAnimation="Hustington" />
             <ambientLight intensity={0.5} />
-            <OrbitControls />
+
             <directionalLight position={[6, 5, 10]} intensity={2} />
           </Canvas>
         </div>
@@ -128,7 +119,7 @@ const Home = () => {
           >
             <Medico playAnimation="Esquizofrenia" />
             <ambientLight intensity={0.5} />
-            <OrbitControls />
+
             <directionalLight position={[6, 5, 10]} intensity={2} />
           </Canvas>
         </div>
@@ -143,7 +134,7 @@ const Home = () => {
           >
             <Medico playAnimation="Hablando" />
             <ambientLight intensity={0.5} />
-            <OrbitControls />
+
             <directionalLight position={[6, 5, 10]} intensity={2} />
           </Canvas>
         </div>
@@ -180,7 +171,7 @@ const Home = () => {
           >
             <Medico playAnimation="Bipolaridad" />
             <ambientLight intensity={0.5} />
-            <OrbitControls />
+
             <directionalLight position={[6, 5, 10]} intensity={2} />
           </Canvas>
         </div>

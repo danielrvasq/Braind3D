@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { db } from "../../../firebase.config";
-import { auth } from "../../../firebase.config";
 import useAuthStore from "../../stores/use-auth-store";
 import questions from "../../data/questions";
 import "./Quiz.css";
@@ -12,20 +11,43 @@ import LightJuego from "./lights/LightJuego";
 import Respuesta from "./models-3d/Respuesta";
 import { Physics } from "@react-three/rapier";
 import Title from "./texts/Title";
-const Quiz = () => {
-  const isCorrect = true;
+import { Rocks } from "./models-3d/Rocks";
+import Brain from "./models-3d/Brain";
 
+const Quiz = () => {
+  // Estados del quiz
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
+  const [quizFinalizado, setQuizFinalizado] = useState(false);
+  const [mostrarRetro, setMostrarRetro] = useState(false);
+  const [aciertos, setAciertos] = useState(0);
+  const [retroIndex, setRetroIndex] = useState(0);
+  const [objetosCaidos, setObjetosCaidos] = useState([]);
+
+  // Usuario autenticado
   const { userLooged } = useAuthStore();
   const db = getFirestore();
-  const [quizFinalizado, setQuizFinalizado] = useState(false);
-  const [aciertos, setAciertos] = useState(0);
-  const [mostrarRetro, setMostrarRetro] = useState(false);
 
+  // Lanza un objeto con físicas (cerebro o piedra)
+  const lanzarObjeto = (esCorrecta) => {
+    const id = crypto.randomUUID();
+    setObjetosCaidos((prev) => [
+      ...prev,
+      {
+        id,
+        tipo: esCorrecta ? "brain" : "rock",
+        posicion: [Math.random() * 4 - 2, 10, 0],
+      },
+    ]);
+  };
+
+  // Maneja el paso a la siguiente pregunta o finalización del quiz
   const handleNext = async () => {
     if (!selectedOption) return alert("Selecciona una opción");
+
+    const isCorrect = selectedOption === questions[currentIndex].correctAnswer;
+    lanzarObjeto(isCorrect);
 
     const updatedAnswers = [...userAnswers, selectedOption];
     setUserAnswers(updatedAnswers);
@@ -35,16 +57,14 @@ const Quiz = () => {
       setCurrentIndex(currentIndex + 1);
     } else {
       let correctas = 0;
-      questions.forEach((q, index) => {
-        if (updatedAnswers[index] === q.correctAnswer) {
-          correctas++;
-        }
+      questions.forEach((q, i) => {
+        if (updatedAnswers[i] === q.correctAnswer) correctas++;
       });
 
       const respuestasFinales = {
         nombre: userLooged?.displayName,
         respuestas: updatedAnswers,
-        aciertos: correctas, // ✅ nuevo campo
+        aciertos: correctas,
         timestamp: new Date(),
       };
 
@@ -53,10 +73,7 @@ const Quiz = () => {
           doc(db, "respuestasQuiz", userLooged.uid),
           respuestasFinales
         );
-
-        console.log("Respuestas guardadas correctamente para:", userLooged.uid);
         setAciertos(correctas);
-
         setQuizFinalizado(true);
       } catch (error) {
         console.error("Error al guardar respuestas:", error);
@@ -64,137 +81,167 @@ const Quiz = () => {
     }
   };
 
-  const progress = Math.round(((currentIndex + 1) / questions.length) * 100);
+  // Reinicia el quiz completo
+  const reiniciarQuiz = () => {
+    setCurrentIndex(0);
+    setUserAnswers([]);
+    setSelectedOption("");
+    setAciertos(0);
+    setQuizFinalizado(false);
+    setMostrarRetro(false);
+    setRetroIndex(0);
+    setObjetosCaidos([]);
+  };
 
   return (
-    <>
-      <div id="contenedor">
-        <h1 id="titulo">QUIZ</h1>
-        <button
-          onClick={() => (window.location.href = "/Podio")}
-          className="btn-secondary"
-        >
-          Ver podio
-        </button>
-        {quizFinalizado && !mostrarRetro && (
-          <div className="resultado-final">
-            <h2>¡Gracias por completar el quiz, {userLooged?.displayName}!</h2>
-            <p>
-              Respuestas correctas: {aciertos} de {questions.length}
-            </p>
+    <div className="juego">
+      <Canvas camera={{ position: [0, 3, 11] }} shadows>
+        <OrbitControls />
+        <Sky />
+        <LightJuego />
 
-            <button
-              onClick={() => setMostrarRetro(true)}
-              className="btn-secondary"
-            >
-              Ver retroalimentación
-            </button>
-            <button
-              onClick={() => (window.location.href = "/")}
-              className="btn-secondary"
-            >
-              Volver al inicio
-            </button>
-          </div>
-        )}
-        {mostrarRetro && (
-          <div className="retroalimentacion">
-            <h2>Retroalimentación</h2>
-            {questions.map((q, index) => (
-              <div key={index} className="retro-item">
-                <p>
-                  <strong>Pregunta:</strong> {q.question}
-                </p>
-                <p>
-                  <strong>Tu respuesta:</strong> {userAnswers[index]}
-                </p>
-                <p>
-                  <strong>Respuesta correcta:</strong> {q.correctAnswer}
-                </p>
-                <hr />
-              </div>
+        <Physics>
+          {/* Objetos físicos lanzados por respuestas */}
+          {objetosCaidos.map((obj) =>
+            obj.tipo === "brain" ? (
+              <Brain key={obj.id} position={obj.posicion} />
+            ) : (
+              <Rocks key={obj.id} position={obj.posicion} />
+            )
+          )}
+
+          <Island />
+
+          {/* Pregunta actual */}
+          {!quizFinalizado && !mostrarRetro && (
+            <Title text={questions[currentIndex].question} />
+          )}
+
+          {/* Resultado final */}
+          {quizFinalizado && !mostrarRetro && (
+            <>
+              <Title
+                text={`¡Gracias, ${userLooged?.displayName}!`}
+                position={[-0.5, 5, 4]}
+              />
+              <Title
+                text={`Aciertos: ${aciertos} de ${questions.length}`}
+                position={[-0.5, 3, 4]}
+              />
+
+              <Respuesta
+                color="blue"
+                mensaje="Ver retroalimentación"
+                onClick={() => setMostrarRetro(true)}
+                posicion={[-2.5, 2, 5]}
+                tamanio={[3.5, 0.5, 1]}
+                type="fixed"
+              />
+              <Respuesta
+                color="blue"
+                mensaje="Volver al inicio"
+                onClick={() => (window.location.href = "/")}
+                posicion={[2.5, 2, 5]}
+                tamanio={[3, 0.5, 1]}
+                type="fixed"
+              />
+              <Respuesta
+                color="purple"
+                mensaje="Ver podio"
+                onClick={() => (window.location.href = "/Podio")}
+                posicion={[-2.5, 1, 5]}
+                tamanio={[3, 0.5, 1]}
+                type="fixed"
+              />
+              <Respuesta
+                color="orange"
+                mensaje="Volver a empezar"
+                onClick={reiniciarQuiz}
+                posicion={[2.5, 1, 5]}
+                tamanio={[3, 0.5, 1]}
+                type="fixed"
+              />
+            </>
+          )}
+
+          {/* Retroalimentación */}
+          {mostrarRetro && retroIndex < questions.length && (
+            <>
+              <Title
+                key={retroIndex}
+                text={`P: ${questions[retroIndex].question}\nTu: ${userAnswers[retroIndex]}\nOk: ${questions[retroIndex].correctAnswer}`}
+                position={[0, 4.5, 4]}
+              />
+              <Respuesta
+                color="blue"
+                mensaje={
+                  retroIndex === questions.length - 1
+                    ? "Finalizar"
+                    : "Siguiente"
+                }
+                onClick={() => {
+                  setRetroIndex((prev) => {
+                    if (prev < questions.length - 1) {
+                      return prev + 1;
+                    } else {
+                      setMostrarRetro(false);
+                      return 0;
+                    }
+                  });
+                }}
+                posicion={[0, 2, 5]}
+                tamanio={[3, 0.5, 1]}
+                type="fixed"
+              />
+
+              <Respuesta
+                color="blue"
+                mensaje="Volver al inicio"
+                onClick={() => (window.location.href = "/")}
+                posicion={[2.8, 1, 5]}
+                tamanio={[3, 0.5, 1]}
+                type="fixed"
+              />
+              <Respuesta
+                color="purple"
+                mensaje="Ver podio"
+                onClick={() => (window.location.href = "/Podio")}
+                posicion={[-2.5, 1, 5]}
+                tamanio={[3, 0.5, 1]}
+                type="fixed"
+              />
+            </>
+          )}
+
+          {/* Opciones de respuesta */}
+          {!quizFinalizado &&
+            !mostrarRetro &&
+            questions[currentIndex].options.map((option, idx) => (
+              <Respuesta
+                key={idx}
+                color={selectedOption === option ? "yellow" : "green"}
+                mensaje={option}
+                onClick={() => setSelectedOption(option)}
+                posicion={[0, idx * 0.6 - -0.7, 4]}
+                tamanio={[2, 0.5, 1]}
+                type="fixed"
+              />
             ))}
-          </div>
-        )}
-        {!quizFinalizado && !mostrarRetro && (
-          <div className="pregunta">
-            <h2>{questions[currentIndex].question}</h2>
-            <div className="opciones">
-              {questions[currentIndex].options.map((option, idx) => (
-                <label key={idx}>
-                  <input
-                    type="radio"
-                    value={option}
-                    checked={selectedOption === option}
-                    onChange={() => setSelectedOption(option)}
-                  />
-                  {option}
-                </label>
-              ))}
-            </div>
-          </div>
-        )}
-        {!quizFinalizado && !mostrarRetro && (
-          <button onClick={handleNext} className="btn-primary" id="boton">
-            Siguiente
-          </button>
-        )}
-      </div>
 
-      <div className="juego">
-        <Canvas camera={{ position: [0, 5, 10] }} shadows>
-          <OrbitControls />
-          <LightJuego />
-          <Sky />
-          <Title
-            text={"HOLAaaa"}
-            color={"green"}
-            position={[5, 5, 0]}
-            anchorX="center"
-            anchorY="middle"
-          />
-          <Physics debug>
+          {/* Botón siguiente */}
+          {!quizFinalizado && !mostrarRetro && (
             <Respuesta
-              color={"green"}
-              mensaje={"hola"}
-              onClick={""}
-              posicion={[-4, 2, 4]}
-              tamanio={[2, 0.5, 1]}
-              type={isCorrect ? "fixed" : "dynamic"}
-              isCorrect={""}
+              color="blue"
+              mensaje="Siguiente"
+              onClick={handleNext}
+              posicion={[4, 1, 5]}
+              tamanio={[3, 0.5, 1]}
+              type="fixed"
             />
-            <Respuesta
-              color={"green"}
-              mensaje={"hola"}
-              onClick={""}
-              posicion={[-1.5, 2, 4]}
-              tamanio={[2, 0.5, 1]}
-              type={isCorrect ? "fixed" : "dynamic"}
-              isCorrect={""}
-            />
-            <Respuesta
-              color={"green"}
-              mensaje={"hola"}
-              onClick={""}
-              posicion={[1, 2, 4]}
-              tamanio={[2, 0.5, 1]}
-              type={isCorrect ? "fixed" : "dynamic"}
-              isCorrect={""}
-            />
-            <Respuesta
-              color={"green"}
-              mensaje={"hola"}
-              onClick={""}
-              posicion={[3.5, 2, 4]}
-              tamanio={[2, 0.5, 1]}
-              type={isCorrect ? "fixed" : "dynamic"}
-              isCorrect={""}
-            />
-            <Island />
-          </Physics>
-        </Canvas>
-      </div>
-    </>
+          )}
+        </Physics>
+      </Canvas>
+    </div>
   );
 };
 
