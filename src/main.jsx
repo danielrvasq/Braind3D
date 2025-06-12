@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Quiz from "./pages/quiz/Quiz";
 import NotFound from "./pages/not-found/NotFound";
@@ -8,11 +8,11 @@ import Alzheimer from "./pages/cerebro/alzheimer/Alzheimer";
 import Bipolaridad from "./pages/cerebro/bipolaridad/Bipolaridad";
 import Huntington from "./pages/cerebro/huntington/Huntington";
 import Esquizofrenia from "./pages/cerebro/esquizofrenia/Esquizofrenia";
-import "./index.css";
 import Layout from "./layout/Layout";
 import Perfil from "./pages/perfil/Pefil";
 import AboutUs from "./pages/aboutUs/AboutUs";
 import Podio from "./pages/quiz/Podio";
+import "./index.css";
 createRoot(document.getElementById("root")).render(
   // <App />
   <BrowserRouter>
