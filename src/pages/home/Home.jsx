@@ -69,12 +69,12 @@ const Home = () => {
         </div>
         <div className="div-canvas-1">
           <Canvas
-            camera={{ position: [0, 0,2] }}
+            camera={{ position: [0, 0, 2] }}
             shadows
             key={sceneKey}
             style={{ width: "100%", height: "100%" }} // altura pantalla completa
           >
-            <Medico playAnimation= "Dance_1"/>
+            <Medico playAnimation="Dance_1" />
             <ambientLight intensity={0.5} />
             <OrbitControls />
             <directionalLight position={[6, 5, 10]} intensity={2} />
@@ -82,14 +82,14 @@ const Home = () => {
         </div>
       </section>
       <div id="section2">
-      <div className="div-canvas-1">
+        <div className="div-canvas-1">
           <Canvas
-            camera={{ position: [0, 0,2] }}
+            camera={{ position: [0, 0, 2] }}
             shadows
             key={sceneKey}
             style={{ width: "100%", height: "100%" }} // altura pantalla completa
           >
-            <Medico playAnimation= "Hustington"/>
+            <Medico playAnimation="Hustington" />
             <ambientLight intensity={0.5} />
             <OrbitControls />
             <directionalLight position={[6, 5, 10]} intensity={2} />
@@ -97,7 +97,11 @@ const Home = () => {
         </div>
         <div id="contenido2">
           <h1 id="titulo2">HUNTINGTON</h1>
-
+          <p>
+            trastorno genético degenerativo del cerebro que causa movimientos
+            involuntarios, problemas cognitivos y cambios emocionales. <br />
+            Es hereditaria y empeora con el tiempo.
+          </p>
           <button onClick={huntington} type="button" id="boton-h2">
             Saber Más
           </button>
@@ -106,18 +110,23 @@ const Home = () => {
       <div id="section3">
         <div id="contenido3">
           <h1 id="titulo3">ALZHEIMER</h1>
+          <p>
+            enfermedad neurodegenerativa progresiva que afecta la memoria, el
+            pensamiento y el comportamiento. Es la causa más común de demencia y
+            empeora con el tiempo.
+          </p>
           <button onClick={alzheimer} type="button" id="boton-h3">
             Saber Más
           </button>
         </div>
         <div className="div-canvas-1">
           <Canvas
-            camera={{ position: [0, 0,2] }}
+            camera={{ position: [0, 0, 2] }}
             shadows
             key={sceneKey}
             style={{ width: "100%", height: "100%" }} // altura pantalla completa
           >
-            <Medico playAnimation= "Esquizofrenia"/>
+            <Medico playAnimation="Esquizofrenia" />
             <ambientLight intensity={0.5} />
             <OrbitControls />
             <directionalLight position={[6, 5, 10]} intensity={2} />
@@ -125,14 +134,14 @@ const Home = () => {
         </div>
       </div>
       <div id="section2">
-      <div className="div-canvas-1">
+        <div className="div-canvas-1">
           <Canvas
-            camera={{ position: [0, 0,2] }}
+            camera={{ position: [0, 0, 2] }}
             shadows
             key={sceneKey}
             style={{ width: "100%", height: "100%" }} // altura pantalla completa
           >
-            <Medico playAnimation= "Hablando"/>
+            <Medico playAnimation="Hablando" />
             <ambientLight intensity={0.5} />
             <OrbitControls />
             <directionalLight position={[6, 5, 10]} intensity={2} />
@@ -140,6 +149,11 @@ const Home = () => {
         </div>
         <div id="contenido2">
           <h1 id="titulo2">BIPOLARIDAD</h1>
+          <p>
+            trastorno mental caracterizado por cambios extremos en el estado de
+            ánimo, que alternan entre episodios de euforia o manía y períodos de
+            depresión.
+          </p>
           <button onClick={bipolaridad} type="button" id="boton-h2">
             Saber Más
           </button>
@@ -148,6 +162,11 @@ const Home = () => {
       <div id="section3">
         <div id="contenido3">
           <h1 id="titulo3">ESQUIZOFRENIA</h1>
+          <p>
+            trastorno mental grave que afecta la forma en que una persona
+            piensa, siente y percibe la realidad, causando alucinaciones,
+            delirios y pensamientos desorganizados.
+          </p>
           <button onClick={esquizofrenia} type="button" id="boton-h3">
             Saber Más
           </button>
@@ -159,7 +178,7 @@ const Home = () => {
             key={sceneKey}
             style={{ width: "100%", height: "100%" }} // altura pantalla completa
           >
-            <Medico playAnimation= "Bipolaridad"/>
+            <Medico playAnimation="Bipolaridad" />
             <ambientLight intensity={0.5} />
             <OrbitControls />
             <directionalLight position={[6, 5, 10]} intensity={2} />
@@ -171,39 +190,3 @@ const Home = () => {
 };
 
 export default Home;
-
-{
-  /* <div class="dropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              id="dropdown-button"
-            >
-              Conoce las enfermedades
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <button onClick={huntington} type="button" id="button-list">
-                  huntington
-                </button>
-              </li>
-              <li>
-                <button onClick={alzheimer} type="button" id="button-list">
-                  alzheimer
-                </button>
-              </li>
-              <li>
-                <button onClick={bipolaridad} type="button" id="button-list">
-                  bipolaridad
-                </button>
-              </li>
-              <li>
-                <button onClick={esquizofrenia} type="button" id="button-list">
-                  esquizofrenia
-                </button>
-              </li>
-            </ul>
-          </div> */
-}

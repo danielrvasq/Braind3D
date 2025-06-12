@@ -18,7 +18,12 @@ body {
   text-align: left;
   flex-wrap: wrap;
 }
-
+#contenido2 > p {
+  color: #253439;
+}
+#contenido3 > p {
+  color: #f2efeb;
+}
 #contenido {
   margin: 10% 3% 6% 3%;
   max-width: 40%;
@@ -198,4 +203,4 @@ body {
   width: 500px;
   height: 1000px;
   border-radius: 50px;
-} 
+}

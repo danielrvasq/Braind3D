@@ -16,7 +16,7 @@ export function TeclaS(props) {
     <group
       {...props}
       dispose={null}
-      position={[1, 0, -1]}
+      position={[1, 0.1, -1]}
       rotation={[Math.PI / 2, 1.5, 0]}
       scale={0.8}
     >

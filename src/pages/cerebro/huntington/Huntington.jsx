@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 import "./Huntington.css";
+import { Physics } from "@react-three/rapier";
 import React, { useState, useEffect, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 // -----------------------------------------------
@@ -16,7 +17,6 @@ import {
 import Brain from "./models-3d/Brain";
 import Lights from "./lights/Lights";
 import Floor from "./models-3d/Floor";
-import OldMan from "./models-3d/OldMan";
 import Lights2 from "./lights/Lights2";
 import Title from "../esquizofrenia/texts/Title";
 import Boy from "./models-3d/Boy2";
@@ -26,18 +26,22 @@ import TeclaEnter from "./models-3d/TeclaEnter";
 import Girl from "./models-3d/Girl";
 import TeclaB from "./models-3d/TeclaB";
 import Developer from "./models-3d/Developer";
+import Radio from "./models-3d/Radio";
 // -----------------------------------------------
 
 const Huntington = () => {
   const devRef = useRef();
+  
   const [isHit, setIsHit] = useState(false);
 
   const [danceTrigger, setDanceTrigger] = useState(false);
+
   const playSound = () => {
     new Audio("/sounds/golpe.mp3").play();
   };
 
   const [saludarTrigger, setSaludarTrigger] = useState(false);
+
   const handleClickOrKey = () => {
     playSound(); // 🔊 Sonido
     devRef.current?.playNext();
@@ -81,7 +85,7 @@ const Huntington = () => {
               }}
               shadows={true}
             >
-              <CameraReset/>
+              <CameraReset />
               <OrbitControls
                 target={[0, 0, 0]} // Esto centra los controles en el origen
                 enableZoom={true}
@@ -107,6 +111,7 @@ const Huntington = () => {
                 autosómico dominante, lo que significa que una sola copia del
                 gen defectuoso puede causar la enfermedad.
               </p>
+              <br />
             </section>
           </div>
           <div className="div-canvas-1">
@@ -116,7 +121,13 @@ const Huntington = () => {
               <Lights />
               <Text />
               <Floor />
-              <Sky />
+              <Title
+                text={"¿Que es?"}
+                position={[0.5, 0.5, -1]}
+                color={"SkyBlue"}
+                rotation={[Math.PI / 0.01, 0.4, 0]}
+              />
+              <Environment preset="sunset" background={true} />
               <Sparkles
                 count={256}
                 speed={1.5}
@@ -155,6 +166,14 @@ const Huntington = () => {
                   •Dificultades en la concentración
                 </p>
               </div>
+              <br />
+              <p>
+                Para {isHit ? "Levantar" : "Golpear"} oprime la tecla{" "}
+                <kbd>Enter</kbd> o haz click en el boton{" "}
+                <kbd>{isHit ? "Levantar" : "Golpear"}</kbd>
+              </p>
+              <br />
+              <br />
               <button
                 onClick={handleClickOrKey}
                 style={{
@@ -184,12 +203,28 @@ const Huntington = () => {
                 posicion={[-2, 0, -0.4]}
                 tamanio={[2, 0.5, 1]}
               />
+              <Text
+                position={[1, -0.7, -1.3]}
+                color="white"
+                anchorX="center"
+                anchorY="middle"
+                fontSize={0.2}
+                fontWeight={600}
+                rotation={[0, 0, -0.05]}
+              >
+                Para {isHit ? "Levantar" : "Golpear"} oprime la tecla "Enter"
+              </Text>
+
               <Environment preset="sunset" background={true} />
-              <Text />
+              <Title
+                text={"Sintomas"}
+                position={[0.3, 0.5, -0.5]}
+                color={"SkyBlue"}
+                rotation={[Math.PI / 0.01, 0.6, 0]}
+              />
               <Lights />
               <Floor />
               <TeclaEnter />
-              {/* <Sky /> */}
               <Sparkles
                 count={256}
                 speed={1.5}
@@ -208,14 +243,21 @@ const Huntington = () => {
               <h1 className="informacion-h1">Tratamiento</h1>
               <p className="informacion-p">
                 Actualmente no existe una cura para la enfermedad de Huntington.
+                <br />
                 El tratamiento se enfoca en aliviar los síntomas y mejorar la
-                calidad de vida. Se utilizan medicamentos para controlar los
-                movimientos involuntarios, problemas de ánimo y otros síntomas.
+                calidad de vida. <br />
+                Se utilizan medicamentos para controlar los movimientos
+                involuntarios, problemas de ánimo y otros síntomas.
               </p>
               <p className="informacion-p">
                 a mantener la funcionalidad y la independencia por más tiempo.
+                <br />
                 El apoyo psicológico y social es fundamental para el paciente y
                 su familia.
+                <br />
+                <br />
+                Para saludar oprime la tecla <kbd>S</kbd> o haz click en el
+                boton <kbd>Saludar</kbd>
               </p>
               <button
                 onClick={() => setSaludarTrigger(true)}
@@ -244,7 +286,23 @@ const Huntington = () => {
                 resetSaludarTrigger={() => setSaludarTrigger(false)}
               />
               <Environment preset="sunset" background={true} />
-              <Text />
+              <Title
+                text={"Tratamiento"}
+                position={[-1, 0.5, -1]}
+                color={"SkyBlue"}
+                rotation={[Math.PI / 0.01, 0.4, 0]}
+              />
+              <Text
+                position={[1, -0.7, -1.3]}
+                color="white"
+                anchorX="center"
+                anchorY="middle"
+                fontSize={0.2}
+                fontWeight={600}
+                rotation={[0, 0, -0.05]}
+              >
+                Para Saludar oprime la tecla "S"
+              </Text>
               <Boton3D
                 position={[0, 0, -2]}
                 onClick={() => setSaludarTrigger(true)}
@@ -271,19 +329,28 @@ const Huntington = () => {
         <div className="div-container">
           <div className="div-text">
             <section className="quees-info">
-              <h1 className="informacion-h1">
-                ¿Qué es la Enfermedad de Huntington?
-              </h1>
+              <h1 className="informacion-h1">Prevención y Consejos</h1>
               <p className="informacion-p">
-                La enfermedad de Huntington es un trastorno genético
-                neurodegenerativo que afecta el cerebro, causando deterioro
-                progresivo de las capacidades motoras, cognitivas y
-                psiquiátricas.
+                La enfermedad de Huntington no se puede prevenir, ya que es
+                hereditaria. <br />
+                Sin embargo, las personas con antecedentes familiares pueden
+                acudir a consejería genética para conocer su riesgo.
               </p>
               <p className="informacion-p">
-                Es una enfermedad hereditaria de patrón autosómico dominante, lo
-                que significa que una sola copia del gen defectuoso puede causar
-                la enfermedad.
+                <b>Consejos para pacientes:</b>
+                <br />
+                Mantener una rutina diaria activa.
+                <br />
+                Realizar ejercicio moderado para conservar la movilidad.
+                <br />
+                Seguir una dieta equilibrada.
+                <br />
+                Buscar apoyo psicológico y emocional.
+                <br />
+                Contar con una red de apoyo familiar o profesional. <br />
+                <br />
+                Para bailar oprime la tecla <kbd>B</kbd> o haz click en el boton{" "}
+                <kbd>¡Baila!</kbd>
               </p>
               <button
                 onClick={() => setDanceTrigger(true)}
@@ -315,6 +382,26 @@ const Huntington = () => {
               <Lights2 />
               <Floor />
               <TeclaB />
+
+              <Radio />
+
+              <Text
+                position={[1, -0.7, -1.3]}
+                color="white"
+                anchorX="center"
+                anchorY="middle"
+                fontSize={0.2}
+                fontWeight={600}
+                rotation={[0, 0, -0.05]}
+              >
+                Para Bailar oprime la tecla "B"
+              </Text>
+              <Title
+                text={"prevención"}
+                position={[-0.5, 0.5, -1]}
+                color={"SkyBlue"}
+                rotation={[Math.PI / 0.01, 0.4, 0]}
+              />
               <Boton3D
                 position={[0, 0, -2]}
                 onClick={() => setDanceTrigger(true)}
@@ -337,279 +424,6 @@ const Huntington = () => {
         </div>
       </section>
     </>
-
-    //   <>
-    //   <section id="seccion1">
-    //     <section id="seccion0">
-    //       <div className="div-canvas-2">
-    //         <Canvas
-    //           camera={{
-    //             position: [0, 0, 4],
-    //             fov: 55,
-    //           }}
-    //           shadows={true}
-    //         >
-    //           <OrbitControls
-    //             target={[0, 0, 0]} // Esto centra los controles en el origen
-    //             enableZoom={true}
-    //             enablePan={true}
-    //           />
-    //           <directionalLight position={[5, 5, 10]} intensity={2} />
-    //           <Title position={[0, 0, 0]} />
-    //           <Light4 />
-    //         </Canvas>
-    //       </div>
-    //     </section>
-    //     <div className="div-container">
-    //       <div className="div-text">
-    //         <section className="quees-info">
-    //           <h1 className="informacion-h1">¿Qué es la Esquizofrenia?</h1>
-    //           <p className="informacion-p">
-    //             La esquizofrenia es un trastorno mental crónico y grave que
-    //             afecta la forma en que una persona piensa, siente y percibe la
-    //             realidad. Se caracteriza por alteraciones en la percepción (como
-    //             alucinaciones y delirios), pensamiento desorganizado y
-    //             dificultades emocionales y sociales.
-    //           </p>
-    //           <button
-    //             onClick={() => setAnim1(!anim1)}
-    //             style={{
-    //               display: "block",
-    //               margin: "0 auto",
-    //               padding: "10px 20px",
-    //               background: anim1 ? "#ff4444" : "#4CAF50",
-    //               color: "white",
-    //               border: "none",
-    //               borderRadius: "4px",
-    //               cursor: "pointer",
-    //             }}
-    //           >
-    //             {anim1 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
-    //           </button>
-    //           <button onClick={() => setSceneKey(prev => prev + 1)} style={{
-    //               display: "block",
-    //               margin: "0 auto",
-    //               padding: "10px 20px",
-    //               background:"#4CAF50",
-    //               color: "white",
-    //               border: "none",
-    //               borderRadius: "4px",
-    //               cursor: "pointer",
-    //               marginTop: "10px",
-    //             }}>Reiniciar escena</button>
-    //         </section>
-    //       </div>
-    //       <div className="div-canvas-1">
-
-    //         <Canvas camera={{ position: [1, 1, 3] }} shadows={true} key={sceneKey}>
-    //           <OrbitControls />
-    //           <directionalLight position={[5, 5, 10]} intensity={2} />
-    //           <Boy playAnimation={anim1 ? "asustado" : null} />
-    //           <Light />
-    //           <Piso />
-
-    //           <Sky />
-    //           <Sparkles
-    //             count={256}
-    //             speed={1.5}
-    //             opacity={1}
-    //             color={"yellow"}
-    //             size={3}
-    //             scale={[10, 10, 10]}
-    //             noise={1}
-    //           />
-    //           <FirstPersonControls movementSpeed={2} lookSpeed={0.1} />
-    //         </Canvas>
-    //       </div>
-    //     </div>
-    //   </section>
-    //   <section id="seccion2">
-    //     <div className="div-container">
-    //       <div className="div-text">
-    //         <section className="quees-info">
-    //           <h1 className="informacion-h1">Sintomas</h1>
-    //           <p className="informacion-p">
-    //             Síntomas Positivos (exceso o distorsión de funciones normales):
-    //             Alucinaciones (escuchar o ver cosas que no existen). Delirios
-    //             (creencias falsas y persistentes). Pensamiento y lenguaje
-    //             desorganizado. Comportamiento motor anormal.
-    //           </p>
-    //           <p className="informacion-p">
-    //             Negativos(disminución de funciones normales): Apatía, falta de
-    //             motivación. Dificultad para expresar emociones (afecto plano).
-    //             Aislamiento social.{" "}
-    //           </p>
-    //           <p className="informacion-p">
-    //             Cognitivos: Problemas de memoria, atención y toma de decisiones.
-    //           </p>
-
-    //           <button
-    //             onClick={() => setAnim2(!anim2)}
-    //             style={{
-    //               display: "block",
-    //               margin: "0 auto",
-    //               padding: "10px 20px",
-    //               background: anim1 ? "#ff4444" : "#4CAF50",
-    //               color: "white",
-    //               border: "none",
-    //               borderRadius: "4px",
-    //               cursor: "pointer",
-    //             }}
-    //           >
-    //             {anim2 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
-    //           </button>
-    //         </section>
-    //       </div>
-    //       <div className="div-canvas-1">
-    //         <Canvas camera={{ position: [5, 1, 1] }} shadows={true}>
-    //           <OrbitControls />
-    //           <directionalLight position={[5, 5, 10]} intensity={2} />
-    //           <Light2 />
-    //           <Boy playAnimation={anim2 ? "sentado_triste" : null} />
-    //           <Puerta
-    //             position={[0, -0.8, 1]}
-    //             scale={[1.5, 1.5, 1.5]}
-    //             rotation={[0, 1, 0]}
-    //           />
-    //           <Piso />
-    //           <Sky />
-    //           <Sparkles
-    //             count={256}
-    //             speed={1.5}
-    //             opacity={1}
-    //             color={"yellow"}
-    //             size={3}
-    //             scale={[10, 10, 10]}
-    //             noise={1}
-    //           />
-    //         </Canvas>
-    //       </div>
-    //     </div>
-    //   </section>
-    //   <section id="seccion3">
-    //     <div className="div-container">
-    //       <div className="div-text">
-    //         <section className="quees-info">
-    //           <h1 className="informacion-h1">Prevención y cuidados</h1>
-    //           <p className="informacion-p">
-    //             Detección temprana (ante primeros síntomas, buscar ayuda
-    //             profesional).
-    //           </p>
-    //           <p className="informacion-p">
-    //             Adherencia al tratamiento(evitar recaídas).
-    //           </p>
-    //           <p className="informacion-p">
-    //             Evitar drogas y alcohol (pueden empeorar los síntomas).
-    //           </p>
-    //           <p className="informacion-p">
-    //             Red de apoyo (familia, grupos terapéuticos).
-    //           </p>
-    //           <p className="informacion-p">
-    //             Estilo de vida saludable (rutina, ejercicio, alimentación
-    //             balanceada).
-    //           </p>
-    //           <button
-    //             onClick={() => setAnim3(!anim3)}
-    //             style={{
-    //               display: "block",
-    //               margin: "0 auto",
-    //               padding: "10px 20px",
-    //               background: anim1 ? "#ff4444" : "#4CAF50",
-    //               color: "white",
-    //               border: "none",
-    //               borderRadius: "4px",
-    //               cursor: "pointer",
-    //             }}
-    //           >
-    //             {anim3 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
-    //           </button>
-    //         </section>
-    //       </div>
-    //       <div className="div-canvas-1">
-    //         <Canvas camera={{ position: [1, 1, 3] }} shadows={true}>
-    //           <OrbitControls />
-    //           <directionalLight position={[5, 5, 10]} intensity={2} />
-    //           <Light4 />
-    //           <Boy playAnimation={anim3 ? "tocando" : null} />
-    //           <Piso />
-    //           <Mesa position={[0, 3, 0.5]} scale={[3, 4, 2]} />
-    //           <Sky />
-    //           <Sparkles
-    //             count={256}
-    //             speed={1.5}
-    //             opacity={1}
-    //             color={"yellow"}
-    //             size={3}
-    //             scale={[10, 10, 10]}
-    //             noise={1}
-    //           />
-    //         </Canvas>
-    //       </div>
-    //     </div>
-    //   </section>
-    //   <section id="seccion4">
-    //     <div className="div-container">
-    //       <div className="div-text">
-    //         <section className="quees-info">
-    //           <h1 className="informacion-h1">Tratamiento</h1>
-    //           <p className="informacion-p">
-    //             Medicamentos antipsicóticos (controlan síntomas positivos).
-    //           </p>
-    //           <p className="informacion-p">
-    //             Terapia psicológica: Terapia cognitivo-conductual (TCC).
-    //           </p>
-    //           <p className="informacion-p">
-    //             Rehabilitación psicosocial (entrenamiento en habilidades
-    //             sociales).
-    //           </p>
-    //           <p className="informacion-p">Apoyo familiar y comunitario.</p>
-    //           <p className="informacion-p">
-    //             Hospitalización (en casos graves o crisis).
-    //           </p>
-    //           <button
-    //             onClick={() => setAnim4(!anim4)}
-    //             style={{
-    //               display: "block",
-    //               margin: "0 auto",
-    //               padding: "10px 20px",
-    //               background: anim1 ? "#ff4444" : "#4CAF50",
-    //               color: "white",
-    //               border: "none",
-    //               borderRadius: "4px",
-    //               cursor: "pointer",
-    //             }}
-    //           >
-    //             {anim4 ? "DETENER ANIMACIÓN" : "REPRODUCIR ANIMACIÓN"}
-    //           </button>
-    //         </section>
-    //       </div>
-    //       <div className="div-canvas-1">
-    //         <Canvas camera={{ position: [1, 1, 3] }} shadows={true}>
-    //           <OrbitControls />
-    //           <directionalLight position={[5, 5, 10]} intensity={2} />
-    //           <Light3 />
-    //           <Boy playAnimation={anim4 ? "sentado" : null} />
-    //           <Tv
-    //             position={[0, 0.5, 2]}
-    //             scale={[0.5, 0.5, 0.5]}
-    //             rotation={[0, Math.PI, 0]}
-    //           />
-    //           <Piso />
-    //           <Sky />
-    //           <Sparkles
-    //             count={256}
-    //             speed={1.5}
-    //             opacity={1}
-    //             color={"yellow"}
-    //             size={3}
-    //             scale={[10, 10, 10]}
-    //             noise={1}
-    //           />
-    //         </Canvas>
-    //       </div>
-    //     </div>
-    //   </section>
-    // </>
   );
 };
 
