@@ -21,7 +21,7 @@ const Podio = () => {
     const fetchTop = async () => {
       const db = getFirestore();
       const respuestasRef = collection(db, "respuestasQuiz");
-      const q = query(respuestasRef, orderBy("aciertos", "desc"), limit(3));
+      const q = query(respuestasRef, orderBy("aciertos", "desc"));
 
       try {
         const querySnapshot = await getDocs(q);
