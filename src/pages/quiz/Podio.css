@@ -1,40 +1,40 @@
-.podio-container {
-  padding: 20px;
+.podio-general {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 40px 20px;
+}
+
+.podio-top-container,
+.podio-resto-container {
+  width: 90%;
+  max-width: 700px;
   text-align: center;
-  position: absolute;
-  font-family: "roboto condensed", serif;
-  margin-top: -20%;
+  margin-top: 80px;
+  margin-bottom: 20px; /* espacio inferior */
+}
+
+.podio-top-container h2,
+.podio-resto-container h2 {
+  margin-bottom: 20px;
+  font-size: 1.6rem;
 }
 
 .podio-lista {
   list-style: none;
-  display: flex;
-  flex-direction: row;
   padding: 0;
-  gap: 5%;
+  margin: 0 auto;
 }
 
-.puesto {
-  font-size: 1.2rem;
-  margin: 10px 0;
+.podio-top li,
+.podio-resto li {
+  margin: 12px 0;
+  font-size: 1.1rem;
 }
 
-.puesto-1 {
-  color: gold;
-  font-weight: bold;
-}
-
-.puesto-2 {
-  color: silver;
-}
-
-.puesto-3 {
-  color: #cd7f32; /* bronce */
-}
-
-.podio {
-  display: flex;
-  flex-direction: row;
-  width: 100vw;
-  height: 85vh;
+.podio-canvas {
+  width: 100%;
+  height: 500px; /* mayor altura si quieres destacar el canvas */
+  margin-bottom: 20px; /* espacio debajo del canvas */
 }
