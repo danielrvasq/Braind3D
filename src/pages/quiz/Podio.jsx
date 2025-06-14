@@ -38,8 +38,9 @@ const Podio = () => {
   const resto = usuarios.slice(3);
 
   return (
-    <>
-      <div className="podio-container">
+    <div className="podio-general">
+      {/* Top 3 */}
+      <section className="podio-top-container">
         <h2>🏆 Top 3 del Podio</h2>
         <ol className="podio-lista podio-top">
           {top3.map((usuario, index) => (
@@ -48,9 +49,10 @@ const Podio = () => {
             </li>
           ))}
         </ol>
-      </div>
+      </section>
 
-      <div className="podio">
+      {/* Modelos 3D */}
+      <section className="podio-canvas">
         <Canvas shadows camera={{ position: [0, 1, 4] }}>
           <Girl />
           <Developer />
@@ -61,11 +63,12 @@ const Podio = () => {
             <shadowMaterial transparent opacity={0.2} />
           </mesh>
         </Canvas>
-      </div>
+      </section>
 
+      {/* Resto de participantes */}
       {resto.length > 0 && (
-        <div className="podio-container">
-          <h2>🎖️ Participantes restantes</h2>
+        <section className="podio-resto-container">
+          <h2>🎖️ Otros Participantes</h2>
           <ol className="podio-lista podio-resto">
             {resto.map((usuario, index) => (
               <li key={index + 3}>
@@ -73,9 +76,9 @@ const Podio = () => {
               </li>
             ))}
           </ol>
-        </div>
+        </section>
       )}
-    </>
+    </div>
   );
 };
 
