@@ -1,5 +1,6 @@
 .podio-general {
   display: flex;
+  font-family: "roboto condensed", serif;
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -12,26 +13,52 @@
   max-width: 700px;
   text-align: center;
   margin-top: 60px;
+  font-family: "roboto condensed", serif;
 }
-
+.podio-container {
+  padding: 20px;
+  text-align: center;
+  position: absolute;
+  font-family: "roboto condensed", serif;
+  margin-top: -20%;
+}
 .podio-top-container h2,
 .podio-resto-container h2 {
+  font-family: "roboto condensed", serif;
   font-size: 1.6rem;
 }
 
 .podio-lista {
+  font-family: "roboto condensed", serif;
   list-style: none;
+  display: flex;
+  flex-direction: row;
   padding: 0;
-  margin: 0 auto;
+  gap: 5%;
 }
 
 .podio-top li,
 .podio-resto li {
   margin: 12px 0;
+  font-family: "roboto condensed", serif;
   font-size: 1.1rem;
 }
 
 .podio-canvas {
   width: 100%;
   height: 500px; /* mayor altura si quieres destacar el canvas */
+  font-family: "roboto condensed", serif;
+}
+.podio-container {
+  padding: 20px;
+  text-align: center;
+font-family: "roboto condensed", serif;
+}
+
+.podio {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 85vh;
+  font-family: "roboto condensed", serif;
 }
