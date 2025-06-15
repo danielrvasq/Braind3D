@@ -4,7 +4,7 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 
 import { clone } from "three/examples/jsm/utils/SkeletonUtils";
 
-const Human3 = ({ startAnimation }) => {
+const Human = ({ startAnimation }) => {
   const group = useRef();
   const { scene, animations } = useGLTF("/models-3d/human3.glb");
   const clonedScene = useMemo(() => clone(scene), [scene]);
@@ -15,7 +15,7 @@ const Human3 = ({ startAnimation }) => {
 
   // Animación de Mixamo
   useEffect(() => {
-    const action = actions["Armature|mixamo.com|Layer0"];
+    const action = actions["dancing"];
     if (action) {
       if (startAnimation) {
         action.reset().fadeIn(0.5).play();
@@ -56,9 +56,9 @@ const Human3 = ({ startAnimation }) => {
 
   return (
     <group ref={group} position={position}>
-      <primitive object={clonedScene} scale={0.5} />
+      <primitive object={clonedScene} scale={0.7} />
     </group>
   );
 };
 
-export default Human3;
+export default Human;
