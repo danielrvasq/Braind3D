@@ -15,11 +15,15 @@ import Floor from "../huntington/models-3d/Floor";
 import Lavadora from "./models-3d/Lavadora";
 import Boton3D from "./models-3d/Boton3D";
 import Pancito from "./models-3d/Pancito";
+import VejeteAl from "./models-3d/VejeteAl";
 
 const Alzheimer = () => {
   const [oldManIsWalking, setOldManIsWalking] = useState(false);
   const [womanIsThinking, setWomanIsThinking] = useState(false);
+  const [vejeteIsRuning, setVejeteIsRuning] = useState(false);
   const { setCurrentAnimation } = useOldmanStore();
+  const [VejeteIsLost, setVejeteIsLost] = useState(false);
+  const [VejeteIsWalk, setVejeteIsWalk] = useState(false);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -165,11 +169,19 @@ const Alzheimer = () => {
       <div className="div-container">
         <div className="div-text">
           <section className="quees-info">
-            <h1 className="informacion-h1">¿Qué es la Enfermedad de Huntington?</h1>
+            <h1 className="informacion-h1">Diagnóstico</h1>
             <p className="informacion-p">
-              La enfermedad de Huntington es un trastorno genético neurodegenerativo que afecta el cerebro, causando deterioro progresivo de las capacidades motoras, cognitivas y psiquiátricas.
-              Es hereditaria, de patrón autosómico dominante.
+              El diagnóstico del Alzheimer suele ser un proceso gradual y multifacético, ya que no existe una prueba única para confirmar la enfermedad de forma definitiva en las primeras etapas. 
+              El diagnóstico generalmente se basa en la evaluación clínica de los síntomas, la historia médica del paciente y una serie de pruebas. 
+              Aquí te dejo los principales pasos en el proceso diagnóstico:
+              <br />• Evaluación de los síntomas&nbsp;&nbsp;&nbsp;&nbsp;• Exámenes físicos y neurológicos
+              <br />• Pruebas de imagen cerebral&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Evaluación de la función psicológica
+              <br />• Historia médica y familiar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Pruebas cognitivas
+              <br />• Análisis de sangre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Biomarcadores
             </p>
+            <button onClick={() => setVejeteIsRuning((prev) => !prev)}>
+              {vejeteIsRuning ? "Detener Movimiento" : "Correr"}
+            </button>
           </section>
         </div>
         <div className="div-canvas-1">
@@ -178,7 +190,16 @@ const Alzheimer = () => {
               <OrbitControls />
               <Floor />
               <Lights />
+              <VejeteAl vejeteIsRuning={VejeteIsWalk} scale={1.4} position={[0, -0.98, 0]} />
               <Sky />
+              <Boton3D
+                position={[0, 0, -2]}
+                onClick={() => setVejeteIsWalk(true)} 
+                mensaje="Correr"
+                color="#4CAF50"
+                posicion={[-1, -0.52, -0.5]}
+                tamanio={[2, 0.5, 1]}
+              />
               <Sparkles count={256} speed={1.5} opacity={1} color="yellow" size={3} scale={[10, 10, 10]} noise={1} />
             </Suspense>
           </Canvas>
