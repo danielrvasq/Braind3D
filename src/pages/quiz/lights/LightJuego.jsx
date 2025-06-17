@@ -13,9 +13,19 @@ const LightJuego = (position) => {
       <spotLight
         ref={spotLightRef}
         color="white"
-        position={(0, 0, 10)}
+        position={(0, 0, 100)}
         distance={1000}
-        intensity={800}
+        intensity={80000}
+        angle={Math.PI / 3}
+        penumbra={1}
+        castShadow={true}
+      />
+      <spotLight
+        ref={spotLightRef}
+        color="orange"
+        position={(0, 0, 100)}
+        distance={1000}
+        intensity={80000}
         angle={Math.PI / 3}
         penumbra={1}
         castShadow={true}
