@@ -6,6 +6,8 @@ import { useRef, useEffect, useState, Suspense } from "react";
 import useOldmanStore from "../../../stores/use-oldman-store";
 import Light3 from "./lights/Lights3";
 import Title1 from "./texts/Title1";
+import Title2 from "./texts/Title2";
+import useManStore from "../../../stores/use-Man-store";
 
 // Modelos 3D
 import BrainAl from "./models-3d/BrainAl";
@@ -20,10 +22,10 @@ import VejeteAl from "./models-3d/VejeteAl";
 const Alzheimer = () => {
   const [oldManIsWalking, setOldManIsWalking] = useState(false);
   const [womanIsThinking, setWomanIsThinking] = useState(false);
-  const [vejeteIsRuning, setVejeteIsRuning] = useState(false);
   const { setCurrentAnimation } = useOldmanStore();
-  const [VejeteIsLost, setVejeteIsLost] = useState(false);
-  const [VejeteIsWalk, setVejeteIsWalk] = useState(false);
+  const { setAnimation } = useManStore();
+  const [isFlowing, setIsFlowing] = useState(false);
+
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -81,6 +83,7 @@ const Alzheimer = () => {
               <OrbitControls />
               <Floor />
               <Lights />
+              <Title2 txt3D="¿ Que es ?" position={[8.1, 1, -2]}/>
               <BrainAl scale={2.4} />
               <Sky />
               <Sparkles count={256} speed={1.5} opacity={1} color="yellow" size={3} scale={[10, 10, 10]} noise={1} />
@@ -96,21 +99,23 @@ const Alzheimer = () => {
             <p>
               Las causas exactas del Alzheimer no se conocen completamente, pero hay varios factores que contribuyen a su desarrollo:
               <br />• Acumulación de proteínas anormales&nbsp;&nbsp;&nbsp;&nbsp;• Envejecimiento
-              <br />• Factores genéticos&nbsp;&nbsp;&nbsp;&nbsp;• Enfermedades cardiovasculares
+              <br />• Factores genéticos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Enfermedades cardiovasculares
               <br />• Dificultad para realizar tareas cotidianas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Factores ambientales
             </p>
-            <button onClick={() => setOldManIsWalking((prev) => !prev)} style={{
-                      display: "block",
-                      margin: "0 auto",
-                      padding: "10px 20px",
-                      background: "#4CAF50",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "4px",
-                      cursor: "pointer",
-                    }}>
+            <button
+              onClick={() => setOldManIsWalking((prev) => !prev)}
+              style={{
+                backgroundColor: oldManIsWalking ? "#E53935" : "#4CAF50",
+                color: "#fff",
+                padding: "10px 20px",
+                border: "none",
+                borderRadius: "8px",
+                cursor: "pointer"
+              }}
+            >
               {oldManIsWalking ? "Detener caminata" : "Caminar"}
             </button>
+
           </section>
         </div>
         <div className="div-canvas-1">
@@ -120,15 +125,16 @@ const Alzheimer = () => {
               <Floor />
               <Lights />
               <OldManAlz walk={oldManIsWalking} scale={1.4} />
+              <Title2 txt3D="Causas" position={[8.1, 1, -2]}/>
               <Sky />
               <Boton3D
-                position={[0, 0, -2]}
-                onClick={() => setOldManIsWalking(true)}
-                mensaje="Caminar"
-                color="#4CAF50"
-                posicion={[-1, -0.52, -0.5]}
-                tamanio={[2, 0.5, 1]}
-              />
+              position={[0, 0, -2]}
+              onClick={() => setOldManIsWalking((prev) => !prev)}
+              mensaje={oldManIsWalking ? "Detener caminata" : "Caminar"}
+              color={oldManIsWalking ? "#E53935" : "#4CAF50"}
+              posicion={[-1, -0.52, -0.5]}
+              tamanio={[2, 0.5, 1]}
+            />
               <Sparkles count={256} speed={1.5} opacity={1} color="yellow" size={3} scale={[10, 10, 10]} noise={1} />
             </Suspense>
           </Canvas>
@@ -145,16 +151,17 @@ const Alzheimer = () => {
               <br />• Problemas con el lenguaje&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Alteraciones en el juicio
               <br />• Dificultad para realizar tareas cotidianas
             </p>
-            <button onClick={() => setWomanIsThinking((prev) => !prev)} style={{
-                      display: "block",
-                      margin: "0 auto",
-                      padding: "10px 20px",
-                      background: "#4CAF50",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "4px",
-                      cursor: "pointer",
-                    }}>
+            <button
+              onClick={() => setWomanIsThinking((prev) => !prev)}
+              style={{
+                backgroundColor: womanIsThinking ? "#E53935" : "#4CAF50",
+                color: "#fff",
+                padding: "10px 20px",
+                border: "none",
+                borderRadius: "8px",
+                cursor: "pointer"
+              }}
+            >
               {womanIsThinking ? "Detener pensamiento" : "Pensar"}
             </button>
           </section>
@@ -167,14 +174,15 @@ const Alzheimer = () => {
               <Title1 title="Utiliza el cursor para iluminar la escena" />
               <Light3 />
               <WomanOld thinking={womanIsThinking} scale={1.4} />
+              <Title2 txt3D="Tratamiento" position={[8.1, 1.8, -2]}/>
               <Lavadora scale={0.06} />
               <Pancito scale={0.35} />
               <Sky />
               <Boton3D
                 position={[0, 0, -2]}
-                onClick={() => setWomanIsThinking(true)}
-                mensaje="Pensar"
-                color="#4CAF50"
+                onClick={() => setWomanIsThinking((prev) => !prev)}
+                mensaje={womanIsThinking ? "Detener pensamiento" : "Pensar"}
+                color={womanIsThinking ? "#E53935" : "#4CAF50"}
                 posicion={[-1, -0.52, -0.5]}
                 tamanio={[2, 0.5, 1]}
               />
@@ -197,9 +205,19 @@ const Alzheimer = () => {
               <br />• Historia médica y familiar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Pruebas cognitivas
               <br />• Análisis de sangre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Biomarcadores
             </p>
-            <button onClick={() => setVejeteIsRuning((prev) => !prev)}>
-              {vejeteIsRuning ? "Detener Movimiento" : "Correr"}
-            </button>
+            <button
+                onClick={() => setIsFlowing((prev) => !prev)}
+                style={{
+                  backgroundColor: isFlowing ? "#E53935" : "#4CAF50",
+                  color: "#fff",
+                  padding: "10px 20px",
+                  border: "none",
+                  borderRadius: "8px",
+                  cursor: "pointer"
+                }}
+              >
+                {isFlowing ? "Detener animación" : "Correr"}
+              </button>
           </section>
         </div>
         <div className="div-canvas-1">
@@ -208,13 +226,14 @@ const Alzheimer = () => {
               <OrbitControls />
               <Floor />
               <Lights />
-              <VejeteAl vejeteIsRuning={VejeteIsWalk} scale={1.4} position={[0, -0.98, 0]} />
+              <VejeteAl flow={isFlowing} scale={1.4} position={[0, -0.98, 0]} />
               <Sky />
+              <Title2 txt3D="Prevencion" position={[8.1, 1, -2]}/>
               <Boton3D
                 position={[0, 0, -2]}
-                onClick={() => setVejeteIsWalk(true)} 
-                mensaje="Correr"
-                color="#4CAF50"
+                onClick={() => setIsFlowing((prev) => !prev)}
+                mensaje={isFlowing ? "Detener animación" : "Correr"}
+                color={isFlowing ? "#E53935" : "#4CAF50"}
                 posicion={[-1, -0.52, -0.5]}
                 tamanio={[2, 0.5, 1]}
               />
