@@ -250,18 +250,7 @@ const Bipolaridad = () => {
             </p>
             <button
               onClick={() => {
-                setStartAnimationModel2((prev) => {
-                  const newState = !prev;
-
-                  // Control del sonido
-                  if (newState) {
-                    dodgeAudioRef.current?.play();
-                  } else {
-                    audioRdodgeAudioRefef.current?.stop();
-                  }
-
-                  return newState;
-                });
+                setStartAnimationModel2((prev) => !prev);
               }}
               style={{
                 display: "block",
@@ -291,11 +280,7 @@ const Bipolaridad = () => {
                 rotation={[Math.PI / 0.01, 0.4, 0]}
               />
               <Lights />
-              <Human2
-                startAnimation={startAnimationModel2}
-                ref={dodgeAudioRef}
-                scale={1.4}
-              />
+              <Human2 startAnimation={startAnimationModel2} scale={1.4} />
               <Text
                 position={[0.5, 0, 0.5]} // Puedes ajustar la posición
                 fontSize={0.2}
