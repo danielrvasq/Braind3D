@@ -1,12 +1,12 @@
 import { Html } from "@react-three/drei";
 import { Text3D } from "@react-three/drei";
-import "./Title1.css";
+import "./Title3.css";
 
-const Title1 = ({ title }) => {
+const Title3 = ({ title }) => {
   return (
     <Html
       center
-      position={[0, -1, 0]}
+      position={[0, -1.5, 0]}
       transform
       distanceFactor={5}
       wrapperClass="title"
@@ -16,4 +16,4 @@ const Title1 = ({ title }) => {
   );
 };
 
-export default Title1;
+export default Title3;
