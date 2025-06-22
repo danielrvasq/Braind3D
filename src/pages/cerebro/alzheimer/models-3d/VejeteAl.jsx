@@ -30,6 +30,7 @@ export function VejeteAl({ flow = false, ...props }) {
 
       if (audioRef.current) {
         audioRef.current.currentTime = 0;
+        audioRef.volume = 0.2;
         audioRef.current.play().catch((e) => {
           console.warn("Audio play failed:", e);
         });
