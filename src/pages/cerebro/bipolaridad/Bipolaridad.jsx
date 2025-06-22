@@ -290,8 +290,10 @@ const Bipolaridad = () => {
               <Sky />
               <Boton3D
                 position={[0, 0, -2]}
-                onClick={() => setStartAnimationModel2(true)}
-                mensaje="Esquivar"
+                onClick={() => setStartAnimationModel2((prev) => !prev)}
+                mensaje={
+                  startAnimationModel2 ? "Esquivar" : "Esquivar"
+                }
                 color={startAnimationModel2 ? "#ff4444" : "#4CAF50"}
                 posicion={[-2, 0, -0.4]}
                 tamanio={[2, 0.5, 1]}
