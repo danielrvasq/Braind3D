@@ -1,53 +1,59 @@
-import { useState } from "react";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
-import { db } from "../../../firebase.config";
-import useAuthStore from "../../stores/use-auth-store";
-import questions from "../../data/questions";
 import "./Quiz.css";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Sky } from "@react-three/drei";
-import Island from "./models-3d/Island";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { OrbitControls, Sky, Text } from "@react-three/drei";
 import LightJuego from "./lights/LightJuego";
-import Respuesta from "./models-3d/Respuesta";
 import { Physics } from "@react-three/rapier";
-import Title from "./texts/Title";
+import Suelo from "./models-3d/Suelo";
+import Car from "./models-3d/Car";
+import DetectorZona from "./models-3d/DetectorZona";
+import { useRef, useEffect, useState } from "react";
+
+import questions from "../../data/questions";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+import useAuthStore from "../../stores/use-auth-store";
 import { Rocks } from "./models-3d/Rocks";
-import Brain from "./models-3d/Brain";
+
+const generarRocasAleatorias = (cantidad = 30) => {
+  const rocas = [];
+  for (let i = 0; i < cantidad; i++) {
+    rocas.push({
+      id: crypto.randomUUID(),
+      posicion: [
+        Math.random() * 200 - 100, // X entre -150 y 150 → más ancho
+        0,
+        Math.random() * 80 - 40, // Z entre -20 y 20 → más corto
+      ],
+      escala: 3 + Math.random() * 7, // escala entre 3 y 10
+      rotY: Math.random() * Math.PI * 2,
+    });
+  }
+  return rocas;
+};
 
 const Quiz = () => {
-  // Estados del quiz
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [userAnswers, setUserAnswers] = useState([]);
-  const [selectedOption, setSelectedOption] = useState("");
-  const [quizFinalizado, setQuizFinalizado] = useState(false);
-  const [mostrarRetro, setMostrarRetro] = useState(false);
-  const [aciertos, setAciertos] = useState(0);
-  const [retroIndex, setRetroIndex] = useState(0);
-  const [objetosCaidos, setObjetosCaidos] = useState([]);
+  const [rocasDecorativas] = useState(() => generarRocasAleatorias(15));
 
-  // Usuario autenticado
+  const [mostrarRetro, setMostrarRetro] = useState(false);
+  const [retroIndex, setRetroIndex] = useState(0);
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [quizFinalizado, setQuizFinalizado] = useState(false);
+  const [aciertos, setAciertos] = useState(0);
+
   const { userLooged } = useAuthStore();
   const db = getFirestore();
 
-  // Lanza un objeto con físicas (cerebro o piedra)
-  const lanzarObjeto = (esCorrecta) => {
-    const id = crypto.randomUUID();
-    setObjetosCaidos((prev) => [
-      ...prev,
-      {
-        id,
-        tipo: esCorrecta ? "brain" : "rock",
-        posicion: [Math.random() * 4 - 2, 10, 0],
-      },
-    ]);
-  };
-
-  // Maneja el paso a la siguiente pregunta o finalización del quiz
+  // Avanzar a la siguiente pregunta
   const handleNext = async () => {
-    if (!selectedOption) return alert("Selecciona una opción");
+    if (!selectedOption) return alert("Debes seleccionar una opción");
+    if (selectedOption === "verPodio") {
+      window.location.href = "/Podio";
+      return;
+    }
 
     const isCorrect = selectedOption === questions[currentIndex].correctAnswer;
-    lanzarObjeto(isCorrect);
 
     const updatedAnswers = [...userAnswers, selectedOption];
     setUserAnswers(updatedAnswers);
@@ -75,171 +81,231 @@ const Quiz = () => {
         );
         setAciertos(correctas);
         setQuizFinalizado(true);
+        setMostrarRetro(true);
       } catch (error) {
         console.error("Error al guardar respuestas:", error);
       }
     }
   };
 
-  // Reinicia el quiz completo
-  const reiniciarQuiz = () => {
-    setCurrentIndex(0);
-    setUserAnswers([]);
-    setSelectedOption("");
-    setAciertos(0);
-    setQuizFinalizado(false);
-    setMostrarRetro(false);
-    setRetroIndex(0);
-    setObjetosCaidos([]);
+  // Avanzar con Enter
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Enter") {
+        if (mostrarRetro && selectedOption === "retroSiguiente") {
+          setSelectedOption("");
+          if (retroIndex < questions.length - 1) {
+            setRetroIndex(retroIndex + 1);
+          } else {
+            setMostrarRetro(false); // Fin del feedback
+            setRetroIndex(0);
+          }
+        } else {
+          handleNext(); // Flujo normal del quiz
+        }
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedOption, currentIndex, retroIndex, mostrarRetro]);
+
+  // Recibe desde DetectorZona la respuesta seleccionada
+  const handleRespuestaDetectada = (index) => {
+    const opcionSeleccionada = questions[currentIndex].options[index];
+    setSelectedOption(opcionSeleccionada);
   };
+
+  function CameraReset() {
+    const { camera } = useThree();
+    const originalCameraPos = useRef(camera.position.clone());
+
+    useFrame(() => {
+      const distance = camera.position.distanceTo(originalCameraPos.current);
+      if (distance > 0.01) {
+        camera.position.lerp(originalCameraPos.current, 0.02);
+        camera.lookAt(0, 0, 0);
+      }
+    });
+
+    return null;
+  }
 
   return (
     <div className="juego">
-      <Canvas camera={{ position: [0, 3, 11] }} shadows>
+      <Canvas camera={{ position: [0, 100, 0] }} shadows>
+        <CameraReset />
+
+        <Text
+          position={[0, 0.05, -50]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={5}
+        >
+          {quizFinalizado
+            ? `¡Completado! Aciertos: ${aciertos} / ${questions.length}`
+            : questions[currentIndex]?.question}
+        </Text>
+        {quizFinalizado && (
+          <Text
+            position={[0, 0.1, -40]} // Puedes ajustar esta posición
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={5}
+            color="white"
+            anchorX="center"
+            anchorY="middle"
+            onClick={() => (window.location.href = "/Podio")}
+          >
+            Ver Podio
+          </Text>
+        )}
+        {mostrarRetro && (
+          <>
+            <Text
+              key={retroIndex}
+              position={[0, 0.1, 0]}
+              rotation={[-Math.PI / 2, 0, 0]}
+              scale={4}
+              color="white"
+              anchorX="center"
+              anchorY="middle"
+            >
+              {`P: ${questions[retroIndex].question}
+Tu: ${userAnswers[retroIndex]}
+Ok: ${questions[retroIndex].correctAnswer}`}
+            </Text>
+
+            <Text
+              position={[0, 0.1, 40]} // Coincide con el DetectorZona
+              rotation={[Math.PI / 2, Math.PI, Math.PI]}
+              fontSize={4}
+              color="black"
+              anchorX="center"
+              anchorY="middle"
+            >
+              {retroIndex === questions.length - 1 ? "Finalizar" : "Siguiente"}
+            </Text>
+          </>
+        )}
+
         <OrbitControls />
         <Sky />
         <LightJuego />
 
         <Physics>
-          {/* Objetos físicos lanzados por respuestas */}
-          {objetosCaidos.map((obj) =>
-            obj.tipo === "brain" ? (
-              <Brain key={obj.id} position={obj.posicion} />
-            ) : (
-              <Rocks key={obj.id} position={obj.posicion} />
-            )
-          )}
-
-          <Island />
-
-          {/* Pregunta actual */}
-          {!quizFinalizado && !mostrarRetro && (
-            <Title text={questions[currentIndex].question} />
-          )}
-
-          {/* Resultado final */}
-          {quizFinalizado && !mostrarRetro && (
+          <Suelo />
+          <Car />
+          {/* DetectorZonas para cada respuesta */}
+          {!quizFinalizado && (
             <>
-              <Title
-                text={`¡Gracias, ${userLooged?.displayName}!`}
-                position={[-0.5, 5, 4]}
+              <Text
+                position={[-40, 0.05, -40]}
+                rotation={[-Math.PI / 2, 0, 0]}
+                scale={5}
+              >
+                Utiliza las teclas WASD
+              </Text>
+              <Text
+                position={[-40, 0.05, -35]}
+                rotation={[-Math.PI / 2, 0, 0]}
+                scale={5}
+              >
+                para moverte
+              </Text>
+              <Text
+                position={[40, 0.05, -40]}
+                rotation={[-Math.PI / 2, 0, 0]}
+                scale={5}
+              >
+                Utiliza la tecla Enter
+              </Text>
+              <Text
+                position={[40, 0.05, -35]}
+                rotation={[-Math.PI / 2, 0, 0]}
+                scale={5}
+              >
+                para interactuar
+              </Text>
+              <Text
+                position={[-40, 0.05, -25]}
+                rotation={[-Math.PI / 2, 0, 0]}
+                scale={5}
+              >
+                Estaciona sobre la
+              </Text>
+              <Text
+                position={[-40, 0.05, -20]}
+                rotation={[-Math.PI / 2, 0, 0]}
+                scale={5}
+              >
+                respuesta correcta
+              </Text>
+              <DetectorZona
+                respuesta={0}
+                position={[0, -0.029, -15]}
+                onDetect={handleRespuestaDetectada}
               />
-              <Title
-                text={`Aciertos: ${aciertos} de ${questions.length}`}
-                position={[-0.5, 3, 4]}
+              <DetectorZona
+                respuesta={1}
+                position={[0, -0.029, 0]}
+                onDetect={handleRespuestaDetectada}
               />
-
-              <Respuesta
-                color="blue"
-                mensaje="Ver retroalimentación"
-                onClick={() => setMostrarRetro(true)}
-                posicion={[-2.5, 2, 5]}
-                tamanio={[3.5, 0.5, 1]}
-                type="fixed"
+              <DetectorZona
+                respuesta={2}
+                position={[0, -0.029, 15]}
+                onDetect={handleRespuestaDetectada}
               />
-              <Respuesta
-                color="blue"
-                mensaje="Volver al inicio"
-                onClick={() => (window.location.href = "/")}
-                posicion={[2.5, 2, 5]}
-                tamanio={[3, 0.5, 1]}
-                type="fixed"
-              />
-              <Respuesta
-                color="purple"
-                mensaje="Ver podio"
-                onClick={() => (window.location.href = "/Podio")}
-                posicion={[-2.5, 1, 5]}
-                tamanio={[3, 0.5, 1]}
-                type="fixed"
-              />
-              <Respuesta
-                color="orange"
-                mensaje="Volver a empezar"
-                onClick={reiniciarQuiz}
-                posicion={[2.5, 1, 5]}
-                tamanio={[3, 0.5, 1]}
-                type="fixed"
+              <DetectorZona
+                respuesta={3}
+                position={[0, -0.029, 30]}
+                onDetect={handleRespuestaDetectada}
               />
             </>
           )}
-
-          {/* Retroalimentación */}
-          {mostrarRetro && retroIndex < questions.length && (
-            <>
-              <Title
-                key={retroIndex}
-                text={`P: ${questions[retroIndex].question}\nTu: ${userAnswers[retroIndex]}\nOk: ${questions[retroIndex].correctAnswer}`}
-                position={[0, 4.5, 4]}
-              />
-              <Respuesta
-                color="blue"
-                mensaje={
-                  retroIndex === questions.length - 1
-                    ? "Finalizar"
-                    : "Siguiente"
+          {quizFinalizado && (
+            <DetectorZona
+              respuesta={"verPodio"}
+              position={[0, -0.029, -35]} // Lejos de las otras zonas
+              onDetect={(respuesta) => {
+                if (respuesta === "verPodio") {
+                  setSelectedOption("verPodio");
                 }
-                onClick={() => {
-                  setRetroIndex((prev) => {
-                    if (prev < questions.length - 1) {
-                      return prev + 1;
-                    } else {
-                      setMostrarRetro(false);
-                      return 0;
-                    }
-                  });
-                }}
-                posicion={[0, 2, 5]}
-                tamanio={[3, 0.5, 1]}
-                type="fixed"
-              />
-
-              <Respuesta
-                color="blue"
-                mensaje="Volver al inicio"
-                onClick={() => (window.location.href = "/")}
-                posicion={[2.8, 1, 5]}
-                tamanio={[3, 0.5, 1]}
-                type="fixed"
-              />
-              <Respuesta
-                color="purple"
-                mensaje="Ver podio"
-                onClick={() => (window.location.href = "/Podio")}
-                posicion={[-2.5, 1, 5]}
-                tamanio={[3, 0.5, 1]}
-                type="fixed"
-              />
-            </>
-          )}
-
-          {/* Opciones de respuesta */}
-          {!quizFinalizado &&
-            !mostrarRetro &&
-            questions[currentIndex].options.map((option, idx) => (
-              <Respuesta
-                key={idx}
-                color={selectedOption === option ? "yellow" : "green"}
-                mensaje={option}
-                onClick={() => setSelectedOption(option)}
-                posicion={[0, idx * 0.6 - -0.7, 4]}
-                tamanio={[2, 0.5, 1]}
-                type="fixed"
-              />
-            ))}
-
-          {/* Botón siguiente */}
-          {!quizFinalizado && !mostrarRetro && (
-            <Respuesta
-              color="blue"
-              mensaje="Siguiente"
-              onClick={handleNext}
-              posicion={[4, 1, 5]}
-              tamanio={[3, 0.5, 1]}
-              type="fixed"
+              }}
             />
           )}
+          {mostrarRetro && (
+            <DetectorZona
+              respuesta={"retroSiguiente"}
+              position={[0, -0.029, 45]}
+              onDetect={(respuesta) => {
+                if (respuesta === "retroSiguiente") {
+                  setSelectedOption("retroSiguiente");
+                }
+              }}
+            />
+          )}
+          {rocasDecorativas.map((roca) => (
+            <Rocks
+              key={roca.id}
+              position={roca.posicion}
+              rotation={[0, roca.rotY, 0]}
+              scale={roca.escala}
+            />
+          ))}
         </Physics>
+        {!quizFinalizado &&
+          questions[currentIndex].options.map((opcion, index) => (
+            <Text
+              key={index}
+              position={[0, 0.1, -10 + index * 15]}
+              rotation={[Math.PI / 2, Math.PI, Math.PI]}
+              fontSize={5}
+              color="black"
+              anchorX="center"
+              anchorY="middle"
+            >
+              {opcion}
+            </Text>
+          ))}
       </Canvas>
     </div>
   );
