@@ -7,6 +7,7 @@ import useOldmanStore from "../../../stores/use-oldman-store";
 import Light3 from "./lights/Lights3";
 import Title1 from "./texts/Title1";
 import Title2 from "./texts/Title2";
+import Title3 from "./texts/Title3";
 import useManStore from "../../../stores/use-Man-store";
 
 // Modelos 3D
@@ -28,14 +29,28 @@ const Alzheimer = () => {
 
 
   useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (event.code === "KeyQ" || event.code === "Escape") {
+  const handleKeyPress = (event) => {
+    switch (event.code) {
+      case "KeyQ": // CAMINAR
+        setOldManIsWalking((prev) => !prev);
+        break;
+      case "KeyP": // PENSAR
+        setWomanIsThinking((prev) => !prev);
+        break;
+      case "KeyF": // CORRER
+        setIsFlowing((prev) => !prev);
+        break;
+      case "Escape": // ANIMACIÓN LOST
         setCurrentAnimation("Lost");
-      }
-    };
-    document.addEventListener("keydown", handleKeyPress);
-    return () => document.removeEventListener("keydown", handleKeyPress);
-  }, []);
+        break;
+      default:
+        break;
+    }
+  };
+
+  document.addEventListener("keydown", handleKeyPress);
+  return () => document.removeEventListener("keydown", handleKeyPress);
+}, []);
 
   function CameraReset() {
     const { camera } = useThree();
@@ -124,6 +139,7 @@ const Alzheimer = () => {
               <OrbitControls />
               <Floor />
               <Lights />
+              <Title1 title="Presiona la tecla Q para comenzar la animacion" />
               <OldManAlz walk={oldManIsWalking} scale={1.4} />
               <Title2 txt3D="Causas" position={[8.1, 1, -2]}/>
               <Sky />
@@ -171,7 +187,8 @@ const Alzheimer = () => {
             <Suspense fallback={null}>
               <OrbitControls />
               <Floor />
-              <Title1 title="Utiliza el cursor para iluminar la escena" />
+              <Title1 title="Utiliza el cursor para iluminar la escena" /> 
+              <Title3 title="Preciona la tecla P para iniciar con la animacion" />
               <Light3 />
               <WomanOld thinking={womanIsThinking} scale={1.4} />
               <Title2 txt3D="Tratamiento" position={[8.1, 1.8, -2]}/>
@@ -227,6 +244,7 @@ const Alzheimer = () => {
               <Floor />
               <Lights />
               <VejeteAl flow={isFlowing} scale={1.4} position={[0, -0.98, 0]} />
+              <Title1 title="Presiona la tecla F para comenzar la animacion" />
               <Sky />
               <Title2 txt3D="Prevencion" position={[8.1, 1, -2]}/>
               <Boton3D

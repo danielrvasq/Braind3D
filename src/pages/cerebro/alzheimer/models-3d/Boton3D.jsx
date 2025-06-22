@@ -9,6 +9,7 @@ export default function Boton3D({
   posicion,
   tamanio,
 }) {
+  
   return (
     <>
       <group position={posicion} rotation={[Math.PI / 2, 0, -0.6]}>
