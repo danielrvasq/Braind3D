@@ -60,12 +60,6 @@ const Human2 = forwardRef(({ startAnimation }, audioRef) => {
   return (
     <group ref={group} position={position}>
       <primitive object={clonedScene} scale={0.7} />
-      <PositionalAudio
-        ref={audioRef}
-        url="/sounds/musica2.mp3"
-        distance={5}
-        loop
-      />
     </group>
   );
 });
