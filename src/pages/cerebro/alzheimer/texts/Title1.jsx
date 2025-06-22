@@ -1,4 +1,5 @@
 import { Html } from "@react-three/drei";
+import { Text3D } from "@react-three/drei";
 import "./Title1.css";
 
 const Title1 = ({ title }) => {
@@ -14,6 +15,5 @@ const Title1 = ({ title }) => {
         </Html>
     );
 };
-
 
 export default Title1;

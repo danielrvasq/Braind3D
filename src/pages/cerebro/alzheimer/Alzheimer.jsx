@@ -6,6 +6,7 @@ import { useRef, useEffect, useState, Suspense } from "react";
 import useOldmanStore from "../../../stores/use-oldman-store";
 import Light3 from "./lights/Lights3";
 import Title1 from "./texts/Title1";
+import Title2 from "./texts/Title2";
 import useManStore from "../../../stores/use-Man-store";
 
 // Modelos 3D
@@ -82,6 +83,7 @@ const Alzheimer = () => {
               <OrbitControls />
               <Floor />
               <Lights />
+              <Title2 txt3D="¿ Que es ?" position={[8.1, 1, -2]}/>
               <BrainAl scale={2.4} />
               <Sky />
               <Sparkles count={256} speed={1.5} opacity={1} color="yellow" size={3} scale={[10, 10, 10]} noise={1} />
@@ -123,6 +125,7 @@ const Alzheimer = () => {
               <Floor />
               <Lights />
               <OldManAlz walk={oldManIsWalking} scale={1.4} />
+              <Title2 txt3D="Causas" position={[8.1, 1, -2]}/>
               <Sky />
               <Boton3D
               position={[0, 0, -2]}
@@ -171,6 +174,7 @@ const Alzheimer = () => {
               <Title1 title="Utiliza el cursor para iluminar la escena" />
               <Light3 />
               <WomanOld thinking={womanIsThinking} scale={1.4} />
+              <Title2 txt3D="Tratamiento" position={[8.1, 1.8, -2]}/>
               <Lavadora scale={0.06} />
               <Pancito scale={0.35} />
               <Sky />
@@ -224,6 +228,7 @@ const Alzheimer = () => {
               <Lights />
               <VejeteAl flow={isFlowing} scale={1.4} position={[0, -0.98, 0]} />
               <Sky />
+              <Title2 txt3D="Prevencion" position={[8.1, 1, -2]}/>
               <Boton3D
                 position={[0, 0, -2]}
                 onClick={() => setIsFlowing((prev) => !prev)}
