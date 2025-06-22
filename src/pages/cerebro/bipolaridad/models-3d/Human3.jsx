@@ -1,17 +1,14 @@
-import { useFrame } from "@react-three/fiber";
-import React, { useEffect, useRef, useState, useMemo } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
+import React, { useEffect, useRef, useState, useMemo, forwardRef } from "react";
+import { useGLTF, useAnimations, PositionalAudio } from "@react-three/drei";
 import { clone } from "three/examples/jsm/utils/SkeletonUtils";
 
-const Human3 = ({ startAnimation }) => {
+const Human3 = forwardRef(({ startAnimation }, audioRef) => {
   const group = useRef();
   const { scene, animations } = useGLTF("/models-3d/human3.glb");
   const clonedScene = useMemo(() => clone(scene), [scene]);
   const { actions } = useAnimations(animations, group);
-
   const [position, setPosition] = useState([0, 0, 0]);
 
-  // 🔁 Animación por defecto "Idle" apenas carga
   useEffect(() => {
     const idleAction = actions["Discouraged"];
     if (idleAction) {
@@ -19,7 +16,6 @@ const Human3 = ({ startAnimation }) => {
     }
   }, [actions]);
 
-  // 🎯 Animación activada por botón "Taunt"
   useEffect(() => {
     const tauntAction = actions["dancing"];
     const idleAction = actions["Discouraged"];
@@ -33,7 +29,6 @@ const Human3 = ({ startAnimation }) => {
     }
   }, [startAnimation, actions]);
 
-  // 🎮 Movimiento con teclado
   useEffect(() => {
     const handleKeyDown = (event) => {
       const key = event.key.toLowerCase();
@@ -65,8 +60,14 @@ const Human3 = ({ startAnimation }) => {
   return (
     <group ref={group} position={position}>
       <primitive object={clonedScene} scale={0.7} />
+      <PositionalAudio
+        ref={audioRef}
+        url="/sounds/musica1.mp3"
+        distance={5}
+        loop
+      />
     </group>
   );
-};
+});
 
 export default Human3;

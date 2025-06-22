@@ -20,6 +20,10 @@ const Bipolaridad = () => {
   const [startAnimationModel2, setStartAnimationModel2] = useState(false);
   const [startAnimationModel3, setStartAnimationModel3] = useState(false);
 
+  const audioRef = useRef();
+  const fightAudioRef = useRef();
+  const dodgeAudioRef = useRef();
+
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.code === "KeyQ" || event.code === "Escape") {
@@ -136,7 +140,20 @@ const Bipolaridad = () => {
             </p>
 
             <button
-              onClick={() => setStartAnimationModel1((prev) => !prev)}
+              onClick={() => {
+                setStartAnimationModel1((prev) => {
+                  const newState = !prev;
+
+                  // Control del sonido
+                  if (newState) {
+                    fightAudioRef.current?.play();
+                  } else {
+                    fightAudioRef.current?.stop();
+                  }
+
+                  return newState;
+                });
+              }}
               style={{
                 display: "block",
                 margin: "0 auto",
@@ -148,7 +165,7 @@ const Bipolaridad = () => {
                 cursor: "pointer",
               }}
             >
-              {startAnimationModel1 ? "Detener Animacion" : "Pelear"}
+              {startAnimationModel1 ? "Detener Animación" : "Pelear"}
             </button>
           </section>
         </div>
@@ -165,12 +182,26 @@ const Bipolaridad = () => {
                 rotation={[Math.PI / 0.01, 0.4, 0]}
               />
               <Lights />
-              <Human startAnimation={startAnimationModel1} scale={1.4} />
+              <Human
+                startAnimation={startAnimationModel1}
+                ref={fightAudioRef}
+                scale={1.4}
+              />
 
               <Sky />
               <Boton3D
                 position={[0, 0, -2]}
-                onClick={() => setStartAnimationModel1(true)}
+                onClick={() => {
+                  setStartAnimationModel1((prev) => {
+                    const next = !prev;
+                    if (next) {
+                      fightAudioRef.current?.play(); // 🔊 Reproduce sonido
+                    } else {
+                      fightAudioRef.current?.stop(); // 🛑 Detiene sonido
+                    }
+                    return next;
+                  });
+                }}
                 mensaje="Pelear"
                 color={startAnimationModel1 ? "#ff4444" : "#4CAF50"}
                 posicion={[-2, 0, -0.4]}
@@ -209,7 +240,20 @@ const Bipolaridad = () => {
               adecuado.
             </p>
             <button
-              onClick={() => setStartAnimationModel2((prev) => !prev)}
+              onClick={() => {
+                setStartAnimationModel2((prev) => {
+                  const newState = !prev;
+
+                  // Control del sonido
+                  if (newState) {
+                    dodgeAudioRef.current?.play();
+                  } else {
+                    audioRdodgeAudioRefef.current?.stop();
+                  }
+
+                  return newState;
+                });
+              }}
               style={{
                 display: "block",
                 margin: "0 auto",
@@ -221,7 +265,7 @@ const Bipolaridad = () => {
                 cursor: "pointer",
               }}
             >
-              {startAnimationModel2 ? "Detener Animacion" : "Esquivar"}
+              {startAnimationModel2 ? "Detener Animación" : "Esquivar"}
             </button>
           </section>
         </div>
@@ -238,7 +282,11 @@ const Bipolaridad = () => {
                 rotation={[Math.PI / 0.01, 0.4, 0]}
               />
               <Lights />
-              <Human2 startAnimation={startAnimationModel2} scale={1.4} />
+              <Human2
+                startAnimation={startAnimationModel2}
+                ref={dodgeAudioRef}
+                scale={1.4}
+              />
               <Sky />
               <Boton3D
                 position={[0, 0, -2]}
@@ -277,7 +325,20 @@ const Bipolaridad = () => {
               a muchas personas llevar una vida funcional y estable.
             </p>
             <button
-              onClick={() => setStartAnimationModel3((prev) => !prev)}
+              onClick={() => {
+                setStartAnimationModel3((prev) => {
+                  const newState = !prev;
+
+                  // Control del sonido
+                  if (newState) {
+                    audioRef.current?.play();
+                  } else {
+                    audioRef.current?.stop();
+                  }
+
+                  return newState;
+                });
+              }}
               style={{
                 display: "block",
                 margin: "0 auto",
@@ -289,7 +350,7 @@ const Bipolaridad = () => {
                 cursor: "pointer",
               }}
             >
-              {startAnimationModel3 ? "Detener Animacion" : "Bailar"}
+              {startAnimationModel3 ? "Detener Animación" : "Bailar"}
             </button>
           </section>
         </div>
@@ -298,7 +359,12 @@ const Bipolaridad = () => {
             <Suspense fallback={null}>
               <OrbitControls />
 
-              <Human3 startAnimation={startAnimationModel3} scale={1.4} />
+              <Human3
+                startAnimation={startAnimationModel3}
+                ref={audioRef}
+                scale={1.4}
+              />
+
               <Floor />
               <Title
                 text={"Tratamiento"}
@@ -311,7 +377,17 @@ const Bipolaridad = () => {
               <Sky />
               <Boton3D
                 position={[0, 0, -2]}
-                onClick={() => setStartAnimationModel3(true)}
+                onClick={() => {
+                  setStartAnimationModel3((prev) => {
+                    const next = !prev;
+                    if (next) {
+                      audioRef.current?.play(); // 🔊 Reproduce sonido
+                    } else {
+                      audioRef.current?.stop(); // 🛑 Detiene sonido
+                    }
+                    return next;
+                  });
+                }}
                 mensaje="Bailar"
                 color={startAnimationModel3 ? "#ff4444" : "#4CAF50"}
                 posicion={[-2, 0, -0.4]}
