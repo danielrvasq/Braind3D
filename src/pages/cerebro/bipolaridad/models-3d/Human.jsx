@@ -65,6 +65,7 @@ const Human = forwardRef(({ startAnimation }, audioRef) => {
         url="/sounds/musica2.mp3"
         distance={5}
         loop
+        volume={0.3} // Volumen entre 0.0 y 1.0
       />
     </group>
   );
