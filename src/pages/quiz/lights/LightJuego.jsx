@@ -11,7 +11,7 @@ const LightJuego = (position) => {
   return (
     <>
       <spotLight
-        ref={spotLightRef}
+{/*         ref={spotLightRef} */}
         color="white"
         position={(0, 0, 100)}
         distance={1000}
@@ -21,7 +21,7 @@ const LightJuego = (position) => {
         castShadow={true}
       />
       <spotLight
-        ref={spotLightRef}
+{/*         ref={spotLightRef} */}
         color="orange"
         position={(0, 0, 100)}
         distance={1000}
