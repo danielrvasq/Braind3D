@@ -92,6 +92,16 @@ const Bipolaridad = () => {
               <Environment preset="sunset" background={true} />
               <Lights />
               <Brain />
+              <Text
+                position={[0.7, 0, 0.5]} // ajusta según donde esté el cerebro
+                fontSize={0.2}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+                rotation={[0, 0.4, 0]}
+              >
+                Haz clic en el cerebro para agrandarlo
+              </Text>
               <ambientLight intensity={0.7} />
               <Sky />
               <Sparkles
@@ -146,7 +156,7 @@ const Bipolaridad = () => {
           <Canvas camera={{ position: [1, 1, 2] }} shadows>
             <Suspense fallback={null}>
               <OrbitControls />
-              
+
               <Floor />
               <Title
                 text={"Episodios"}
@@ -219,7 +229,7 @@ const Bipolaridad = () => {
           <Canvas camera={{ position: [1, 1, 2] }} shadows>
             <Suspense fallback={null}>
               <OrbitControls />
-              
+
               <Floor />
               <Title
                 text={"Sintomas"}
@@ -287,7 +297,7 @@ const Bipolaridad = () => {
           <Canvas camera={{ position: [1, 1, 2] }} shadows>
             <Suspense fallback={null}>
               <OrbitControls />
-              
+
               <Human3 startAnimation={startAnimationModel3} scale={1.4} />
               <Floor />
               <Title
@@ -295,7 +305,7 @@ const Bipolaridad = () => {
                 position={[0.5, 0.5, -1]}
                 color={"SkyBlue"}
                 rotation={[Math.PI / 0.01, 0.4, 0]}
-               size={1.6}
+                size={1.6}
               />
               <Lights />
               <Sky />
