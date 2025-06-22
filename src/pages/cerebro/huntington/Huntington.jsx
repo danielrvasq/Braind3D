@@ -31,7 +31,7 @@ import Radio from "./models-3d/Radio";
 
 const Huntington = () => {
   const devRef = useRef();
-  
+
   const [isHit, setIsHit] = useState(false);
 
   const [danceTrigger, setDanceTrigger] = useState(false);
