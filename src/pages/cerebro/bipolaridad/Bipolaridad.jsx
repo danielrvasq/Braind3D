@@ -97,12 +97,12 @@ const Bipolaridad = () => {
               <Lights />
               <Brain />
               <Text
-                position={[0.7, 0, 0.5]} // ajusta según donde esté el cerebro
+                position={[0.5, 0, 0.5]} // ajusta según donde esté el cerebro
                 fontSize={0.2}
-                color="black"
+                color="white"
                 anchorX="center"
                 anchorY="middle"
-                rotation={[0, 0.4, 0]}
+                rotation={[0, 0.5, 0]}
               >
                 Haz clic en el cerebro para agrandarlo
               </Text>
@@ -187,7 +187,16 @@ const Bipolaridad = () => {
                 ref={fightAudioRef}
                 scale={1.4}
               />
-
+              <Text
+                position={[0.5, 0, 0.5]} // Puedes ajustar la posición
+                fontSize={0.2}
+                color="white"
+                anchorX="center"
+                anchorY="middle"
+                rotation={[0, 0.5, 0]}
+              >
+                Usa W, A, S, D o las flechas para moverte
+              </Text>
               <Sky />
               <Boton3D
                 position={[0, 0, -2]}
@@ -287,13 +296,21 @@ const Bipolaridad = () => {
                 ref={dodgeAudioRef}
                 scale={1.4}
               />
+              <Text
+                position={[0.5, 0, 0.5]} // Puedes ajustar la posición
+                fontSize={0.2}
+                color="white"
+                anchorX="center"
+                anchorY="middle"
+                rotation={[0, 0.5, 0]}
+              >
+                Usa W, A, S, D o las flechas para moverte
+              </Text>
               <Sky />
               <Boton3D
                 position={[0, 0, -2]}
                 onClick={() => setStartAnimationModel2((prev) => !prev)}
-                mensaje={
-                  startAnimationModel2 ? "Esquivar" : "Esquivar"
-                }
+                mensaje={startAnimationModel2 ? "Esquivar" : "Esquivar"}
                 color={startAnimationModel2 ? "#ff4444" : "#4CAF50"}
                 posicion={[-2, 0, -0.4]}
                 tamanio={[2, 0.5, 1]}
@@ -366,7 +383,16 @@ const Bipolaridad = () => {
                 ref={audioRef}
                 scale={1.4}
               />
-
+              <Text
+                position={[0.5, 0, 0.5]} // Puedes ajustar la posición
+                fontSize={0.2}
+                color="white"
+                anchorX="center"
+                anchorY="middle"
+                rotation={[0, 0.5, 0]}
+              >
+                Usa W, A, S, D o las flechas para moverte
+              </Text>
               <Floor />
               <Title
                 text={"Tratamiento"}
