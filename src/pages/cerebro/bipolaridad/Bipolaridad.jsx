@@ -2,12 +2,12 @@
 
 import React, { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-
+import { Environment } from "@react-three/drei";
 import { OrbitControls, Sky, Sparkles, Text, Text3D } from "@react-three/drei";
 import "./Bipolaridad.css";
 import Floor from "../huntington/models-3d/Floor";
 import Lights from "../huntington/lights/Lights";
-import Title from "../esquizofrenia/texts/Title";
+import Title from "./texts/Title";
 import Boton3D from "./models-3d/Boton3D";
 import Brain from "./models-3d/Brain";
 
@@ -83,6 +83,13 @@ const Bipolaridad = () => {
             <Suspense fallback={null}>
               <OrbitControls />
               <Floor />
+              <Title
+                text={"¿Que es?"}
+                position={[0.5, 0.5, -1]}
+                color={"SkyBlue"}
+                rotation={[Math.PI / 0.01, 0.4, 0]}
+              />
+              <Environment preset="sunset" background={true} />
               <Lights />
               <Brain />
               <ambientLight intensity={0.7} />
@@ -124,14 +131,14 @@ const Bipolaridad = () => {
                 display: "block",
                 margin: "0 auto",
                 padding: "10px 20px",
-                background: "#4CAF50",
+                background: startAnimationModel1 ? "#ff4444" : "#4CAF50",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
                 cursor: "pointer",
               }}
             >
-              {startAnimationModel1 ? "Detener Pelea" : "Pelear"}
+              {startAnimationModel1 ? "Detener Animacion" : "Pelear"}
             </button>
           </section>
         </div>
@@ -139,7 +146,14 @@ const Bipolaridad = () => {
           <Canvas camera={{ position: [1, 1, 2] }} shadows>
             <Suspense fallback={null}>
               <OrbitControls />
+              
               <Floor />
+              <Title
+                text={"Episodios"}
+                position={[0.5, 0.5, -1]}
+                color={"SkyBlue"}
+                rotation={[Math.PI / 0.01, 0.4, 0]}
+              />
               <Lights />
               <Human startAnimation={startAnimationModel1} scale={1.4} />
 
@@ -148,10 +162,11 @@ const Bipolaridad = () => {
                 position={[0, 0, -2]}
                 onClick={() => setStartAnimationModel1(true)}
                 mensaje="Pelear"
-                color="#4CAF50"
-                posicion={[-2, -0.52, -0.5]}
+                color={startAnimationModel1 ? "#ff4444" : "#4CAF50"}
+                posicion={[-2, 0, -0.4]}
                 tamanio={[2, 0.5, 1]}
               />
+              <Environment preset="sunset" background={true} />
               <Sparkles
                 count={256}
                 speed={1.5}
@@ -184,19 +199,19 @@ const Bipolaridad = () => {
               adecuado.
             </p>
             <button
-              onClick={() => setStartAnimationModel3((prev) => !prev)}
+              onClick={() => setStartAnimationModel2((prev) => !prev)}
               style={{
                 display: "block",
                 margin: "0 auto",
                 padding: "10px 20px",
-                background: "#4CAF50",
+                background: startAnimationModel2 ? "#ff4444" : "#4CAF50",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
                 cursor: "pointer",
               }}
             >
-              {startAnimationModel3 ? "Detener Esquivamiento" : "Esquivar"}
+              {startAnimationModel2 ? "Detener Animacion" : "Esquivar"}
             </button>
           </section>
         </div>
@@ -204,18 +219,26 @@ const Bipolaridad = () => {
           <Canvas camera={{ position: [1, 1, 2] }} shadows>
             <Suspense fallback={null}>
               <OrbitControls />
+              
               <Floor />
+              <Title
+                text={"Sintomas"}
+                position={[0.5, 0.5, -1]}
+                color={"SkyBlue"}
+                rotation={[Math.PI / 0.01, 0.4, 0]}
+              />
               <Lights />
-              <Human2 startAnimation={startAnimationModel3} scale={1.4} />
+              <Human2 startAnimation={startAnimationModel2} scale={1.4} />
               <Sky />
               <Boton3D
                 position={[0, 0, -2]}
-                onClick={() => setStartAnimationModel3(true)}
+                onClick={() => setStartAnimationModel2(true)}
                 mensaje="Esquivar"
-                color="#4CAF50"
-                posicion={[-2.1, -0.52, -0.5]}
+                color={startAnimationModel2 ? "#ff4444" : "#4CAF50"}
+                posicion={[-2, 0, -0.4]}
                 tamanio={[2, 0.5, 1]}
               />
+              <Environment preset="sunset" background={true} />
               <Sparkles
                 count={256}
                 speed={1.5}
@@ -249,14 +272,14 @@ const Bipolaridad = () => {
                 display: "block",
                 margin: "0 auto",
                 padding: "10px 20px",
-                background: "#4CAF50",
+                background: startAnimationModel3 ? "#ff4444" : "#4CAF50",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
                 cursor: "pointer",
               }}
             >
-              {startAnimationModel3 ? "Detener Baile" : "Bailar"}
+              {startAnimationModel3 ? "Detener Animacion" : "Bailar"}
             </button>
           </section>
         </div>
@@ -264,18 +287,27 @@ const Bipolaridad = () => {
           <Canvas camera={{ position: [1, 1, 2] }} shadows>
             <Suspense fallback={null}>
               <OrbitControls />
+              
               <Human3 startAnimation={startAnimationModel3} scale={1.4} />
               <Floor />
+              <Title
+                text={"Tratamiento"}
+                position={[0.5, 0.5, -1]}
+                color={"SkyBlue"}
+                rotation={[Math.PI / 0.01, 0.4, 0]}
+               size={1.6}
+              />
               <Lights />
               <Sky />
               <Boton3D
                 position={[0, 0, -2]}
                 onClick={() => setStartAnimationModel3(true)}
                 mensaje="Bailar"
-                color="#4CAF50"
-                posicion={[-2.1, -0.52, -0.5]}
+                color={startAnimationModel3 ? "#ff4444" : "#4CAF50"}
+                posicion={[-2, 0, -0.4]}
                 tamanio={[2, 0.5, 1]}
               />
+              <Environment preset="sunset" background={true} />
               <Sparkles
                 count={256}
                 speed={1.5}

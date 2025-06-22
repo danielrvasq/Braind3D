@@ -1,7 +1,6 @@
 import { useFrame } from "@react-three/fiber";
 import React, { useEffect, useRef, useState, useMemo } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
-
 import { clone } from "three/examples/jsm/utils/SkeletonUtils";
 
 const Human = ({ startAnimation }) => {
@@ -10,22 +9,31 @@ const Human = ({ startAnimation }) => {
   const clonedScene = useMemo(() => clone(scene), [scene]);
   const { actions } = useAnimations(animations, group);
 
-  // Estado para posición y rotación
   const [position, setPosition] = useState([0, 0, 0]);
 
-  // Animación de Mixamo
+  // 🔁 Animación por defecto "Idle" apenas carga
   useEffect(() => {
-    const action = actions["Taunt"];
-    if (action) {
-      if (startAnimation) {
-        action.reset().fadeIn(0.5).play();
-      } else {
-        action.fadeOut(0.5).stop();
-      }
+    const idleAction = actions["Defeated"];
+    if (idleAction) {
+      idleAction.reset().fadeIn(0.5).play();
+    }
+  }, [actions]);
+
+  // 🎯 Animación activada por botón "Taunt"
+  useEffect(() => {
+    const tauntAction = actions["Taunt"];
+    const idleAction = actions["Defeated"];
+
+    if (startAnimation) {
+      idleAction?.fadeOut(0.5);
+      tauntAction?.reset().fadeIn(0.5).play();
+    } else {
+      tauntAction?.fadeOut(0.5).stop();
+      idleAction?.reset().fadeIn(0.5).play();
     }
   }, [startAnimation, actions]);
 
-  // Movimiento con teclado
+  // 🎮 Movimiento con teclado
   useEffect(() => {
     const handleKeyDown = (event) => {
       const key = event.key.toLowerCase();
