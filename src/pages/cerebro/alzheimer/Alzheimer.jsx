@@ -191,7 +191,7 @@ const Alzheimer = () => {
               <Title3 title="Preciona la tecla P para iniciar con la animacion" />
               <Light3 />
               <WomanOld thinking={womanIsThinking} scale={1.4} />
-              <Title2 txt3D="Tratamiento" position={[8.1, 1.8, -2]}/>
+              <Title2 txt3D="Síntomas" position={[8.1, 1.8, -2]}/>
               <Lavadora scale={0.06} />
               <Pancito scale={0.35} />
               <Sky />
@@ -246,7 +246,7 @@ const Alzheimer = () => {
               <VejeteAl flow={isFlowing} scale={1.4} position={[0, -0.98, 0]} />
               <Title1 title="Presiona la tecla F para comenzar la animacion" />
               <Sky />
-              <Title2 txt3D="Prevencion" position={[8.1, 1, -2]}/>
+              <Title2 txt3D="Diagnóstico" position={[8.1, 1, -2]}/>
               <Boton3D
                 position={[0, 0, -2]}
                 onClick={() => setIsFlowing((prev) => !prev)}
