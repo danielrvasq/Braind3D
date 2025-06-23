@@ -1,13 +1,13 @@
 /* eslint-disable react/no-unknown-property */
 import { useHelper } from "@react-three/drei";
 import { SpotLightHelper } from "three";
-import { useRef } from "react";
+// import { useRef } from "react";
 
 const LightJuego = (position) => {
   // const spotLightRef = useRef();
   // useHelper(spotLightRef, SpotLightHelper);
-  const spotLightRef = useRef();
-  useHelper(spotLightRef, SpotLightHelper, 2, "cyan");
+  // const spotLightRef = useRef();
+  // useHelper(spotLightRef, SpotLightHelper, 2, "cyan");
   return (
     <>
       <spotLight
